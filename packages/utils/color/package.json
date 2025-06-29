@@ -1,0 +1,57 @@
+{
+	"name": "@clippium/color",
+	"version": "0.0.1",
+	"description": "Color support for cli utilities",
+	"keywords": [
+		"cli",
+		"clippium",
+		"color",
+		"pigeonposse",
+		"pp"
+	],
+	"homepage": "https://clippium.pigeonposse.com/guide/color",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/clippium/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/clippium/",
+		"directory": "packages/color"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "unbuild"
+	},
+	"dependencies": {
+		"chalk": "5.4.1"
+	},
+	"devDependencies": {
+		"@clippium/_config": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	}
+}

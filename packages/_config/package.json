@@ -1,0 +1,19 @@
+{
+	"name": "@clippium/_config",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Add your description here",
+	"keywords": [
+		"dovenv",
+		"pigeonposse",
+		"pp"
+	],
+	"exports": {
+		"./tsconfig.json": "./tsconfig.json",
+		"./unbuild": "./build.config.js"
+	},
+	"files": [
+		"data",
+		"dist"
+	]
+}

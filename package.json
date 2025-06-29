@@ -1,0 +1,105 @@
+{
+	"name": "clippium-monorepo",
+	"private": true,
+	"description": "Command Line Interface with Powerful and Pristine Operations",
+	"homepage": "https://clippium.pigeonposse.com",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/clippium/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pigeonposse/clippium.git"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
+	"type": "module",
+	"scripts": {
+		"+": "run() { pnpm -F @*/\"${@:1}\"; }; run $@",
+		"++": "pnpm -F $@",
+		".": "dovenv",
+		"lint:commit": "dovenv lint commitlint --silent",
+		"lint:eslint": "dovenv lint eslint --silent",
+		"lint:pkg": "dovenv lint custom -k pkg --silent",
+		"lint:staged": "dovenv lint staged --silent",
+		"prepare": "dovenv git husky --silent",
+		"test": "pnpm run --sequential \"/test:.*/\"",
+		"test:check": "pnpm --parallel check",
+		"test:check-ws": "dovenv check -k '!ws.pkg.files' --silent",
+		"test:pkg": "pnpm --parallel test",
+		"test:transform-ws": "dovenv transform --silent"
+	},
+	"devDependencies": {
+		"@changesets/changelog-github": "0.5.1",
+		"@dovenv/core": "1.5.31",
+		"@dovenv/theme-pigeonposse": "1.5.31",
+		"@playwright/test": "1.53.1",
+		"@types/node": "24.0.7",
+		"eslint": "9.30.0",
+		"tslib": "2.8.1",
+		"tsx": "4.20.3",
+		"typescript": "5.8.3",
+		"unbuild": "3.5.0",
+		"vitest": "3.2.4"
+	},
+	"packageManager": "pnpm@10.12.4",
+	"engines": {
+		"node": ">=20.0.0",
+		"pnpm": ">=8.10.0"
+	},
+	"workspace": [
+		"packages/*",
+		"packages/utils/*",
+		"packages/preset/*"
+	],
+	"extra": {
+		"id": "clippium",
+		"productName": "clippium",
+		"shortDesc": "Toolkit for make your code workspace easier",
+		"action": "Complex projects should be easier",
+		"libraryURL": "https://www.npmjs.com/package/@clippium/core",
+		"licenseURL": "https://github.com/pigeonposse/clippium/blob/main/LICENSE",
+		"changelogURL": "https://github.com/pigeonposse/clippium/blob/main/packages/core/CHANGELOG.md",
+		"contributingURL": "https://github.com/pigeonposse/.github/blob/main/CONTRIBUTING.md",
+		"libraryID": "@clippium/core",
+		"repoID": "clippium",
+		"rawRepoURL": "https://raw.githubusercontent.com/pigeonposse/clippium",
+		"docsURL": "https://clippium.pigeonposse.com",
+		"type": [
+			"library",
+			"js-library",
+			"ts-library",
+			"toolkit",
+			"cli",
+			"bin"
+		],
+		"collective": {
+			"id": "pigeonposse",
+			"name": "PigeonPosse",
+			"funding": "https://pigeonposse.com/contribute",
+			"gh": "https://github.com/pigeonposse",
+			"about": "https://pigeonposse.com/about",
+			"url": "https://pigeonposse.com",
+			"web": "https://pigeonposse.com",
+			"email": "dev@pigeonposse.com",
+			"socialUser": {
+				"twitter": "pigeonposse_",
+				"instagram": "pigeon.posse",
+				"medium": "pigeonposse"
+			},
+			"social": {
+				"twitter": "https://twitter.com/pigeonposse_",
+				"instagram": "https://www.instagram.com/pigeon.posse/",
+				"medium": "https://medium.com/@pigeonposse"
+			}
+		}
+	}
+}

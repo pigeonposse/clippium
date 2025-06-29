@@ -1,0 +1,51 @@
+{
+	"name": "@clippium/core",
+	"version": "0.0.1",
+	"description": "Command Line Interface with Powerful and Pristine Operations",
+	"keywords": [
+		"dovenv",
+		"pigeonposse",
+		"pp"
+	],
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"build": "unbuild",
+		"dev": "vite dev"
+	},
+	"devDependencies": {
+		"@clippium/_config": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"homepage": "https://clippium.pigeonposse.com/guide/core",
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/clippium/",
+		"directory": "packages/core"
+	},
+	"license": "GPL-3.0",
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"bugs": {
+		"url": "https://github.com/pigeonposse/clippium/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	}
+}

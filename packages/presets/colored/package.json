@@ -1,0 +1,65 @@
+{
+	"name": "@clippium/preset-colored",
+	"version": "0.0.1",
+	"description": "Add color support to Clippium output",
+	"keywords": [
+		"cli",
+		"clippium",
+		"pigeonposse",
+		"pp"
+	],
+	"homepage": "https://clippium.pigeonposse.com",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/clippium/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/clippium"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs"
+		},
+		"./browser": {
+			"types": "./dist/browser.d.ts",
+			"import": "./dist/browser.mjs"
+		},
+		"./plugin": {
+			"types": "./dist/plugin.d.ts",
+			"import": "./dist/plugin.mjs"
+		}
+	},
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "unbuild"
+	},
+	"devDependencies": {
+		"@clippium/_config": "workspace:*",
+		"@clippium/core": "workspace:*"
+	},
+	"peerDependencies": {
+		"@clippium/color": "workspace:*",
+		"@clippium/core": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	}
+}

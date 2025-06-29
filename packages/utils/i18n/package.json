@@ -1,0 +1,49 @@
+{
+	"name": "@clippium/i18n",
+	"version": "0.0.1",
+	"description": "Internalization with zero configuration. Created for clippium and designed for CLI and backend tools",
+	"homepage": "https://clippium.pigeonposse.com/guide/i18n",
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/clippium/",
+		"directory": "packages/i18n"
+	},
+	"license": "GPL-3.0",
+	"type": "module",
+	"main": "dist/main.js",
+	"module": "dist/main.js",
+	"types": "dist/main.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "unbuild",
+		"dev": "pnpm build && pnpm preview",
+		"example": "node examples/main.js $@",
+		"preview": "node dist/main.js $@",
+		"test": "vitest run src --passWithNoTests"
+	},
+	"dependencies": {
+		"i18next": "23.14.0"
+	},
+	"devDependencies": {
+		"@clippium/_config": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"bugs": {
+		"url": "https://github.com/pigeonposse/clippium/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	}
+}
