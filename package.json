@@ -26,6 +26,8 @@
 		"+": "run() { pnpm -F @*/\"${@:1}\"; }; run $@",
 		"++": "pnpm -F $@",
 		".": "dovenv",
+		"build": "pnpm --parallel build",
+		"build-doc": "dovenv predocs && dovenv docs build",
 		"lint:commit": "dovenv lint commitlint --silent",
 		"lint:eslint": "dovenv lint eslint --silent",
 		"lint:pkg": "dovenv lint custom -k pkg --silent",
@@ -39,8 +41,8 @@
 	},
 	"devDependencies": {
 		"@changesets/changelog-github": "0.5.1",
-		"@dovenv/core": "1.5.31",
-		"@dovenv/theme-pigeonposse": "1.5.31",
+		"@dovenv/core": "1.5.33",
+		"@dovenv/theme-pigeonposse": "1.5.33",
 		"@playwright/test": "1.53.1",
 		"@types/node": "24.0.7",
 		"eslint": "9.30.0",
@@ -58,18 +60,18 @@
 	"workspace": [
 		"packages/*",
 		"packages/utils/*",
-		"packages/preset/*"
+		"packages/presets/*"
 	],
 	"extra": {
 		"id": "clippium",
 		"productName": "clippium",
-		"shortDesc": "Toolkit for make your code workspace easier",
-		"action": "Complex projects should be easier",
-		"libraryURL": "https://www.npmjs.com/package/@clippium/core",
+		"shortDesc": "Command Line Interface with Powerful and Pristine Operations",
+		"action": "Modern and easy-to-use CLI tool",
+		"libraryURL": "https://www.npmjs.com/package/clippium",
 		"licenseURL": "https://github.com/pigeonposse/clippium/blob/main/LICENSE",
 		"changelogURL": "https://github.com/pigeonposse/clippium/blob/main/packages/core/CHANGELOG.md",
 		"contributingURL": "https://github.com/pigeonposse/.github/blob/main/CONTRIBUTING.md",
-		"libraryID": "@clippium/core",
+		"libraryID": "clippium",
 		"repoID": "clippium",
 		"rawRepoURL": "https://raw.githubusercontent.com/pigeonposse/clippium",
 		"docsURL": "https://clippium.pigeonposse.com",

@@ -28,4 +28,5 @@ deno add @clippium/color
 
 ## ➕ More
 
+- 📖 [API Docs](api.md)
 - 📦 [NPM](https://www.npmjs.com/package/@clippium/color)

@@ -28,4 +28,5 @@ deno add @clippium/updater
 
 ## ➕ More
 
+- 📖 [API Docs](api.md)
 - 📦 [NPM](https://www.npmjs.com/package/@clippium/updater)

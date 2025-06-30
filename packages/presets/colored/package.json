@@ -8,14 +8,15 @@
 		"pigeonposse",
 		"pp"
 	],
-	"homepage": "https://clippium.pigeonposse.com",
+	"homepage": "https://clippium.pigeonposse.com/guide/colored",
 	"bugs": {
 		"url": "https://github.com/pigeonposse/clippium/issues",
 		"email": "dev@pigeonposse.com"
 	},
 	"repository": {
 		"type": "https",
-		"url": "https://github.com/pigeonposse/clippium"
+		"url": "https://github.com/pigeonposse/clippium/",
+		"directory": "packages/presets/colored"
 	},
 	"funding": {
 		"type": "individual",
@@ -32,14 +33,6 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.mjs"
-		},
-		"./browser": {
-			"types": "./dist/browser.d.ts",
-			"import": "./dist/browser.mjs"
-		},
-		"./plugin": {
-			"types": "./dist/plugin.d.ts",
-			"import": "./dist/plugin.mjs"
 		}
 	},
 	"main": "./dist/index.mjs",
@@ -52,11 +45,11 @@
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*",
-		"@clippium/core": "workspace:*"
+		"clippium": "workspace:*"
 	},
 	"peerDependencies": {
 		"@clippium/color": "workspace:*",
-		"@clippium/core": "workspace:*"
+		"clippium": "workspace:*"
 	},
 	"publishConfig": {
 		"access": "public",

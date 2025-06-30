@@ -7,17 +7,18 @@
 [![Instagram](https://img.shields.io/badge/Instagram-black?style=for-the-badge&logoColor=white&logo=instagram)](https://www.instagram.com/pigeon.posse/)
 [![Medium](https://img.shields.io/badge/Medium-black?style=for-the-badge&logoColor=white&logo=medium)](https://medium.com/@pigeonposse)
 
-[![BANNER](https://github.com/pigeonposse/clippium/blob/main/docs/public/banner.png?raw=true)](undefined)
+[![BANNER](https://github.com/pigeonposse/clippium/blob/main/docs/public/banner.png?raw=true)](https://clippium.pigeonposse.com/guide/core)
 
 [![License](https://img.shields.io/github/license/pigeonposse/clippium?style=for-the-badge&color=green&logoColor=white)](/LICENSE)
-[![Version](https://img.shields.io/npm/v/@clippium/core?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/@clippium/core)
-[![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/@clippium/core?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/@clippium/core)
-[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@clippium/core/0.0.1?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/@clippium/core)
+[![Version](https://img.shields.io/npm/v/clippium?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/clippium)
+[![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/clippium?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/clippium)
+[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/clippium/0.0.1?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/clippium)
 
 Command Line Interface with Powerful and Pristine Operations
 
 ## Table of contents
 
+- [What is clippium?](#what-is-clippium)
 - [🔑 Installation](#-installation)
 - [➕ More](#-more)
 - [👨‍💻 Development](#-development)
@@ -26,25 +27,35 @@ Command Line Interface with Powerful and Pristine Operations
 - [✨ About us](#-about-us)
 
 
+## What is clippium?
+
+> ⚠️ Alpha version
+
+`clippium` is a tool that helps to create command line interfaces (CLI) with powerful and pristine operations.
+
+
+
+
 
 
 ## 🔑 Installation
 
 ```bash 
-npm install @clippium/core
+npm install clippium
 # or
-pnpm install @clippium/core
+pnpm install clippium
 # or
-yarn add @clippium/core
+yarn add clippium
 # or
-bun add @clippium/core
+bun add clippium
 # or
-deno add @clippium/core
+deno add clippium
 ```
 
 ## ➕ More
 
 - 🌞 [Core](https://clippium.pigeonposse.com/guide/core)
+- [Colored](https://clippium.pigeonposse.com/guide/colored)
 - [Color](https://clippium.pigeonposse.com/guide/color)
 - [I18n](https://clippium.pigeonposse.com/guide/i18n)
 - [Updater](https://clippium.pigeonposse.com/guide/updater)
@@ -83,6 +94,7 @@ This software is licensed with __[GPL-3.0](https://github.com/pigeonposse/clippi
 
 |   | Name | Role |
 | ----- | ---- | ---- |
+| ![Angelo](https://github.com/angelespejo.png?size=72) | [Angelo](https://github.com/angelespejo) | 👑 Author |
 | ![PigeonPosse](https://github.com/pigeonposse.png?size=72) | [PigeonPosse](https://github.com/pigeonposse) | 🏢 Organization |
 
 ---

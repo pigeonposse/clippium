@@ -16,7 +16,7 @@
 	"repository": {
 		"type": "https",
 		"url": "https://github.com/pigeonposse/clippium/",
-		"directory": "packages/updater"
+		"directory": "packages/utils/updater"
 	},
 	"funding": {
 		"type": "individual",
@@ -33,14 +33,6 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.mjs"
-		},
-		"./browser": {
-			"types": "./dist/browser.d.ts",
-			"import": "./dist/browser.mjs"
-		},
-		"./plugin": {
-			"types": "./dist/plugin.d.ts",
-			"import": "./dist/plugin.mjs"
 		}
 	},
 	"main": "./dist/index.mjs",

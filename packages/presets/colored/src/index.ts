@@ -1,10 +1,9 @@
 
+import color     from '@clippium/color'
 import {
 	ClippiumConfig,
 	ClippiumData,
-} from '@clippium/core'
-
-import color from '../../../utils/color/dist'
+} from 'clippium'
 
 type Flags = NonNullable<ClippiumData['flags']>
 

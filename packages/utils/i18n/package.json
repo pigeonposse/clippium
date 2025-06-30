@@ -2,17 +2,42 @@
 	"name": "@clippium/i18n",
 	"version": "0.0.1",
 	"description": "Internalization with zero configuration. Created for clippium and designed for CLI and backend tools",
+	"keywords": [
+		"cli",
+		"clippium",
+		"i18n",
+		"pigeonposse",
+		"pp"
+	],
 	"homepage": "https://clippium.pigeonposse.com/guide/i18n",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/clippium/issues",
+		"email": "dev@pigeonposse.com"
+	},
 	"repository": {
 		"type": "https",
 		"url": "https://github.com/pigeonposse/clippium/",
-		"directory": "packages/i18n"
+		"directory": "packages/utils/i18n"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
 	},
 	"license": "GPL-3.0",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
 	"type": "module",
-	"main": "dist/main.js",
-	"module": "dist/main.js",
-	"types": "dist/main.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
 	"files": [
 		"dist"
 	],
@@ -32,18 +57,5 @@
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
-	},
-	"funding": {
-		"type": "individual",
-		"url": "https://pigeonposse.com/contribute"
-	},
-	"bugs": {
-		"url": "https://github.com/pigeonposse/clippium/issues",
-		"email": "dev@pigeonposse.com"
-	},
-	"author": {
-		"name": "Angelo",
-		"email": "angelo@pigeonposse.com",
-		"url": "https://github.com/angelespejo"
 	}
 }

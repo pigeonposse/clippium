@@ -28,4 +28,5 @@ deno add @clippium/i18n
 
 ## ➕ More
 
+- 📖 [API Docs](api.md)
 - 📦 [NPM](https://www.npmjs.com/package/@clippium/i18n)

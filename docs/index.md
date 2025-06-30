@@ -4,8 +4,11 @@
 layout: home
 hero:
   name: CLIPPIUM
-  tagline: Toolkit for make your code workspace easier
-  text: Complex projects should be easier
+  tagline: Command Line Interface with Powerful and Pristine Operations
+  text: Modern and easy-to-use CLI tool
+  image:
+    src: /logo.png
+    alt: clippium
   actions:
     - theme: brand
       text: Get started
@@ -28,23 +31,23 @@ features:
 ::: code-group
 
 ```bash [npm]
-npm install @clippium/core
+npm install clippium
 ```
 
 ```bash [pnpm]
-pnpm install @clippium/core
+pnpm install clippium
 ```
 
 ```bash [yarn]
-yarn add @clippium/core
+yarn add clippium
 ```
 
 ```bash [bun]
-bun add @clippium/core
+bun add clippium
 ```
 
 ```bash [deno]
-deno add @clippium/core
+deno add clippium
 ```
 
 :::

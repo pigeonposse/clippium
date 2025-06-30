@@ -7,10 +7,10 @@
 [![Instagram](https://img.shields.io/badge/Instagram-black?style=for-the-badge&logoColor=white&logo=instagram)](https://www.instagram.com/pigeon.posse/)
 [![Medium](https://img.shields.io/badge/Medium-black?style=for-the-badge&logoColor=white&logo=medium)](https://medium.com/@pigeonposse)
 
-[![BANNER](https://github.com/pigeonposse/clippium/blob/main/docs/public/banner.png?raw=true)](undefined)
+[![BANNER](https://github.com/pigeonposse/clippium/blob/main/docs/public/banner.png?raw=true)](https://clippium.pigeonposse.com/guide/core)
 
 [![License](https://img.shields.io/github/license/pigeonposse/clippium?style=for-the-badge&color=green&logoColor=white)](/LICENSE)
-[![Version](https://img.shields.io/npm/v/@clippium/core?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/@clippium/core)
+[![Version](https://img.shields.io/npm/v/clippium?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/clippium)
 [![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/@clippium/color?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/@clippium/color)
 [![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@clippium/color/0.0.1?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/@clippium/color)
 
@@ -45,6 +45,7 @@ deno add @clippium/color
 ## ➕ More
 
 - 🌞 [Core](https://clippium.pigeonposse.com/guide/core)
+- [Colored](https://clippium.pigeonposse.com/guide/colored)
 - [Color](https://clippium.pigeonposse.com/guide/color)
 - [I18n](https://clippium.pigeonposse.com/guide/i18n)
 - [Updater](https://clippium.pigeonposse.com/guide/updater)

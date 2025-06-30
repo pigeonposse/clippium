@@ -1,31 +1,32 @@
-# @clippium/core
+# clippium
 
 Command Line Interface with Powerful and Pristine Operations
 
 ::: code-group
 
 ```bash [npm]
-npm install @clippium/core
+npm install clippium
 ```
 
 ```bash [pnpm]
-pnpm install @clippium/core
+pnpm install clippium
 ```
 
 ```bash [yarn]
-yarn add @clippium/core
+yarn add clippium
 ```
 
 ```bash [bun]
-bun add @clippium/core
+bun add clippium
 ```
 
 ```bash [deno]
-deno add @clippium/core
+deno add clippium
 ```
 
 :::
 
 ## ➕ More
 
-- 📦 [NPM](https://www.npmjs.com/package/@clippium/core)
+- 📖 [API Docs](api.md)
+- 📦 [NPM](https://www.npmjs.com/package/clippium)
