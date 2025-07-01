@@ -1,0 +1,20 @@
+{
+	"flags": {
+		"verbose": true
+	},
+	"commands": {
+		"nest": {
+			"commands": {
+				"nest2": {
+					"commands": {
+						"nest3": {
+							"flags": {
+								"nestflag": true
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

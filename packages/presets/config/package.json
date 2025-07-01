@@ -1,14 +1,16 @@
 {
-	"name": "clippium",
+	"name": "@clippium/preset-config",
 	"version": "0.0.2",
-	"description": "Command Line Interface with Powerful and Pristine Operations",
+	"description": "Make Clippium take flags and commands from a configuration file",
 	"keywords": [
 		"cli",
 		"clippium",
+		"config",
 		"pigeonposse",
-		"pp"
+		"pp",
+		"preset"
 	],
-	"homepage": "https://clippium.pigeonposse.com/guide/core",
+	"homepage": "https://clippium.pigeonposse.com/guide/config",
 	"bugs": {
 		"url": "https://github.com/pigeonposse/clippium/issues",
 		"email": "dev@pigeonposse.com"
@@ -16,7 +18,7 @@
 	"repository": {
 		"type": "https",
 		"url": "https://github.com/pigeonposse/clippium/",
-		"directory": "packages/core"
+		"directory": "packages/presets/config"
 	},
 	"funding": {
 		"type": "individual",
@@ -37,16 +39,24 @@
 	},
 	"main": "./dist/index.mjs",
 	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
 	"scripts": {
 		"build": "unbuild",
-		"dev": "vite dev"
+		"dev": "pnpx tsx examples/multiple/index.ts"
+	},
+	"dependencies": {
+		"js-yaml": "4.1.0",
+		"smol-toml": "1.4.0"
 	},
 	"devDependencies": {
-		"@clippium/_config": "workspace:*"
+		"@clippium/_config": "workspace:*",
+		"@types/js-yaml": "4.0.9",
+		"clippium": "workspace:*"
+	},
+	"peerDependencies": {
+		"clippium": "workspace:*"
 	},
 	"publishConfig": {
 		"access": "public",

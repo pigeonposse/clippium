@@ -77,7 +77,9 @@ export type ClippiumData = {
 	version? : string
 } & CommandOptions
 
-////////////////////////////////////////////// UTILS //////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////// INFER //////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 type InferOption<T extends Option> =
 	T extends { choices: ( infer V )[] }
@@ -101,8 +103,11 @@ export type GetValue<T extends ClippiumData, K extends keyof ClippiumData> =
 		? GetValue<T['commands'], K> & _GetValue<T, K>
 		: _GetValue<T, K>
 
-// FLAGS /////////////////////////////////////////////
+////////////////////////////////////////////// FLAGS //////////////////////////////////////////////
+
 export type GetFlags<T extends ClippiumData> = GetValue<T, 'flags'>
+
+export type InferFlag<T extends Option> = InferOption<T>
 
 type _InferedFlags<T extends ClippiumData> =
 	T['flags'] extends Record<string, Option>
@@ -119,8 +124,10 @@ export type InferFlags<T extends ClippiumData> =
 		>
 		: _InferedFlags<T>
 
-// POSICIONALS /////////////////////////////////////////////
+////////////////////////////////////////////// POSICIONALS /////////////////////////////////////////////
 export type GetPositionals<T extends ClippiumData> = GetValue<T, 'positionals'>
+
+export type InferPosicional<T extends Posicional> = InferOption<T>
 
 type _InferedPositionals<T extends ClippiumData> =
 	T['positionals'] extends Record<string, Option>
@@ -137,7 +144,7 @@ export type InferPosicionals<T extends ClippiumData> =
 		>
 		: _InferedPositionals<T>
 
-// COMMANDS /////////////////////////////////////////////
+////////////////////////////////////////////// COMMANDS /////////////////////////////////////////////
 type _InferCommands<T extends ClippiumData> =
 	T['commands'] extends Record<string, ClippiumData>
 		? {

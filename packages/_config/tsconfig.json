@@ -6,6 +6,7 @@
 		/**
 		 * Options.
 		 */
+		"inlineSources": true,
 		"strict": true,
 		"alwaysStrict": true,
 		"strictPropertyInitialization": true,

@@ -1,14 +1,15 @@
 {
-	"name": "clippium",
+	"name": "@clippium/preset-default",
 	"version": "0.0.2",
-	"description": "Command Line Interface with Powerful and Pristine Operations",
+	"description": "Add default flags (such as help and version) to Clippium",
 	"keywords": [
 		"cli",
 		"clippium",
 		"pigeonposse",
-		"pp"
+		"pp",
+		"preset"
 	],
-	"homepage": "https://clippium.pigeonposse.com/guide/core",
+	"homepage": "https://clippium.pigeonposse.com/guide/default",
 	"bugs": {
 		"url": "https://github.com/pigeonposse/clippium/issues",
 		"email": "dev@pigeonposse.com"
@@ -16,7 +17,7 @@
 	"repository": {
 		"type": "https",
 		"url": "https://github.com/pigeonposse/clippium/",
-		"directory": "packages/core"
+		"directory": "packages/presets/default"
 	},
 	"funding": {
 		"type": "individual",
@@ -37,16 +38,18 @@
 	},
 	"main": "./dist/index.mjs",
 	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"build": "unbuild",
-		"dev": "vite dev"
+		"build": "unbuild"
 	},
 	"devDependencies": {
-		"@clippium/_config": "workspace:*"
+		"@clippium/_config": "workspace:*",
+		"clippium": "workspace:*"
+	},
+	"peerDependencies": {
+		"clippium": "workspace:*"
 	},
 	"publishConfig": {
 		"access": "public",

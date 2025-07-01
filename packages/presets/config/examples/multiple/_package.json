@@ -1,0 +1,27 @@
+{
+	"name": "@clippium/preset-config-example",
+	"private": true,
+	"description": "Example configuration file for clippium-config",
+	"type": "module",
+	"clippium-config-example": {
+		"flags": {
+			"noexist": false,
+			"verbose": true
+		},
+		"commands": {
+			"nest": {
+				"commands": {
+					"nest2": {
+						"commands": {
+							"nest3": {
+								"flags": {
+									"nestflag": true
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

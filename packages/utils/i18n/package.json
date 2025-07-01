@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/i18n",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Internalization with zero configuration. Created for clippium and designed for CLI and backend tools",
 	"keywords": [
 		"cli",

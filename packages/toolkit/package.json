@@ -1,14 +1,14 @@
 {
-	"name": "clippium",
+	"name": "clippium-toolkit",
 	"version": "0.0.2",
-	"description": "Command Line Interface with Powerful and Pristine Operations",
+	"description": "ToolKit for working with clippium CLIs",
 	"keywords": [
 		"cli",
 		"clippium",
 		"pigeonposse",
 		"pp"
 	],
-	"homepage": "https://clippium.pigeonposse.com/guide/core",
+	"homepage": "https://clippium.pigeonposse.com/guide/toolkit",
 	"bugs": {
 		"url": "https://github.com/pigeonposse/clippium/issues",
 		"email": "dev@pigeonposse.com"
@@ -16,7 +16,7 @@
 	"repository": {
 		"type": "https",
 		"url": "https://github.com/pigeonposse/clippium/",
-		"directory": "packages/core"
+		"directory": "packages/toolkit"
 	},
 	"funding": {
 		"type": "individual",
@@ -37,13 +37,20 @@
 	},
 	"main": "./dist/index.mjs",
 	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
+	"bin": {
+		"clippium-toolkit": "./dist/bin.mjs"
+	},
 	"files": [
 		"dist"
 	],
 	"scripts": {
 		"build": "unbuild",
-		"dev": "vite dev"
+		"dev": "pnpx tsx src/bin.ts"
+	},
+	"dependencies": {
+		"@clippium/preset-colored": "workspace:*",
+		"@clippium/preset-default": "workspace:*",
+		"clippium": "workspace:*"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*"

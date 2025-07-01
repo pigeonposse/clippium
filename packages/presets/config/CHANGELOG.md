@@ -7,7 +7,6 @@
 - Add new presets, add toolkit pkg, fix issues
 
 - Updated dependencies []:
-  - @clippium/color@0.0.2
   - clippium@0.0.2
 
 ## 0.0.1
