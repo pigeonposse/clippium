@@ -79,7 +79,7 @@ version(): undefined | string
 | ------ | ------ |
 | `config` | [`ClippiumConfig`](#clippiumconfig) |
 | `data` | `C` |
-| `fn` | (`data`: \{ `commands`: \{ \[K in string \| number \| symbol\]: UnionToIntersection\<InferCommandsArray\<C\> extends U\[\] ? U extends string ? \{ \[k in string\]?: boolean \} : Object : Object\>\[K\] \}; `flags`: \{ \[K in string \| number \| symbol\]: (InferFlags\<C\> & Object)\[K\] \}; `positionals`: \{ \[K in string \| number \| symbol\]: (InferPosicionals\<C\> & Object)\[K\] \}; \} & \{ `utils`: \{ `argv`: `Argv`; `getHelp`: () => `string`; `getVersion`: () => `undefined` \| `string`; `parsedArgv`: `ParsedArgv`; \}; \}) => `void` \| `Promise`\<`void`\> |
+| `fn` | (`data`: `FnData`\<`C`\>) => `void` \| `Promise`\<`void`\> |
 | `parser` | `ParserData`\<`C`\> |
 
 ## Functions
@@ -105,6 +105,24 @@ function defineData<C>(data: C): C
 #### Returns
 
 `C`
+
+***
+
+### hiddenBin()
+
+```ts
+function hiddenBin(args: Argv): string[]
+```
+
+#### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `args` | `Argv` |
+
+#### Returns
+
+`string`[]
 
 ## Type Aliases
 
@@ -139,3 +157,31 @@ type ClippiumData: {
 | ------ | ------ |
 | `name`? | `string` |
 | `version`? | `string` |
+
+***
+
+### InferFlag\<T\>
+
+```ts
+type InferFlag<T>: InferOption<T>;
+```
+
+#### Type Parameters
+
+| Type Parameter |
+| ------ |
+| `T` *extends* `Option` |
+
+***
+
+### InferPosicional\<T\>
+
+```ts
+type InferPosicional<T>: InferOption<T>;
+```
+
+#### Type Parameters
+
+| Type Parameter |
+| ------ |
+| `T` *extends* `Posicional` |

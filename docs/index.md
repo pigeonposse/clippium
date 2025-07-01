@@ -25,6 +25,10 @@ features:
     icon: 📚
     details: Check the documentation
     link: /guide/core
+  - title: Presets
+    icon: 💾
+    details: Check our list of presets
+    link: /guide/preset
 
 ---
 

@@ -1,6 +1,6 @@
 {
 	"name": "clippium",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Command Line Interface with Powerful and Pristine Operations",
 	"keywords": [
 		"cli",
@@ -22,7 +22,7 @@
 		"type": "individual",
 		"url": "https://pigeonposse.com/contribute"
 	},
-	"license": "GPL-3.0",
+	"license": "MIT",
 	"author": {
 		"name": "Angelo",
 		"email": "angelo@pigeonposse.com",

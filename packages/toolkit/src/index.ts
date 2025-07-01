@@ -1,3 +1,4 @@
+
 import { formatter } from '@clippium/preset-colored'
 import presetDefault from '@clippium/preset-default'
 import { Clippium }  from 'clippium'

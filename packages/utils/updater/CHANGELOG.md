@@ -1,5 +1,11 @@
 # @clippium/updater
 
+## 0.0.3
+
+### Patch Changes
+
+- change license to MIT, add docs
+
 ## 0.0.2
 
 ### Patch Changes

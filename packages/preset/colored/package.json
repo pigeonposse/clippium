@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/preset-colored",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Add color support to Clippium output",
 	"keywords": [
 		"cli",
@@ -8,7 +8,7 @@
 		"pigeonposse",
 		"pp"
 	],
-	"homepage": "https://clippium.pigeonposse.com/guide/colored",
+	"homepage": "https://clippium.pigeonposse.com/guide/preset/colored",
 	"bugs": {
 		"url": "https://github.com/pigeonposse/clippium/issues",
 		"email": "dev@pigeonposse.com"
@@ -16,13 +16,13 @@
 	"repository": {
 		"type": "https",
 		"url": "https://github.com/pigeonposse/clippium/",
-		"directory": "packages/presets/colored"
+		"directory": "packages/preset/colored"
 	},
 	"funding": {
 		"type": "individual",
 		"url": "https://pigeonposse.com/contribute"
 	},
-	"license": "GPL-3.0",
+	"license": "MIT",
 	"author": {
 		"name": "Angelo",
 		"email": "angelo@pigeonposse.com",

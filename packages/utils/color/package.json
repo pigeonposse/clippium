@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/color",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Color support for cli utilities",
 	"keywords": [
 		"cli",
@@ -23,7 +23,7 @@
 		"type": "individual",
 		"url": "https://pigeonposse.com/contribute"
 	},
-	"license": "GPL-3.0",
+	"license": "MIT",
 	"author": {
 		"name": "Angelo",
 		"email": "angelo@pigeonposse.com",

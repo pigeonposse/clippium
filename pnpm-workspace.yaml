@@ -1,6 +1,6 @@
 packages:
   - packages/*
-  - packages/presets/*
+  - packages/preset/*
   - packages/utils/*
 onlyBuiltDependencies:
   - esbuild

@@ -12,7 +12,7 @@
 [![License](https://img.shields.io/github/license/pigeonposse/clippium?style=for-the-badge&color=green&logoColor=white)](/LICENSE)
 [![Version](https://img.shields.io/npm/v/clippium?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/clippium)
 [![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/@clippium/color?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/@clippium/color)
-[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@clippium/color/0.0.1?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/@clippium/color)
+[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@clippium/color/0.0.2?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/@clippium/color)
 
 Color support for cli utilities
 
@@ -45,10 +45,14 @@ deno add @clippium/color
 ## ➕ More
 
 - 🌞 [Core](https://clippium.pigeonposse.com/guide/core)
-- [Colored](https://clippium.pigeonposse.com/guide/colored)
-- [Color](https://clippium.pigeonposse.com/guide/color)
-- [I18n](https://clippium.pigeonposse.com/guide/i18n)
-- [Updater](https://clippium.pigeonposse.com/guide/updater)
+- 🧰 [Toolkit](https://clippium.pigeonposse.com/guide/toolkit)
+- 🎨 [Color](https://clippium.pigeonposse.com/guide/color)
+- 🌐 [I18n](https://clippium.pigeonposse.com/guide/i18n)
+- 📦 [Updater](https://clippium.pigeonposse.com/guide/updater)
+- 💾 [Preset](https://clippium.pigeonposse.com/guide/preset)
+  - 🖼️ [Colored](https://clippium.pigeonposse.com/guide/preset/colored)
+  - ⚙️ [Config](https://clippium.pigeonposse.com/guide/preset/config)
+  - ➡️ [Default](https://clippium.pigeonposse.com/guide/preset/default)
 
 
 ---
@@ -69,7 +73,7 @@ Help us to develop more interesting things.
 
 ## 📜 License
 
-This software is licensed with __[GPL-3.0](https://github.com/pigeonposse/clippium/blob/main/LICENSE)__.
+This software is licensed with __[MIT](https://github.com/pigeonposse/clippium/blob/main/LICENSE)__.
 
 [![Read more](https://img.shields.io/badge/Read-more-grey?style=for-the-badge)](https://github.com/pigeonposse/clippium/blob/main/LICENSE)
 

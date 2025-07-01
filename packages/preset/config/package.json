@@ -1,15 +1,16 @@
 {
-	"name": "@clippium/preset-default",
-	"version": "0.0.2",
-	"description": "Add default flags (such as help and version) to Clippium",
+	"name": "@clippium/preset-config",
+	"version": "0.0.3",
+	"description": "Make Clippium take flags and commands from a configuration file",
 	"keywords": [
 		"cli",
 		"clippium",
+		"config",
 		"pigeonposse",
 		"pp",
 		"preset"
 	],
-	"homepage": "https://clippium.pigeonposse.com/guide/default",
+	"homepage": "https://clippium.pigeonposse.com/guide/preset/config",
 	"bugs": {
 		"url": "https://github.com/pigeonposse/clippium/issues",
 		"email": "dev@pigeonposse.com"
@@ -17,13 +18,13 @@
 	"repository": {
 		"type": "https",
 		"url": "https://github.com/pigeonposse/clippium/",
-		"directory": "packages/presets/default"
+		"directory": "packages/preset/config"
 	},
 	"funding": {
 		"type": "individual",
 		"url": "https://pigeonposse.com/contribute"
 	},
-	"license": "GPL-3.0",
+	"license": "MIT",
 	"author": {
 		"name": "Angelo",
 		"email": "angelo@pigeonposse.com",
@@ -42,10 +43,16 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "unbuild"
+		"build": "unbuild",
+		"dev": "pnpx tsx examples/multiple/index.ts"
+	},
+	"dependencies": {
+		"js-yaml": "4.1.0",
+		"smol-toml": "1.4.0"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*",
+		"@types/js-yaml": "4.0.9",
 		"clippium": "workspace:*"
 	},
 	"peerDependencies": {

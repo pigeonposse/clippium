@@ -4,7 +4,7 @@ import {
 	Clippium,
 	defineData,
 } from './index'
-import { formatter } from '../../presets/colored/src/index'
+import { formatter } from '../../preset/colored/src/index'
 
 export const data = defineData( {
 	name     : 'clipplium-test',

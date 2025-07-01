@@ -1,4 +1,4 @@
-# Clippium Colored Package
+# Default - Clippium Preset
 
 [![Web](https://img.shields.io/badge/Web-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com)
 [![About Us](https://img.shields.io/badge/About%20Us-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com/about)
@@ -11,10 +11,10 @@
 
 [![License](https://img.shields.io/github/license/pigeonposse/clippium?style=for-the-badge&color=green&logoColor=white)](/LICENSE)
 [![Version](https://img.shields.io/npm/v/clippium?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/clippium)
-[![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/@clippium/preset-colored?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/@clippium/preset-colored)
-[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@clippium/preset-colored/0.0.1?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/@clippium/preset-colored)
+[![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/@clippium/preset-default?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/@clippium/preset-default)
+[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@clippium/preset-default/0.0.2?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/@clippium/preset-default)
 
-Add color support to Clippium output
+Add default flags (such as help and version) to Clippium
 
 ## Table of contents
 
@@ -31,24 +31,28 @@ Add color support to Clippium output
 ## 🔑 Installation
 
 ```bash 
-npm install @clippium/preset-colored
+npm install @clippium/preset-default
 # or
-pnpm install @clippium/preset-colored
+pnpm install @clippium/preset-default
 # or
-yarn add @clippium/preset-colored
+yarn add @clippium/preset-default
 # or
-bun add @clippium/preset-colored
+bun add @clippium/preset-default
 # or
-deno add @clippium/preset-colored
+deno add @clippium/preset-default
 ```
 
 ## ➕ More
 
 - 🌞 [Core](https://clippium.pigeonposse.com/guide/core)
-- [Colored](https://clippium.pigeonposse.com/guide/colored)
-- [Color](https://clippium.pigeonposse.com/guide/color)
-- [I18n](https://clippium.pigeonposse.com/guide/i18n)
-- [Updater](https://clippium.pigeonposse.com/guide/updater)
+- 🧰 [Toolkit](https://clippium.pigeonposse.com/guide/toolkit)
+- 🎨 [Color](https://clippium.pigeonposse.com/guide/color)
+- 🌐 [I18n](https://clippium.pigeonposse.com/guide/i18n)
+- 📦 [Updater](https://clippium.pigeonposse.com/guide/updater)
+- 💾 [Preset](https://clippium.pigeonposse.com/guide/preset)
+  - 🖼️ [Colored](https://clippium.pigeonposse.com/guide/preset/colored)
+  - ⚙️ [Config](https://clippium.pigeonposse.com/guide/preset/config)
+  - ➡️ [Default](https://clippium.pigeonposse.com/guide/preset/default)
 
 
 ---
@@ -69,7 +73,7 @@ Help us to develop more interesting things.
 
 ## 📜 License
 
-This software is licensed with __[GPL-3.0](https://github.com/pigeonposse/clippium/blob/main/LICENSE)__.
+This software is licensed with __[MIT](https://github.com/pigeonposse/clippium/blob/main/LICENSE)__.
 
 [![Read more](https://img.shields.io/badge/Read-more-grey?style=for-the-badge)](https://github.com/pigeonposse/clippium/blob/main/LICENSE)
 

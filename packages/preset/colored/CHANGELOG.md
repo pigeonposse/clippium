@@ -1,5 +1,15 @@
 # @clippium/preset-colored
 
+## 0.0.3
+
+### Patch Changes
+
+- change license to MIT, add docs
+
+- Updated dependencies []:
+  - @clippium/color@0.0.3
+  - clippium@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes

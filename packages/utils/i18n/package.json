@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/i18n",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Internalization with zero configuration. Created for clippium and designed for CLI and backend tools",
 	"keywords": [
 		"cli",
@@ -23,7 +23,7 @@
 		"type": "individual",
 		"url": "https://pigeonposse.com/contribute"
 	},
-	"license": "GPL-3.0",
+	"license": "MIT",
 	"author": {
 		"name": "Angelo",
 		"email": "angelo@pigeonposse.com",
