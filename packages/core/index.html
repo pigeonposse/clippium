@@ -4,10 +4,70 @@
 		<meta charset="UTF-8" >
 		<meta content="IE=edge" http-equiv="X-UA-Compatible" >
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" >
-		<title>Example web</title>
+		<title>CLIPPLIUM (WEB EXAMPLE)</title>
+		<style>
+			pre {
+				background-color: black;
+				color: white;
+				padding: 40px;
+			}
+		</style>
 	</head>
+
 	<body>
-		<div id="root"></div>
-		<script type="module" src="./src/index.example.ts" ></script>
+		<h1>CLIPPLIUM (WEB EXAMPLE)</h1>
+		<div id="root">
+			<label for="flags">Add flags (comma separated)</label>
+			<input
+				id="flags"
+				type="text"
+			>
+			<div>
+				<div>
+					<h2>HELP OUTPUT</h2>
+				<pre id="help"></pre>
+				</div>
+				<div>
+					<h2>CONSOLE OUTPUT</h2>
+				<pre id="console"></pre>
+				</div>
+			</div>
+		</div>
+		<script type="module">
+
+			import ansiConvert from "https://esm.sh/ansi-to-html@0.7.1";
+			import cli, {run} from "./examples/index.ts";
+
+			const $help = document.querySelector( "#help" );
+			const $flags = document.querySelector( "#flags" );
+			const $console = document.querySelector(" #console");
+
+			const ansiConverter = new ansiConvert();
+			const originalLog = console.log;
+			console.log = (...args) => {
+				args.forEach(v => {
+					if (typeof v === "object") {
+						v = JSON.stringify(v);
+					}else if (Array.isArray(v)) {
+						v = v.join("\n");
+					}
+					$console.innerHTML += ansiConverter.toHtml(v + "\n");
+				})
+
+				originalLog(...args);
+			};
+			const addHelp = () => {
+				const args = $flags.value.split( "," );
+				run( args)
+
+				$help.innerHTML =  ansiConverter.toHtml(cli.getHelp( args ))
+			}
+
+			$flags.addEventListener( "keydown", (e) => {
+				if (e.key === "Enter") addHelp();
+			} );
+			addHelp();
+
+		</script>
 	</body>
 </html>

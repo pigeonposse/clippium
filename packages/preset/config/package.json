@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/preset-config",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Make Clippium take flags and commands from a configuration file",
 	"keywords": [
 		"cli",
@@ -35,6 +35,10 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.mjs"
+		},
+		"./schema": {
+			"types": "./dist/schema.d.ts",
+			"import": "./dist/schema.mjs"
 		}
 	},
 	"main": "./dist/index.mjs",
@@ -43,16 +47,20 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "unbuild",
-		"dev": "pnpx tsx examples/multiple/index.ts"
+		"build": "pnpm build:lib && pnpm build:schema",
+		"build:lib": "unbuild",
+		"build:schema": "pnpx ts-json-schema-generator -p ./src/index.ts -t ConfigFileData --unstable -o ./dist/schema/config-file.json",
+		"dev": "pnpx tsx examples/project/index.ts",
+		"dev:schema": "pnpm --dir examples/project schema"
 	},
 	"dependencies": {
 		"js-yaml": "4.1.0",
-		"smol-toml": "1.4.0"
+		"smol-toml": "1.4.1"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*",
 		"@types/js-yaml": "4.0.9",
+		"@types/json-schema": "7.0.15",
 		"clippium": "workspace:*"
 	},
 	"peerDependencies": {

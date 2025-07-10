@@ -10,7 +10,7 @@ import {
 	UnionToIntersection,
 } from './types'
 
-export const FLAG = {
+export const OPTION = {
 	string  : 'string',
 	boolean : 'boolean',
 	choices : 'choices',
@@ -18,10 +18,24 @@ export const FLAG = {
 	number  : 'number',
 	array   : 'array',
 } as const
-
+const {
+	array: _array, ...POSITIONAL
+} = OPTION
+const FLAG = OPTION
+export {
+	POSITIONAL,
+	FLAG,
+}
+export type OptionType = ObjectValues<typeof OPTION>
 export type FlagType = ObjectValues<typeof FLAG>
+export type PositionalType = ObjectValues<typeof POSITIONAL>
 
-////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////// ClippiumData //////////////////////////////////////////////
+//
+// NOTE: DONT USE PRETTIFY IN ClippiumData FOR BUILD CORRECT SCHEMA
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 type CommandSuper = {
 	/** Description of the command/option */
@@ -34,54 +48,72 @@ type CommandSuper = {
 	hidden?     : boolean
 }
 
-type FlagSuper = CommandSuper & {
+type OptionSuper = CommandSuper & {
 	/** Alias of the option */
 	alias?    : string[]
+	/** Set if the command/option is required */
 	required? : boolean
 }
-
+type SetOption<D> = OptionSuper & { default?: D }
 type OptionMap = {
-	string  : FlagSuper & { default?: StringType }
-	boolean : FlagSuper & { default?: boolean }
-	number  : FlagSuper & { default?: number }
-	array   : FlagSuper & { default?: ( string | number )[] }
-	choices : FlagSuper & {
-		choices  : ( string | number )[]
-		default? : string | number
-	}
-	object : FlagSuper & { default?: object }
+	string  : SetOption<StringType>
+	boolean : SetOption<boolean>
+	number  : SetOption<number>
+	array   : SetOption<( string | number )[]>
+	choices : SetOption<string | number> & { choices: ( string | number )[] }
+	object  : SetOption<Record<string, unknown>>
 }
-type PosicionalMap = { [k in FlagType]: Omit<OptionMap[k], 'alias'> }
 
-type OptionValueMap = { [K in FlagType] : Required<OptionMap[K]>['default'] }
+type OptionValueMap = { [K in OptionType] : Required<OptionMap[K]>['default'] }
 
-type Option = Prettify<{ [K in FlagType] : OptionMap[K] & { type: K } }[keyof OptionMap]>
+type Flag = { [K in FlagType] : OptionMap[K] & { type: K } }[keyof OptionMap]
+type Flags = Record<string, Flag>
 
-type Options = Record<string, Option>
-type Posicional = Prettify<{ [K in FlagType] : PosicionalMap[K] & { type: K } }[keyof PosicionalMap]>
+type PositionalMap = { [k in PositionalType]: Omit<OptionMap[k], 'alias'> }
+type Positional = { [K in keyof PositionalMap] : PositionalMap[K] & { type: K } }[keyof PositionalMap]
+type Positionals = Record<string, Positional>
 
 type CommandOptions = {
-	desc?     : string
+	/** Examples of the command */
 	examples?    : ( {
+		/**
+		 * Value of the example
+		 *
+		 * @example '$0 build --minify'
+		 */
 		value : string
+		/** Description of the example */
 		desc  : string
 	} )[]
-	flags?       : Record<string, Option>
+	/** flags of the command */
+	flags?       : Flags
+	/** Set commands */
 	commands?    : Record<string, Command>
-	positionals? : Record<string, Posicional>
+	/** positionals of the command */
+	positionals? : Positionals
 }
 export type Command = CommandSuper & CommandOptions
 
 export type ClippiumData = {
+	/**
+	 * Name of the CLI
+	 */
 	name?    : string
+	/**
+	 * Version of the CLI
+	 */
 	version? : string
+	/**
+	 * Description of the CLI
+	 */
+	desc?    : string
 } & CommandOptions
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////// INFER //////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-type InferOption<T extends Option> =
+type InferOption<T extends Flag> =
 	T extends { choices: ( infer V )[] }
 		? V
 		: T extends { default: infer D }
@@ -90,7 +122,7 @@ type InferOption<T extends Option> =
 				? B extends true ? OptionValueMap[T['type']] : OptionValueMap[T['type']] | undefined
 				: OptionValueMap[T['type']] | undefined
 
-export type InferOptions<T extends Options> = Prettify<{
+export type InferOptions<T extends Flags> = Prettify<{
 	[K in keyof T]: InferOption<T[K]>
 }>
 type _GetValue<T extends ClippiumData, K extends keyof ClippiumData> =
@@ -107,10 +139,10 @@ export type GetValue<T extends ClippiumData, K extends keyof ClippiumData> =
 
 export type GetFlags<T extends ClippiumData> = GetValue<T, 'flags'>
 
-export type InferFlag<T extends Option> = InferOption<T>
+export type InferFlag<T extends Flag> = InferOption<T>
 
 type _InferedFlags<T extends ClippiumData> =
-	T['flags'] extends Record<string, Option>
+	T['flags'] extends Record<string, Flag>
 		? InferOptions<T['flags']>
 		: EmptyObject
 
@@ -127,14 +159,14 @@ export type InferFlags<T extends ClippiumData> =
 ////////////////////////////////////////////// POSICIONALS /////////////////////////////////////////////
 export type GetPositionals<T extends ClippiumData> = GetValue<T, 'positionals'>
 
-export type InferPosicional<T extends Posicional> = InferOption<T>
+export type InferPositional<T extends Positional> = InferOption<T>
 
 type _InferedPositionals<T extends ClippiumData> =
-	T['positionals'] extends Record<string, Option>
+	T['positionals'] extends Record<string, Positional>
 		? InferOptions<T['positionals']>
 		: EmptyObject
 
-export type InferPosicionals<T extends ClippiumData> =
+export type InferPositionals<T extends ClippiumData> =
 	T['commands'] extends Record<string, ClippiumData>
 		? MergeIntersectingProps<
 			_InferedPositionals<T>,

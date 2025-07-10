@@ -1,15 +1,8 @@
-import { getCurrentDir } from '@dovenv/core/utils'
-import {
-	Clippium,
-	hiddenBin,
-} from 'clippium'
+import { ClippiumData } from 'clippium'
 
-import pluginConfig            from '../../src/index'
-import { InferConfigFileData } from '../../src/types'
+import { InferConfigFileData } from '../../src'
 
-export type ConfigData = InferConfigFileData<typeof cli.data>
-
-const cli = new Clippium( {
+export const data = {
 	name     : 'clippium-config-example',
 	commands : {
 		build : {
@@ -81,37 +74,7 @@ const cli = new Clippium( {
 			default : false,
 		},
 	},
-} )
+} satisfies ClippiumData
 
-const rootDir = getCurrentDir( import.meta.url )
-
-const getConfig = pluginConfig( {
-	rootDir,
-	configNames : [ 'config' ],
-	supported   : [
-		'javascript',
-		'json',
-		'package',
-	],
-} )
-
-cli.fn = async data => {
-
-	const {
-		utils, ...rest
-	} = data
-
-	const parsedData = await getConfig( data )
-
-	if ( !parsedData.data ) console.log( `⚠️  No config found in: ${rootDir}` )
-	else console.log( `✅ Config found: ${parsedData.data.path}` )
-	console.log( '\n' )
-	console.dir( {
-		init : rest,
-		parsedData,
-	}, { depth: null } )
-
-}
-
-await cli.run( hiddenBin( process.argv ) )
-
+export default data
+export type ConfigFileData = InferConfigFileData<typeof data>

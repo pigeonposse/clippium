@@ -1,6 +1,6 @@
 {
 	"name": "clippium-toolkit",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "ToolKit for working with clippium CLIs",
 	"keywords": [
 		"cli",
@@ -48,12 +48,27 @@
 		"dev": "pnpx tsx src/bin.ts"
 	},
 	"dependencies": {
+		"@apidevtools/json-schema-ref-parser": "14.1.0",
+		"@cfworker/json-schema": "4.1.1",
+		"@clippium/color": "workspace:*",
 		"@clippium/preset-colored": "workspace:*",
 		"@clippium/preset-default": "workspace:*",
-		"clippium": "workspace:*"
+		"@clippium/schema": "workspace:*",
+		"@readme/openapi-parser": "4.1.0",
+		"acorn": "8.15.0",
+		"acorn-walk": "8.3.4",
+		"clippium": "workspace:*",
+		"comment-parser": "1.4.1",
+		"generate-schema": "2.6.0",
+		"js-yaml": "4.1.0",
+		"smol-toml": "1.4.1",
+		"ts-morph": "26.0.0"
 	},
 	"devDependencies": {
-		"@clippium/_config": "workspace:*"
+		"@clippium/_config": "workspace:*",
+		"@types/js-yaml": "4.0.9",
+		"@types/json-schema": "7.0.15",
+		"clippium": "workspace:*"
 	},
 	"publishConfig": {
 		"access": "public",

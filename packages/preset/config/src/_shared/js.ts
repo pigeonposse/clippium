@@ -40,10 +40,34 @@ export const getObjectFromJSContent = async <Res extends CommonObj = CommonObj>(
 	}
 	catch ( err ) {
 
+		const maxLength = 300
+
+		const rawMessage = err instanceof Error ? err.message : String( err )
+
+		const message = rawMessage.length > maxLength
+			? rawMessage.slice( 0, maxLength ) + '…'
+			: rawMessage
 		throw new Error(
-			`Error importing JS module from base64: ${err instanceof Error ? err.message : String( err )}`,
+			`Error importing JS module from base64: ${message}`,
 		)
 
 	}
 
 }
+
+/**
+ * Extensions valid for JavaScript
+ */
+export const jsExtension = {
+	js  : 'js',
+	mjs : 'mjs',
+	cjs : 'cjs',
+} as const
+/**
+ * Extensions valid for typescript
+ */
+export const tsExtension = {
+	ts  : 'ts',
+	mts : 'mts',
+	cts : 'cts',
+} as const

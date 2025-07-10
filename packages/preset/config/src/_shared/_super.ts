@@ -1,7 +1,7 @@
 
 export type CommonObj =
-	Record<string, unknown>
-	| Record<string, unknown>[]
+	Record<Any, Any>
+	| Record<Any, Any>[]
 	| unknown[]
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,6 +1,6 @@
 {
 	"name": "clippium",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Command Line Interface with Powerful and Pristine Operations",
 	"keywords": [
 		"cli",
@@ -43,7 +43,8 @@
 	],
 	"scripts": {
 		"build": "unbuild",
-		"dev": "vite dev"
+		"dev": "pnpx tsx examples/bin.ts",
+		"dev-web": "vite dev"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*"

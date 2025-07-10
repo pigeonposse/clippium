@@ -2,11 +2,14 @@
 import { HelpFormatter } from './formatter'
 import { ClippiumData }  from '../_shared/data'
 import { Finder }        from '../_shared/finder'
-import { Argv }          from '../_shared/types'
+import {
+	Argv,
+	ExtractInstanceType,
+} from '../_shared/types'
 
 export type HelpConfig = { formatter?: ( d: {
 	data  : ClippiumData
-	utils : HelpFormatter
+	utils : ExtractInstanceType<typeof HelpFormatter>
 } ) => string }
 
 export class Help {
@@ -36,24 +39,20 @@ export class Help {
 
 	run( argv: Argv ) {
 
-		for ( const key of argv.reverse() ) {
-
-			const cmd = this.#find.command( { key } )
-			if ( cmd && !cmd.value.hidden ) return this.#getFrom( {
-				name : [
-					this.#config.name,
-					...( cmd.parents ?? [] ),
-					cmd.key,
-				].filter( Boolean ).join( ' ' ),
-				version : this.#config.version,
-				...cmd.value,
-				flags   : {
-					...( this.#config.flags ?? {} ),
-					...( cmd.value.flags ?? {} ),
-				},
-			} )
-
-		}
+		const cmd = this.#find.nearCommand( { keys: argv } )
+		if ( cmd && !cmd.value.hidden ) return this.#getFrom( {
+			name : [
+				this.#config.name,
+				...( cmd.parents ?? [] ),
+				cmd.key,
+			].filter( Boolean ).join( ' ' ),
+			version : this.#config.version,
+			...cmd.value,
+			flags   : {
+				...( this.#config.flags ?? {} ),
+				...( cmd.value.flags ?? {} ),
+			},
+		} )
 
 		return this.#getFrom( this.#config )
 

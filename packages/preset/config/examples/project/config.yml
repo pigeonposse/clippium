@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=./build/schema.json
+
+flags:
+  verbose: true
+
+
+commands:
+  build:
+    positionals:
+       input: './src/index.ts'
+       output: ./dist/
+  dev:
+    positionals:
+      # Must be string
+      input: './src/index.ts'
+    flags:
+      port: 3000
+  # No exists
+#   serve: 
+#     flags:
+#       port: 3000
+  nest:
+    commands:
+      nest2:
+        commands:
+          nest3:
+            flags:
+              nestflag: true

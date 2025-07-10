@@ -8,7 +8,8 @@ export const getObjectFromYAMLContent = async <Res extends CommonObj = CommonObj
 	return r
 
 }
-export const yaml = {
-	deserialize : getObjectFromYAMLContent,
-	serialize   : ( content: object ) => yamlLib.dump( content ),
-}
+
+export const yamlExtension = {
+	yaml : 'yaml',
+	yml  : 'yml',
+} as const

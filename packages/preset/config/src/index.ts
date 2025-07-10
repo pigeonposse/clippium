@@ -13,7 +13,6 @@ import type {
 import type {
 	ConfigFileData,
 	ClippiumFnParameters,
-
 	InferConfigFileData,
 	ClippiumParsedArgv,
 } from './types'

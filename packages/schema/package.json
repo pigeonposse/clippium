@@ -1,0 +1,45 @@
+{
+	"name": "@clippium/schema",
+	"version": "0.0.4",
+	"description": "ToolKit for working with clippium CLIs",
+	"keywords": [
+		"cli",
+		"clippium",
+		"pigeonposse",
+		"pp"
+	],
+	"homepage": "https://clippium.pigeonposse.com/guide/toolkit",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/clippium/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/clippium/",
+		"directory": "packages/schema"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "pnpx ts-json-schema-generator -p ../core/src/index.ts -t ClippiumData --unstable -o ./dist/clippium-data.json"
+	},
+	"devDependencies": {
+		"@clippium/_config": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	}
+}

@@ -1,33 +1,40 @@
+import color from '@clippium/color'
 
-import color     from '@clippium/color'
-import {
+import type {
 	ClippiumConfig,
 	ClippiumData,
 } from 'clippium'
 
-type Flags = NonNullable<ClippiumData['flags']>
-
 const DEFAULT_NAME = '$0'
 
-const COLORS = {
-	title         : color.inverse.bold,
+const COLORS_DEFAULT = {
+	title         : color.cyan.inverse.bold,
 	bin           : color.cyan,
-	version       : color.italic,
+	version       : color.cyan.dim.italic,
 	name          : color.bold,
 	positionals   : color.green.dim,
 	commands      : color.green,
 	flags         : color.yellow,
-	desc          : color.dim,
+	desc          : color.white.dim,
 	examples      : color.cyan,
-	sectionTitle  : color.bold,
-	sectionDesc   : color.dim,
-	sectionsProps : color.dim.italic,
-}
+	sectionTitle  : color.white.bold.underline,
+	sectionDesc   : color.white.dim,
+	sectionsProps : color.white.dim.italic,
+} satisfies { [ key in string ]: ColorFn }
 
-export const formatter: NonNullable<ClippiumConfig['help']>['formatter'] = ( {
+type Formatter = NonNullable<NonNullable<ClippiumConfig['help']>['formatter']>
+type Flags = NonNullable<ClippiumData['flags']>
+type ColorFn = ( value: string ) => string
+type Config = { [ key in keyof typeof COLORS_DEFAULT ]?: ColorFn }
+
+export const formatter: () => Formatter = ( opts?: Config ) => ( {
 	data, utils,
 } ) => {
 
+	const COLORS         = {
+		...COLORS_DEFAULT,
+		...opts || {},
+	}
 	const setOptionValue = utils.setOptionValue
 	utils.setOptionValue = ( ...opts ) => COLORS.flags( setOptionValue( ...opts ) )
 	const setTitle       = utils.setTitle

@@ -1,0 +1,56 @@
+{
+	"name": "@clippium/bench",
+	"version": "0.0.4",
+	"private": true,
+	"description": "Benchmarks for clippium",
+	"keywords": [
+		"bench",
+		"benchmark",
+		"cli",
+		"clippium",
+		"pigeonposse",
+		"pp"
+	],
+	"homepage": "https://clippium.pigeonposse.com/guide/core",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/clippium/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/clippium/",
+		"directory": "packages/bench"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
+	"type": "module",
+	"scripts": {
+		"dev": "pnpx tsx src/index.ts"
+	},
+	"devDependencies": {
+		"@clippium/_config": "workspace:*",
+		"@types/meow": "6.0.0",
+		"@types/minimist": "1.2.5",
+		"@types/nopt": "3.0.32",
+		"@types/yargs": "17.0.33",
+		"@types/yargs-parser": "21.0.3",
+		"citty": "0.1.6",
+		"commander": "14.0.0",
+		"meow": "13.2.0",
+		"minimist": "1.2.8",
+		"mri": "1.2.0",
+		"nopt": "8.1.0",
+		"sade": "1.8.1",
+		"tinybench": "4.0.1",
+		"yargs": "18.0.0",
+		"yargs-parser": "22.0.0"
+	}
+}

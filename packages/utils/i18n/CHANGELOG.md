@@ -1,5 +1,11 @@
 # @clippium/i18n
 
+## 0.0.4
+
+### Patch Changes
+
+- add new feats,
+
 ## 0.0.3
 
 ### Patch Changes

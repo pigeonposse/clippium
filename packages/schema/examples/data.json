@@ -1,0 +1,113 @@
+{
+	"$schema": "../dist/clippium-data.json",
+	"name": "clippium-example",
+	"version": "0.0.1",
+	"desc": "Clippium example",
+	"commands": {
+		"build": {
+			"desc": "Build the project",
+			"flags": {
+				"minify": {
+					"desc": "Build in production mode",
+					"type": "boolean",
+					"required": true
+				},
+				"perf": {
+					"desc": "Build in production mode",
+					"type": "choices",
+					"choices": [
+						"FAST",
+						"SLOW"
+					],
+					"alias": [
+						"p"
+					],
+					"required": true
+				}
+			},
+			"positionals": {
+				"input": {
+					"desc": "Input file",
+					"type": "string",
+					"default": "src/index.js",
+					"required": true
+				}
+			},
+			"commands": {
+				"pro": {
+					"desc": "Build in production mode",
+					"flags": {
+						"minify": {
+							"desc": "Build in production mode",
+							"type": "boolean",
+							"required": true
+						},
+						"perf": {
+							"desc": "Build in production mode",
+							"type": "choices",
+							"choices": [
+								"FAST",
+								"SLOW"
+							],
+							"alias": [
+								"p"
+							],
+							"required": true
+						}
+					},
+					"commands": {
+						"2": {
+							"desc": "Build in production mode",
+							"flags": {
+								"minify": {
+									"desc": "Build in production mode",
+									"type": "boolean",
+									"required": true
+								},
+								"perf": {
+									"desc": "Build in production mode",
+									"type": "choices",
+									"choices": [
+										"FAST",
+										"SLOW"
+									],
+									"alias": [
+										"p"
+									],
+									"required": true
+								}
+							},
+							"commands": {
+								"3": {
+									"desc": "Build in production mode",
+									"commands": {
+										"4": {
+											"desc": "Build in production mode"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"flags": {
+		"choices": {
+			"desc": "Choices flag",
+			"choices": [
+				"one",
+				"two",
+				"three"
+			],
+			"type": "choices"
+		}
+	},
+	"examples": [
+		{
+			"value": "$0 build --minify",
+			"desc": "Build the project"
+		}
+	]
+}

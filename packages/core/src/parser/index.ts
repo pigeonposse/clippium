@@ -3,7 +3,7 @@ import {
 	ClippiumData,
 	InferCommands,
 	InferFlags,
-	InferPosicionals,
+	InferPositionals,
 } from '../_shared/data'
 import { Finder } from '../_shared/finder'
 import {
@@ -16,13 +16,11 @@ import type { ParsedArgv } from './core'
 export type ParsedDataArgv<T extends ClippiumData> = {
 	commands    : InferCommands<T>
 	flags       : Prettify<InferFlags<T> & { [k: string]: Any }>
-	positionals : Prettify<InferPosicionals<T> & { [k: string]: Any }>
+	positionals : Prettify<InferPositionals<T> & { [k: string]: Any }>
 }
 export { ParsedArgv }
-export type ParserRes<D extends ClippiumData> = {
-	value : Prettify<ParsedDataArgv<D>>
-	raw   : ParsedArgv
-}
+export type ParserRes<D extends ClippiumData> = Prettify<ParsedDataArgv<D>> & { raw: ParsedArgv }
+
 export class ParserData<D extends ClippiumData> {
 
 	#find
@@ -79,17 +77,17 @@ export class ParserData<D extends ClippiumData> {
 				key,
 				alias : [ key ],
 			} )
-			if ( found ) {
 
-				passed[key as keyof typeof passed]      = value
-				input[found.key as keyof typeof passed] = value
-				if ( found.value.alias )
-					found.value.alias.forEach( alias => passed[alias as keyof typeof passed] = value )
+			if ( !found ) continue
+			const transValue = value // this.#transformStringValue( value, found.value.type || DEFAULT_TYPE )
 
-				// // default value
-				// if ( found.value.default !== undefined ) passed[key as keyof typeof passed] = found.value.default
+			passed[key as keyof typeof passed]      = transValue
+			input[found.key as keyof typeof passed] = transValue
+			if ( found.value.alias )
+				found.value.alias.forEach( alias => passed[alias as keyof typeof passed] = transValue )
 
-			}
+			// // default value
+			// if ( found.value.default !== undefined ) passed[key as keyof typeof passed] = found.value.default
 
 		}
 
@@ -105,11 +103,9 @@ export class ParserData<D extends ClippiumData> {
 		} = parsed
 
 		return {
-			value : {
-				...this.#setPosicionalsAndCommands( _ ),
-				flags : this.#setFlags( rest as Any ),
-			},
-			raw : parsed,
+			...this.#setPosicionalsAndCommands( _ ),
+			flags : this.#setFlags( rest as Any ),
+			raw   : parsed,
 		}
 
 	}

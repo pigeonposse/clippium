@@ -1,4 +1,7 @@
-import { Clippium } from 'clippium'
+import {
+	Clippium,
+	ClippiumData,
+} from 'clippium'
 
 type Config = {
 	/**
@@ -23,14 +26,17 @@ type Config = {
 	grouped? : boolean | string
 }
 
-export default ( config: Config = {} ) => {
+/**
+ * Get a clippium Data with help and version flags
+ *
+ * @param   {Config}       [config] - The config options
+ * @returns {ClippiumData}          - The created clippium config
+ */
+export const getData =  ( config: Config = {} ) => {
 
-	const {
-		version = true, help = true,
-	} = config
-	const group = typeof config.grouped === 'string' ? config.grouped : config.grouped ? 'Global flags' : undefined
-	const cli   = new Clippium( { flags : {
-		...( help
+	const group = typeof config.grouped === 'string' ? config.grouped : config.grouped ? 'Global flags:' : undefined
+	return { flags : {
+		...( config.help
 			? { help : {
 				desc  : 'Show help',
 				type  : 'boolean',
@@ -38,7 +44,7 @@ export default ( config: Config = {} ) => {
 				group,
 			} }
 			: {} ),
-		...( version
+		...( config.version
 			? { version : {
 				desc  : 'Show version',
 				type  : 'boolean',
@@ -46,11 +52,43 @@ export default ( config: Config = {} ) => {
 				group,
 			} }
 			: {} ),
-	} } )
-	cli.fn      = data => {
+	} } satisfies ClippiumData
+
+}
+
+/**
+ * A preset to add help and version flags to a clippium app
+ *
+ * @param   {Config}   [config] - The config options
+ * @returns {Clippium}          - The modified clippium app
+ * @example
+ * import presetDefault from '@clippium/preset-default'
+ * import {Clippium} from 'clippium'
+ * const preset = presetDefault(config)
+ * const cli = new Clippium({
+ *    flags: preset.data.flags
+ * })
+ * cli.fn = async data => {
+ *   await preset.data.fn(data)
+ * }
+ *
+ * export default cli
+ */
+const preset = ( config: Config = {} ) => {
+
+	const {
+		version = true, help = true,
+	} = config
+
+	const cli = new Clippium( getData( {
+		version,
+		help,
+		...config,
+	} ) )
+	cli.fn    = data => {
 
 		if ( help && data.flags.help ) console.log( data.utils.getHelp() )
-		if ( version && data.flags.version ) console.log( data.utils.getVersion() )
+		else if ( version && data.flags.version ) console.log( data.utils.getVersion() )
 
 	}
 
@@ -58,3 +96,4 @@ export default ( config: Config = {} ) => {
 
 }
 
+export default preset

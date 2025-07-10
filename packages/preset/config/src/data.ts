@@ -4,75 +4,30 @@ import {
 	CommonObj,
 	joinPath,
 } from './_shared/_super'
-import { getObjectFromJSContent }   from './_shared/js'
-import { getObjectFromJSONContent } from './_shared/json'
-import { readFile }                 from './_shared/read'
-import { getObjectFromTOMLContent } from './_shared/toml'
-import { getObjectFromYAMLContent } from './_shared/yaml'
+import {
+	jsExtension,
+	tsExtension,
+} from './_shared/js'
+import { jsonExtension } from './_shared/json'
+import { setObjectFrom } from './_shared/object'
+import { tomlExtension } from './_shared/toml'
+import { yamlExtension } from './_shared/yaml'
 
 import type { ClippiumData } from 'clippium'
 
 const TYPES = {
-	javascript : { exts : {
-		js  : 'js',
-		mjs : 'mjs',
-		cjs : 'cjs',
-	} },
-	typescript : { exts : {
-		ts  : 'ts',
-		mts : 'mts',
-		cts : 'cts',
-	} },
-	json : { exts: { json: 'json' } },
-	yaml : { exts : {
-		yaml : 'yaml',
-		yml  : 'yml',
-	} },
-	toml : { exts : {
-		toml : 'toml',
-		tml  : 'tml',
-	} },
-	package : {
+	javascript : { exts: jsExtension },
+	typescript : { exts: tsExtension },
+	json       : { exts: jsonExtension },
+	yaml       : { exts: yamlExtension },
+	toml       : { exts: tomlExtension },
+	package    : {
 		path : 'package',
-		exts : { json: 'json' },
+		exts : jsonExtension,
 	},
 } as const
 
 type SupportedTypes = keyof typeof TYPES
-
-type Input = string | URL
-
-type GetDataOpts = { key?: string }
-const _getData =  async <C extends CommonObj>( cb: typeof getObjectFromJSONContent, i: Input, opts?: GetDataOpts ) => {
-
-	try {
-
-		const content = await readFile( i )
-		const res     = await cb( content )
-		if ( opts?.key ) return ( res as { [key: string]: C } )[opts.key]
-		return res as C
-
-	}
-	catch ( error ) {
-
-		throw new Error( `Error getting data from "${i}": ${error instanceof Error ? error.message : 'Unknown error'}` )
-
-	}
-
-}
-
-export const getDataFromJSON =  <C extends CommonObj>( i: Input, opts?: GetDataOpts ) =>
-	_getData<C>( getObjectFromJSONContent, i, opts )
-
-export const getDataFromYAML = <C extends CommonObj>( i: Input, opts?: GetDataOpts ) =>
-	_getData<C>( getObjectFromYAMLContent, i, opts )
-export const getDataFromTOML = <C extends CommonObj>( i: Input, opts?: GetDataOpts ) =>
-	_getData<C>( getObjectFromTOMLContent, i, opts )
-
-export const getDataFromJS = <C extends CommonObj>( i: Input, opts?: GetDataOpts ) =>
-	_getData<C>( getObjectFromJSContent, i, opts )
-
-type GetDataFrom = typeof getDataFromJSON
 
 export type GetDataConfig = {
 	/**
@@ -135,7 +90,7 @@ export const getDataFrom = async <C extends CommonObj>(
 		if ( type === 'package' ) {
 
 			const filename    = joinPath( rootDir, 'package.json' ) // './package.json'
-			const [ e, data ] = await catchError( getDataFromJSON<C>( filename, { key: cliName } ) )
+			const [ e, data ] = await catchError( setObjectFrom.json<C>( filename, { key: cliName } ) )
 			if ( !e && data !== undefined ) return {
 				value : data,
 				type,
@@ -154,22 +109,22 @@ export const getDataFrom = async <C extends CommonObj>(
 
 				const filename = joinPath( rootDir, `${configName}.${ext}` ) // `${configName}.${ext}`
 
-				let parser: GetDataFrom | undefined
+				let parser: typeof setObjectFrom[keyof typeof setObjectFrom] | undefined
 
 				switch ( type ) {
 
 					case 'javascript' :
 					case 'typescript' :
-						parser = getDataFromJS
+						parser = setObjectFrom.js
 						break
 					case 'json' :
-						parser = getDataFromJSON
+						parser = setObjectFrom.json
 						break
 					case 'yaml' :
-						parser = getDataFromYAML
+						parser = setObjectFrom.yaml
 						break
 					case 'toml' :
-						parser = getDataFromTOML
+						parser = setObjectFrom.toml
 						break
 					default :
 						parser = undefined

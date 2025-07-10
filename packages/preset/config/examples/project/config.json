@@ -1,4 +1,5 @@
 {
+	"$schema": "../../dist/schema/config-file.json",
 	"flags": {
 		"verbose": true
 	},

@@ -22,7 +22,7 @@ export { I18nOpts }
  * @param   {import('./types.ts').I18nOpts} opts - Options for configuring i18n.
  * @returns {Promise<object>}                    - An object with helper methods for managing localization.
  * @example
- * import { i18n } from '@clippo/i18n'
+ * import { i18n } from '@clippium/i18n'
  *
  * const I18N = await i18n({
  *   locales: {

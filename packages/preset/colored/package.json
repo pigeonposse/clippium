@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/preset-colored",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Add color support to Clippium output",
 	"keywords": [
 		"cli",

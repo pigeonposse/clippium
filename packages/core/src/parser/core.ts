@@ -77,7 +77,7 @@ export class Parser {
 				}
 				else {
 
-					// Combined short options: -abc or -fvalue
+					// Combined short options: -abc or -f value
 					if ( cleanArg.includes( '=' ) ) {
 
 						// Example: -foo=bar (less common for single dash, but handled)

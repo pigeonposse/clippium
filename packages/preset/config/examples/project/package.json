@@ -3,6 +3,10 @@
 	"private": true,
 	"description": "Example configuration file for clippium-config",
 	"type": "module",
+	"scripts": {
+		"build": "unbuild",
+		"schema": "bun schema.ts"
+	},
 	"clippium-config-example": {
 		"flags": {
 			"noexist": false,

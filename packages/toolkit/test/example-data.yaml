@@ -1,0 +1,501 @@
+$schema: http://json-schema.org/draft-04/schema#
+type: object
+properties:
+  desc:
+    type: string
+  version:
+    type: string
+  commands:
+    type: object
+    properties:
+      pet-petId-uploadImage:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              post:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      petId:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+                      additionalMetadata:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+                      file:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      pet:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              post:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      body:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+              put:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      body:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      pet-findByStatus:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              get:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      pet-findByTags:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              get:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      tags:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      pet-petId:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              get:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      petId:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+              post:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      petId:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+                      name:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+                      status:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+              delete:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      api_key:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+                      petId:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      store-inventory:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              get:
+                type: object
+                properties:
+                  desc:
+                    type: string
+      store-order:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              post:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      body:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      store-order-orderId:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              get:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      orderId:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+              delete:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      orderId:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      user-createWithList:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              post:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      body:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      user-username:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              get:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      username:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+              put:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      username:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+                      body:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+              delete:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      username:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      user-login:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              get:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      username:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+                      password:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      user-logout:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              get:
+                type: object
+                properties:
+                  desc:
+                    type: string
+      user-createWithArray:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              post:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      body:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string
+      user:
+        type: object
+        properties:
+          desc:
+            type: string
+          commands:
+            type: object
+            properties:
+              post:
+                type: object
+                properties:
+                  desc:
+                    type: string
+                  flags:
+                    type: object
+                    properties:
+                      body:
+                        type: object
+                        properties:
+                          desc:
+                            type: string
+                          required:
+                            type: boolean
+                          type:
+                            type: string

@@ -37,6 +37,8 @@ export type PartialDeep<T> = T extends Function
 			? { [P in keyof T]?: PartialDeep<T[P]> }
 			: T
 
+export type ExtractInstanceType<T> = T extends new ( ...args: Any[] ) => infer R ? R : T extends { prototype: infer P } ? P : Any
+
 //////////////////////////////////////////////////////////
 
 export type Argv = string[]

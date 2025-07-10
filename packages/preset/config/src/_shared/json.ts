@@ -33,3 +33,7 @@ export const getObjectFromJSONContent = async <Res extends CommonObj = CommonObj
 	return JSON.parse( content ) as Res
 
 }
+/**
+ * The extension for JSON files.
+ */
+export const jsonExtension = { json: 'json' } as const

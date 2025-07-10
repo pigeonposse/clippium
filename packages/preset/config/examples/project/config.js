@@ -4,7 +4,7 @@ const input = './src/index.ts'
 /**
  * THis is the config for get with this example
  *
- * @type {import('./index').ConfigData}
+ * @type {import('./data').ConfigFileData}
  */
 export default {
 	commands : {

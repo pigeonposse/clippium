@@ -3,7 +3,11 @@ import { ClippiumData } from '../_shared/data'
 type Flags = NonNullable<ClippiumData['flags']>
 type Positionals = NonNullable<ClippiumData['positionals']>
 type Commands = NonNullable<ClippiumData['commands']>
-
+type CommandRes = {
+	key      : keyof Commands
+	value    : Commands[number]
+	parents? : ( keyof Commands )[]
+}
 export class Finder<D extends ClippiumData> {
 
 	constructor( public data: D ) {}
@@ -61,12 +65,8 @@ export class Finder<D extends ClippiumData> {
 	#command(
 		data: ClippiumData,
 		filter: { key?: string },
-		parentKeys?: ( keyof Commands )[],
-	): {
-		key      : keyof Commands
-		value    : Commands[number]
-		parents? : ( keyof Commands )[]
-	} | undefined {
+		parentKeys?: string[],
+	): CommandRes | undefined {
 
 		if ( !filter.key ) return undefined
 
@@ -92,13 +92,76 @@ export class Finder<D extends ClippiumData> {
 
 	}
 
-	command( filter: { key?: string } ): {
-		key      : keyof Commands
-		value    : Commands[number]
-		parents? : ( keyof Commands )[]
-	} | undefined {
+	#findCommandByArgv(
+		data: ClippiumData,
+		argv: string[],
+		near?: boolean,
+	): CommandRes | undefined {
 
-		return this.#command( this.data, filter )
+		let current = data,
+			finalKey: keyof Commands = argv[0],
+			lastValid: CommandRes | undefined
+
+		const parents: CommandRes['parents'] = []
+
+		for ( let i = 0; i < argv.length; i++ ) {
+
+			const key = argv[i]
+
+			if ( !current.commands || !current.commands[key] ) {
+
+				return near ? lastValid : undefined
+
+			}
+
+			current  = current.commands[key]
+			finalKey = key
+
+			lastValid = {
+				key     : finalKey,
+				value   : current as Commands[number],
+				parents : [ ...parents ], // copy
+			}
+
+			if ( i < argv.length - 1 ) parents.push( key )
+
+		}
+
+		return {
+			key     : finalKey,
+			value   : current as Commands[number],
+			parents : parents,
+		}
+
+	}
+
+	/**
+	 * Similar to `command()`, but allows to find a command by its near
+	 * key.
+	 *
+	 * For example, if you have a command named `existent-command`, and you
+	 * call `nearCommand({ key: ['command', 'non-existent-command'] })`, it will return the
+	 * `existent-command` command.
+	 *
+	 * @param   {{ key: string[] }}      filter      - An object with a `key` property, which is an array of
+	 *                                               strings to search for.
+	 * @param   {string[]}               filter.keys - An array of strings to search for.
+	 * @returns {CommandRes | undefined}             The command that matches the nearest key, or `undefined` if
+	 *                                               no command is found.
+	 */
+	nearCommand( filter: { keys: string[] } ): CommandRes | undefined {
+
+		return this.#findCommandByArgv( this.data, filter.keys, true )
+
+	}
+
+	command( filter: { key?: string | string[] } ): CommandRes | undefined {
+
+		const key = filter.key
+		if ( key && Array.isArray( key ) )
+			return this.#findCommandByArgv( this.data, key )
+
+		return this.#command( this.data, { key } )
 
 	}
 
