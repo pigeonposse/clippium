@@ -1,34 +1,36 @@
 
-////////////////////////////////////////////////
-
 import {
 	EmptyObject,
 	MergeIntersectingProps,
-	ObjectValues,
 	Prettify,
 	StringType,
 	UnionToIntersection,
 } from './types'
 
-export const OPTION = {
+export type OptionType = 'string' | 'boolean' | 'choices' | 'object' | 'number' | 'array'
+export type PositionalType = Exclude<OptionType, 'array'>
+export type FlagType = OptionType
+
+export const OPTION: Record<OptionType, OptionType> = {
 	string  : 'string',
 	boolean : 'boolean',
 	choices : 'choices',
 	object  : 'object',
 	number  : 'number',
 	array   : 'array',
-} as const
+}
+
 const {
-	array: _array, ...POSITIONAL
+	array: _array,
+	...POSITIONAL
 } = OPTION
-const FLAG = OPTION
+
+const FLAG: Record<FlagType, FlagType> = OPTION
+
 export {
 	POSITIONAL,
 	FLAG,
 }
-export type OptionType = ObjectValues<typeof OPTION>
-export type FlagType = ObjectValues<typeof FLAG>
-export type PositionalType = ObjectValues<typeof POSITIONAL>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////// ClippiumData //////////////////////////////////////////////
@@ -157,6 +159,7 @@ export type InferFlags<T extends ClippiumData> =
 		: _InferedFlags<T>
 
 ////////////////////////////////////////////// POSICIONALS /////////////////////////////////////////////
+
 export type GetPositionals<T extends ClippiumData> = GetValue<T, 'positionals'>
 
 export type InferPositional<T extends Positional> = InferOption<T>
@@ -177,6 +180,7 @@ export type InferPositionals<T extends ClippiumData> =
 		: _InferedPositionals<T>
 
 ////////////////////////////////////////////// COMMANDS /////////////////////////////////////////////
+
 type _InferCommands<T extends ClippiumData> =
 	T['commands'] extends Record<string, ClippiumData>
 		? {

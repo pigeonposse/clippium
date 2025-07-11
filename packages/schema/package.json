@@ -33,7 +33,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "pnpx ts-json-schema-generator -p ../core/src/index.ts -t ClippiumData --unstable -o ./dist/clippium-data.json"
+		"build": "pnpx ts-json-schema-generator -p ../core/src/index.ts -t ClippiumData --unstable -o ./dist/clippium-data.json --tsconfig ../_config/tsconfig.json --no-type-check"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*"

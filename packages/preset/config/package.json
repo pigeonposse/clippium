@@ -49,7 +49,7 @@
 	"scripts": {
 		"build": "pnpm build:lib && pnpm build:schema",
 		"build:lib": "unbuild",
-		"build:schema": "pnpx ts-json-schema-generator -p ./src/index.ts -t ConfigFileData --unstable -o ./dist/schema/config-file.json",
+		"build:schema": "pnpx ts-json-schema-generator -p ./src/index.ts -t ConfigFileData --unstable -o ./dist/schema/config-file.json --tsconfig ./tsconfig.json --no-type-check",
 		"dev": "pnpx tsx examples/project/index.ts",
 		"dev:schema": "pnpm --dir examples/project schema"
 	},
