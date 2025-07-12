@@ -5,10 +5,24 @@ import {
 	nestCommands,
 } from './data'
 import { formatter } from '../../preset/colored/src/index'
+import color         from '../../utils/color/src/index'
 
-const clippiumApp = new Clippium(
+const cli = new Clippium(
 	data,
-	{ help: { formatter: formatter() } },
+	{ help : { formatter : formatter( {
+		title         : color.cyan.inverse.bold,
+		bin           : color.cyan,
+		version       : color.cyan.dim.italic,
+		name          : color.bold,
+		positionals   : color.green.dim,
+		commands      : color.green,
+		flags         : color.yellow,
+		desc          : color.white.dim,
+		examples      : color.cyan,
+		sectionTitle  : color.white.bold.underline,
+		sectionDesc   : color.white.dim,
+		sectionsProps : color.white.dim.italic,
+	} ) } },
 )
 
 export const run = async ( args: string[] ) => {
@@ -16,12 +30,12 @@ export const run = async ( args: string[] ) => {
 	try {
 
 		// Add dynamic flags from config file
-		const { flags } = clippiumApp.parse( args )
+		const { flags } = cli.parse( args )
 
-		if ( flags.config ) clippiumApp.data = {
-			...clippiumApp.data,
+		if ( flags.config ) cli.data = {
+			...cli.data,
 			commands : {
-				...clippiumApp.data.commands,
+				...cli.data.commands,
 				// @ts-ignore
 				new : {
 					desc     : 'New command from config',
@@ -35,7 +49,7 @@ export const run = async ( args: string[] ) => {
 			},
 		}
 
-		clippiumApp.fn = async ( {
+		cli.fn = async ( {
 			utils, ...args
 		} ): Promise<void> => {
 
@@ -94,7 +108,7 @@ export const run = async ( args: string[] ) => {
 
 		}
 
-		await clippiumApp.run( args )
+		await cli.run( args )
 
 	}
 	catch ( error ) {
@@ -106,4 +120,4 @@ export const run = async ( args: string[] ) => {
 
 }
 
-export default clippiumApp
+export default cli

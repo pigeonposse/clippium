@@ -45,10 +45,10 @@
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*",
+		"@clippium/color": "workspace:*",
 		"clippium": "workspace:*"
 	},
 	"peerDependencies": {
-		"@clippium/color": "workspace:*",
 		"clippium": "workspace:*"
 	},
 	"publishConfig": {

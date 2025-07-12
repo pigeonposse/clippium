@@ -48,7 +48,20 @@ import { AnyPlugin } from './plugin'
 export const defineConfig = <C extends Config>( config: C ): C =>
 	config
 
-export const cli = new Clippium( data, { help: { formatter: formatter() } } )
+export const cli = new Clippium( data, { help : { formatter : formatter( {
+	title         : color.cyan.inverse.bold,
+	bin           : color.cyan,
+	version       : color.cyan.dim.italic,
+	name          : color.bold,
+	positionals   : color.green.dim,
+	commands      : color.green,
+	flags         : color.yellow,
+	desc          : color.white.dim,
+	examples      : color.cyan,
+	sectionTitle  : color.white.bold.underline,
+	sectionDesc   : color.white.dim,
+	sectionsProps : color.white.dim.italic,
+} ) } } )
 
 /**
  * The main function to run the CLI.

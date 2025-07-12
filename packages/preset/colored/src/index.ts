@@ -1,4 +1,3 @@
-import color from '@clippium/color'
 
 import type {
 	ClippiumConfig,
@@ -7,19 +6,34 @@ import type {
 
 const DEFAULT_NAME = '$0'
 
+// const COLORS_DEFAULT = {
+// 	title         : color.cyan.inverse.bold,
+// 	bin           : color.cyan,
+// 	version       : color.cyan.dim.italic,
+// 	name          : color.bold,
+// 	positionals   : color.green.dim,
+// 	commands      : color.green,
+// 	flags         : color.yellow,
+// 	desc          : color.white.dim,
+// 	examples      : color.cyan,
+// 	sectionTitle  : color.white.bold.underline,
+// 	sectionDesc   : color.white.dim,
+// 	sectionsProps : color.white.dim.italic,
+// } satisfies { [ key in string ]: ColorFn }
+
 const COLORS_DEFAULT = {
-	title         : color.cyan.inverse.bold,
-	bin           : color.cyan,
-	version       : color.cyan.dim.italic,
-	name          : color.bold,
-	positionals   : color.green.dim,
-	commands      : color.green,
-	flags         : color.yellow,
-	desc          : color.white.dim,
-	examples      : color.cyan,
-	sectionTitle  : color.white.bold.underline,
-	sectionDesc   : color.white.dim,
-	sectionsProps : color.white.dim.italic,
+	title         : v => v,
+	bin           : v => v,
+	version       : v => v,
+	name          : v => v,
+	positionals   : v => v,
+	commands      : v => v,
+	flags         : v => v,
+	desc          : v => v,
+	examples      : v => v,
+	sectionTitle  : v => v,
+	sectionDesc   : v => v,
+	sectionsProps : v => v,
 } satisfies { [ key in string ]: ColorFn }
 
 type Formatter = NonNullable<NonNullable<ClippiumConfig['help']>['formatter']>
@@ -27,7 +41,23 @@ type Flags = NonNullable<ClippiumData['flags']>
 type ColorFn = ( value: string ) => string
 type Config = { [ key in keyof typeof COLORS_DEFAULT ]?: ColorFn }
 
-export const formatter: () => Formatter = ( opts?: Config ) => ( {
+/**
+ * Formatter function that generates a formatted help output for a CLIPPIUM application.
+ * It accepts an configuration for custom color functions to apply to the output.
+ *
+ * @param   {Config} opts - Optional configuration object to override default color functions.
+ * @returns {string}      A function that generates a formatted help output for a CLIPPIUM application.
+ * @example
+ * import { Clippium } from 'clippium'
+ * import color from '@clippium/color'
+ * import { formatter } from '@clippium/preset-colored'
+ *
+ * const cli = new Clippium({ }, help: { formatter: formatter({
+ * 	commands: color.cyan
+ * }) } )
+ */
+
+export const formatter = ( opts?: Config ): Formatter => ( {
 	data, utils,
 } ) => {
 

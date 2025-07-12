@@ -1,0 +1,7 @@
+simple:
+    title: "Simple example"
+    desc: "This is a simple example"
+    data:
+      instance:
+        input: "./index.ts"
+        title: "Use in JS/TS"

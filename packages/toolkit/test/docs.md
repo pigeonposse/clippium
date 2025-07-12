@@ -2,16 +2,13 @@
 
 This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.
 
-
 ## Commands
-
 
 ### pet-petId-uploadImage
 
 Path: /pet/{petId}/uploadImage
 
 #### Subcommands (pet-petId-uploadImage)
-
 
 #### post
 
@@ -28,7 +25,6 @@ Method: post
 Path: /pet
 
 #### Subcommands (pet)
-
 
 #### post
 
@@ -52,7 +48,6 @@ Path: /pet/findByStatus
 
 #### Subcommands (pet-findByStatus)
 
-
 #### get
 
 Method: get
@@ -67,7 +62,6 @@ Path: /pet/findByTags
 
 #### Subcommands (pet-findByTags)
 
-
 #### get
 
 Method: get
@@ -81,7 +75,6 @@ Method: get
 Path: /pet/{petId}
 
 #### Subcommands (pet-petId)
-
 
 #### get
 
@@ -107,7 +100,7 @@ Method: delete
 
 ##### Options (delete)
 
-- **`api_key`** (string): 
+- **`api_key`** (string):
 - **`petId`** (string) _(required)_: Pet id to delete
 
 ### store-inventory
@@ -116,18 +109,15 @@ Path: /store/inventory
 
 #### Subcommands (store-inventory)
 
-
 #### get
 
 Method: get
-
 
 ### store-order
 
 Path: /store/order
 
 #### Subcommands (store-order)
-
 
 #### post
 
@@ -188,7 +178,7 @@ Method: get
 
 ##### Options (get)
 
-- **`username`** (string) _(required)_: The name that needs to be fetched. Use user1 for testing. 
+- **`username`** (string) _(required)_: The name that needs to be fetched. Use user1 for testing.
 
 #### put
 
