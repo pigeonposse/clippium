@@ -77,7 +77,7 @@ const data = parser.run( process.argv.slice( 2 ) )
 
 const {
 	commands, flags,
-} = data.value
+} = data
 
 if ( commands.test2 )
 	console.log( 'test2' )

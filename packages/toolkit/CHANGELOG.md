@@ -1,5 +1,20 @@
 # @clippium/updater
 
+## 0.1.0
+
+### Minor Changes
+
+- Add more documentation, fix issues, add docs commands to toolkit etc
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @clippium/preset-colored@1.0.0
+  - @clippium/preset-default@1.0.0
+  - @clippium/color@0.1.0
+  - @clippium/schema@0.1.0
+  - clippium@0.1.0
+
 ## 0.0.4
 
 ### Patch Changes

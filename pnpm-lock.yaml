@@ -180,6 +180,9 @@ importers:
       comment-parser:
         specifier: 1.4.1
         version: 1.4.1
+      creatium:
+        specifier: ^0.1.17
+        version: 0.1.17
       generate-schema:
         specifier: 2.6.0
         version: 2.6.0
@@ -3015,6 +3018,9 @@ packages:
       typescript:
         optional: true
 
+  creatium@0.1.17:
+    resolution: {integrity: sha512-x6pq1UnWAjpwCqnCE/2YuhIOK0SRdHxCKMjkDSMeNfkj1Nf9LX9XNtsmfRst3Gr0+1DM3Hv09z/dtHbcbT4ijg==}
+
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
@@ -3909,6 +3915,9 @@ packages:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
     engines: {node: '>= 0.4'}
 
+  globalyzer@0.1.0:
+    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
+
   globby@11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
     engines: {node: '>=10'}
@@ -3919,6 +3928,9 @@ packages:
 
   globjoin@0.1.4:
     resolution: {integrity: sha512-xYfnw62CKG8nLkZBfWbhWwDw02CHty86jfPcc2cr3ZfeuK9ysoVPPEUxf21bAD/rWAgk52SuBrLJlefNy8mvFg==}
+
+  globrex@0.1.2:
+    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
 
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
@@ -6230,6 +6242,9 @@ packages:
 
   tiny-colors@2.2.2:
     resolution: {integrity: sha512-Elmv7JL+dX0c78caKEelH1nHHBskHzJkaqBRgVvQuxsvVA/Z9Fa2R3ZZtfmkkajcd18e96RLMwJvtFqC8jsZWA==}
+
+  tiny-glob@0.2.9:
+    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
 
   tiny-inflate@1.0.3:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
@@ -10200,6 +10215,20 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
+  creatium@0.1.17:
+    dependencies:
+      '@clack/core': 0.5.0
+      '@clack/prompts': 0.11.0
+      '@visulima/boxen': 1.0.30
+      cli-table3: 0.6.5
+      columnify: 1.6.0
+      deepmerge-ts: 7.1.5
+      gradient-string: 3.0.0
+      string-width: 7.2.0
+      tiny-glob: 0.2.9
+      tiny-updater: 3.5.3
+      yargs: 17.7.2
+
   cross-spawn@7.0.6:
     dependencies:
       path-key: 3.1.1
@@ -11291,6 +11320,8 @@ snapshots:
       define-properties: 1.2.1
       gopd: 1.2.0
 
+  globalyzer@0.1.0: {}
+
   globby@11.1.0:
     dependencies:
       array-union: 2.1.0
@@ -11310,6 +11341,8 @@ snapshots:
       unicorn-magic: 0.3.0
 
   globjoin@0.1.4: {}
+
+  globrex@0.1.2: {}
 
   gopd@1.2.0: {}
 
@@ -13976,6 +14009,11 @@ snapshots:
   through@2.3.8: {}
 
   tiny-colors@2.2.2: {}
+
+  tiny-glob@0.2.9:
+    dependencies:
+      globalyzer: 0.1.0
+      globrex: 0.1.2
 
   tiny-inflate@1.0.3: {}
 

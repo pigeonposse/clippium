@@ -1,9 +1,28 @@
 # `@clippium/preset-colored` - API documentation
 
-## Variables
+## Functions
 
-### formatter
+### formatter()
 
 ```ts
-const formatter: NonNullable<ClippiumConfig["help"]>["formatter"];
+function formatter(): (d: {
+  data: ClippiumData;
+  utils: HelpFormatter;
+ }) => string
 ```
+
+#### Returns
+
+`Function`
+
+##### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `d` | `object` |
+| `d.data` | `ClippiumData` |
+| `d.utils` | `HelpFormatter` |
+
+##### Returns
+
+`string`

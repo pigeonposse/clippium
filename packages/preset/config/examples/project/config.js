@@ -7,7 +7,9 @@ const input = './src/index.ts'
  * @type {import('./data').ConfigFileData}
  */
 export default {
+
 	commands : {
+
 		build : {
 			positionals : {
 				input,

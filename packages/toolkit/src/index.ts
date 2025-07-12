@@ -23,17 +23,40 @@ import {
 	tsPlugin,
 	TypeScript,
 } from './convert/ts'
+import { Create }     from './create'
 import {
 	convertCommand,
 	data,
 	setPluginsData,
 	validaConfigFiles,
 } from './data'
+import { Docs }        from './docs'
+import {
+	Markdown,
+	markdownDocsPlugin,
+} from './docs/plugin'
 import { AnyPlugin } from './plugin'
 
-const cli = new Clippium( data, { help: { formatter: formatter() } } )
+/**
+ * Defines and returns the provided configuration object.
+ *
+ * @template C - Must extend from Config.
+ * @param   {C} config - The configuration object to define.
+ * @returns {C}        - Returns the provided configuration object.
+ */
 
-const run = async ( args: string[] ) => {
+export const defineConfig = <C extends Config>( config: C ): C =>
+	config
+
+export const cli = new Clippium( data, { help: { formatter: formatter() } } )
+
+/**
+ * The main function to run the CLI.
+ *
+ * @param   {string[]}      args - The argument vector array.
+ * @returns {Promise<void>}      - Resolves when the function has finished.
+ */
+export const run = async ( args: string[] ) => {
 
 	try {
 
@@ -46,6 +69,7 @@ const run = async ( args: string[] ) => {
 			esm     : esmFnPlugin,
 			schema  : schemaPlugin,
 			type    : tsPlugin,
+			md      : markdownDocsPlugin,
 		} as { [k:string]: AnyPlugin }
 		const pluginsData = setPluginsData( plugins )
 
@@ -55,8 +79,15 @@ const run = async ( args: string[] ) => {
 				...cli.data.commands,
 				convert : {
 					...cli.data.commands.convert,
-					...pluginsData,
+					...pluginsData.convert,
 				},
+				...( pluginsData.docs
+					? { docs : {
+						...cli.data.commands.docs,
+						...pluginsData.docs,
+					} }
+					: {}
+				),
 			},
 		}
 
@@ -80,6 +111,21 @@ const run = async ( args: string[] ) => {
 				else console.log( cli.getHelp( args ) )
 
 			}
+			else if ( data.commands.docs ) {
+
+				const value = getNext( data.utils.parsedArgv._, 'docs' )
+
+				if ( !value ) return console.log( cli.getHelp( args ) )
+				const docs = new Docs( plugins, data )
+				await docs.run( value )
+
+			}
+			else if ( data.commands.create ) {
+
+				const create = new Create( data )
+				await create.generate()
+
+			}
 			else console.log( cli.getHelp( args ) )
 
 		}
@@ -95,11 +141,6 @@ const run = async ( args: string[] ) => {
 
 }
 
-export {
-	run,
-	cli,
-}
-
 export * from './plugin'
 
 export type {
@@ -108,4 +149,6 @@ export type {
 	TypeScript,
 	ESMFunctions,
 	JSONSchemaGneneric,
+	Converter,
+	Markdown,
 }

@@ -1,3 +1,9 @@
 {
 	"extends": "./node_modules/@clippium/_config/tsconfig.json",
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"**/*.example.*",
+	]
 }

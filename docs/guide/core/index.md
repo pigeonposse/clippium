@@ -26,6 +26,10 @@ deno add clippium
 
 :::
 
+## 🚀 Performance
+
+- [Read more](performance.md)
+
 ## ➕ More
 
 - 📖 [API Docs](api.md)

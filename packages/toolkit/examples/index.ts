@@ -1,6 +1,6 @@
 import { Clippium } from 'clippium'
 
-import data from './example-data'
+import data from '../test/example-data'
 
 const cli = new Clippium( {
 	name  : 'test',

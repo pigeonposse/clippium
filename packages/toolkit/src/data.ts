@@ -7,31 +7,44 @@ import {
 	version,
 	coreName,
 } from './_shared/const'
-import { schemaType } from './convert/data'
-import { Plugins }    from './plugin'
+import { schemaType }           from './convert/data'
+import { createCommandOptions } from './create'
+import { Plugins }              from './plugin'
 
 const group      = 'Global flags:'
 const cliDefault = presetDefault( { grouped: group } )
 export const data = {
 	name,
 	version,
-	commands : { convert : {
-		desc     : 'Create clippium data based on multiple contents',
-		examples : [
-			{
-				value : '$0 openapi to-data -i https://petstore.swagger.io/v2/swagger.json -o ./src/data.js',
-				desc  : 'Convert from OpenAPI to clippium data',
-			},
-			{
-				value : '$0 type to-data -i ./my-type.ts -o ./clippium-data.ts --type MyType',
-				desc  : 'Convert from TypeScript type to clippium data',
-			},
-			{
-				value : '$0 schema from-data -i ./clippium-data.ts -o ./my-schema.json',
-				desc  : 'Convert from clippium data to JSON Schema',
-			},
-		],
-	} },
+	commands : {
+		convert : {
+			desc     : 'Transform input to and from "clippium data" based on multiple content types',
+			examples : [
+				{
+					value : '$0 openapi to-data -i https://petstore.swagger.io/v2/swagger.json -o ./src/data.js',
+					desc  : 'Convert from OpenAPI to clippium data',
+				},
+				{
+					value : '$0 type to-data -i ./my-type.ts -o ./clippium-data.ts --type MyType',
+					desc  : 'Convert from TypeScript type to clippium data',
+				},
+				{
+					value : '$0 schema from-data -i ./clippium-data.ts -o ./my-schema.json',
+					desc  : 'Convert from clippium data to JSON Schema',
+				},
+			],
+		},
+		create : {
+			...createCommandOptions,
+			examples : [
+				{
+					value : '$0',
+					desc  : 'Show promp to create a new clippium CLI project',
+				},
+			],
+		},
+		docs : { desc: 'Generate documentation from clippium data' },
+	},
 	flags : {
 		...cliDefault.data.flags,
 		config : {
@@ -54,21 +67,51 @@ export const convertCommand = {
 	toDataSchema : 'to-data-schema',
 	fromData     : 'from-data',
 }
-export const setPluginsData = <R extends ClippiumData>( data: Plugins ): R => {
+type PluginData = {
+	convert : ClippiumData
+	docs    : ClippiumData
+}
+export const setPluginsData = <R extends PluginData>( data: Plugins ): R => {
 
-	const res       = {} as R
+	const res  = {} as R['convert']
+	const docs = {} as R['docs']
+
 	const title     = ( from: string, to: string ) => `Convert from "${from}" to ${to}`
 	const dataTitle = 'clippium data'
+
 	for ( const key in data ) {
 
 		const value = data[key]
-		if ( !value || ( !value.convert.fromData && !value.convert.toData ) ) continue
 
 		if ( !res.commands ) res.commands = {}
 
-		res.commands[key] = { desc: value.desc || `Converter utils for: ${key}` }
+		if ( value.docs ) {
 
-		if ( value.convert.fromData ) {
+			if ( !docs.commands ) docs.commands = {}
+			docs.commands[key] = {
+				desc  : `Create documentation from "${dataTitle}"`,
+				flags : {
+					...value.docs.flags,
+					input : {
+						type     : 'string',
+						desc     : 'Input file (Allow path, string and URL)',
+						alias    : [ 'i' ],
+						required : true,
+					},
+					output : {
+						type  : 'string',
+						desc  : 'Output file (Allow path, string and URL)',
+						alias : [ 'o' ],
+					},
+				},
+				examples : value.docs.examples,
+			}
+
+		}
+
+		if ( !value.convert || ( !value.convert?.fromData && !value.convert?.toData ) ) continue
+		res.commands[key] = { desc: value.desc || `Converter utils for: ${key}` }
+		if ( value.convert?.fromData ) {
 
 			if ( !res.commands[key].commands ) res.commands[key].commands = {}
 			res.commands[key].commands[convertCommand.fromData] = {
@@ -91,7 +134,7 @@ export const setPluginsData = <R extends ClippiumData>( data: Plugins ): R => {
 			}
 
 		}
-		if ( value.convert.toData ) {
+		if ( value.convert?.toData ) {
 
 			if ( !res.commands[key].commands ) res.commands[key].commands = {}
 			res.commands[key].commands[convertCommand.toData]       = {
@@ -142,6 +185,9 @@ export const setPluginsData = <R extends ClippiumData>( data: Plugins ): R => {
 
 	}
 
-	return res
+	return {
+		convert : res,
+		docs,
+	} as R
 
 }

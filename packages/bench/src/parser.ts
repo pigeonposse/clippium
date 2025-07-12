@@ -3,7 +3,7 @@ import mri      from 'mri'
 import nopt     from 'nopt'
 import yargs    from 'yargs-parser'
 
-import { runBench } from './_super'
+import { getBench } from './_super'
 import { Parser }   from '../../core/src/parser/core'
 
 const args = [
@@ -13,7 +13,7 @@ const args = [
 	'--multi=baz',
 ]
 
-export const run = async () => runBench( {
+export const get = async () => getBench( {
 	name : 'PARSER(s)',
 	add  : {
 		'mri'          : () => mri( args ),

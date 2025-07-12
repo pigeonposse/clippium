@@ -3,6 +3,7 @@ import {
 	ClippiumData,
 	InferFlag,
 	InferPositionals,
+	InferPositional,
 } from './_shared/data'
 import { Finder } from './_shared/finder'
 import {
@@ -36,11 +37,47 @@ export type {
 	ClippiumConfig,
 	InferFlag,
 	InferPositionals,
+	InferPositional,
 	ParsedDataArgv,
 }
 
-export const defineData = <C extends ClippiumData>( data: C ) => data
-export const hiddenBin = ( args: Argv ) => args.slice( 2 )
+/**
+ * A type assertion function that allows you to define a ClippiumData object
+ * with the correct type parameters.
+ *
+ * @param   {ClippiumData} data - The Clippium Data object
+ * @returns {ClippiumData}      - The Clippium Data object
+ * @example
+ * const data = defineData({
+ *   name: 'my-cli',
+ *   commands: {
+ *     hello: {
+ *       desc: 'Say hello',
+ *       flags: {
+ *         name: {
+ *           type: 'string',
+ *           desc: 'Your name',
+ *         },
+ *       },
+ *     },
+ *   },
+ * })
+ */
+export const defineData = <C extends ClippiumData>( data: C ) =>
+	data
+
+/**
+ * Return the given Argv array, but without the first two elements which are generally
+ * the node and script names.
+ *
+ * @param   {string[]} args - Argv array
+ * @returns {string[]}      - Argv array without the first two elements
+ * @example
+ * import process from 'node:process'
+ * const args = hiddenBin( process.argv )
+ */
+export const hiddenBin = ( args: Argv ) =>
+	args.slice( 2 )
 
 /**
  * Generate help string based on the given ClippiumData and Argv.
@@ -84,6 +121,18 @@ export const parse = <D extends ClippiumData>( {
 } ) =>
 	new ParserData( data, { Finder } ).run( argv )
 
+/**
+ * The main class.
+ * Used for create command line interfaces (CLIs).
+ *
+ * @template C Must extend from ClippiumData
+ * @example
+ * const cli = new Clippium( data )
+ * cli.fn = async data => {
+ *   // do something
+ * }
+ * await cli.run( process.argv.slice( 2 ) )
+ */
 export class Clippium<C extends ClippiumData> {
 
 	/**
@@ -96,6 +145,12 @@ export class Clippium<C extends ClippiumData> {
 	 */
 	config : ClippiumConfig
 
+	/**
+	 * Construct a new Clippium instance.
+	 *
+	 * @param {C}              data     - ClippiumData containing information about the commands and flags
+	 * @param {ClippiumConfig} [config] - Clippium configuration options
+	 */
 	constructor( data: C, config: ClippiumConfig = {} ) {
 
 		this.data   = data
@@ -156,12 +211,6 @@ export class Clippium<C extends ClippiumData> {
 	 *
 	 * @param   {string[]}      argv - Argv array
 	 * @returns {Promise<void>}      - Resolves when the function has finished
-	 * @example
-	 * const clippium = new Clippium( data )
-	 * clippium.fn = async data => {
-	 *   // do something
-	 * }
-	 * clippium.run( process.argv.slice( 2 ) )
 	 */
 	async run( argv: Argv ) {
 

@@ -12,7 +12,7 @@
 [![License](https://img.shields.io/github/license/pigeonposse/clippium?style=for-the-badge&color=green&logoColor=white)](/LICENSE)
 [![Version](https://img.shields.io/npm/v/clippium?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/clippium)
 [![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/clippium-toolkit?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/clippium-toolkit)
-[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/clippium-toolkit/0.0.2?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/clippium-toolkit)
+[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/clippium-toolkit/0.0.4?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/clippium-toolkit)
 
 ToolKit for working with clippium CLIs
 
@@ -45,6 +45,7 @@ deno add clippium-toolkit
 ## ➕ More
 
 - 🌞 [Core](https://clippium.pigeonposse.com/guide/core)
+- 📝 [Schema](https://clippium.pigeonposse.com/guide/schema)
 - 🧰 [Toolkit](https://clippium.pigeonposse.com/guide/toolkit)
 - 🎨 [Color](https://clippium.pigeonposse.com/guide/color)
 - 🌐 [I18n](https://clippium.pigeonposse.com/guide/i18n)

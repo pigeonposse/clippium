@@ -8,7 +8,7 @@ import meow        from 'meow'
 import sade        from 'sade'
 import yargs       from 'yargs'
 
-import { runBench }          from './_super'
+import { getBench }          from './_super'
 import { parse as clippium } from '../../core/dist/index.mjs'
 
 const args = [
@@ -20,7 +20,7 @@ const args = [
 	'--multi=baz',
 ]
 
-export const run = async () => runBench( {
+export const get = async () => getBench( {
 	name : 'CLI',
 	add  : {
 		clippium : () => {

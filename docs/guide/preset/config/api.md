@@ -23,7 +23,7 @@ function default(config: GetDataConfig): <C>(data: ClippiumFnParameters<C>) => P
   value: {
      commands: { [K in string | number | symbol]: UnionToIntersection<InferCommandsArray<C> extends U[] ? U extends string ? { [k in string]?: (...) | (...) | (...) } : Object : Object>[K] };
      flags: { [K in string | number | symbol]: (InferFlags<C> & Object)[K] };
-     positionals: { [K in string | number | symbol]: (InferPosicionals<C> & Object)[K] };
+     positionals: { [K in string | number | symbol]: (InferPositionals<C> & Object)[K] };
     };
 }>
 ```
@@ -70,17 +70,17 @@ function default(config: GetDataConfig): <C>(data: ClippiumFnParameters<C>) => P
   `value`: \{
      `commands`: \{ \[K in string \| number \| symbol\]: UnionToIntersection\<InferCommandsArray\<C\> extends U\[\] ? U extends string ? \{ \[k in string\]?: (...) \| (...) \| (...) \} : Object : Object\>\[K\] \};
      `flags`: \{ \[K in string \| number \| symbol\]: (InferFlags\<C\> & Object)\[K\] \};
-     `positionals`: \{ \[K in string \| number \| symbol\]: (InferPosicionals\<C\> & Object)\[K\] \};
+     `positionals`: \{ \[K in string \| number \| symbol\]: (InferPositionals\<C\> & Object)\[K\] \};
     \};
  \}\>
 
 | Name | Type | Description |
 | ------ | ------ | ------ |
 | `data`? | \{ `content`: [`ConfigFileData`](#configfiledata) \| \{ `commands`: `C` *extends* \{ `commands`: ...; \} ? `{ [K in (...)]: (...) }` : `never`; `flags`: `C` *extends* \{ `flags`: ...; \} ? `{ [K in (...)]: (...) }` : `never`; `positionals`: `C` *extends* \{ `positionals`: ...; \} ? `{ [K in (...)]: (...) }` : `never`; \}; `parsed`: `ClippiumParsedArgv`\<`C`\>; \} & `Omit`\<`GetDataResult`\<[`ConfigFileData`](#configfiledata)\>, `"value"`\> | Data from the config file |
-| `value` | \{ `commands`: \{ \[K in string \| number \| symbol\]: UnionToIntersection\<InferCommandsArray\<C\> extends U\[\] ? U extends string ? \{ \[k in string\]?: (...) \| (...) \| (...) \} : Object : Object\>\[K\] \}; `flags`: \{ \[K in string \| number \| symbol\]: (InferFlags\<C\> & Object)\[K\] \}; `positionals`: \{ \[K in string \| number \| symbol\]: (InferPosicionals\<C\> & Object)\[K\] \}; \} | Clippium parsed argv data from the config file and merged with the initial argv |
+| `value` | \{ `commands`: \{ \[K in string \| number \| symbol\]: UnionToIntersection\<InferCommandsArray\<C\> extends U\[\] ? U extends string ? \{ \[k in string\]?: (...) \| (...) \| (...) \} : Object : Object\>\[K\] \}; `flags`: \{ \[K in string \| number \| symbol\]: (InferFlags\<C\> & Object)\[K\] \}; `positionals`: \{ \[K in string \| number \| symbol\]: (InferPositionals\<C\> & Object)\[K\] \}; \} | Clippium parsed argv data from the config file and merged with the initial argv |
 | `value.commands` | \{ \[K in string \| number \| symbol\]: UnionToIntersection\<InferCommandsArray\<C\> extends U\[\] ? U extends string ? \{ \[k in string\]?: (...) \| (...) \| (...) \} : Object : Object\>\[K\] \} | - |
 | `value.flags` | \{ \[K in string \| number \| symbol\]: (InferFlags\<C\> & Object)\[K\] \} | - |
-| `value.positionals` | \{ \[K in string \| number \| symbol\]: (InferPosicionals\<C\> & Object)\[K\] \} | - |
+| `value.positionals` | \{ \[K in string \| number \| symbol\]: (InferPositionals\<C\> & Object)\[K\] \} | - |
 
 ## Type Aliases
 

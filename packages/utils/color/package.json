@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/color",
-	"version": "0.0.4",
+	"version": "0.1.0",
 	"description": "Color support for cli utilities",
 	"keywords": [
 		"cli",

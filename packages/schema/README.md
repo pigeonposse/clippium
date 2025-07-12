@@ -1,4 +1,4 @@
-# Clippium Toolkit Package
+# Clippium Schema Package
 
 [![Web](https://img.shields.io/badge/Web-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com)
 [![About Us](https://img.shields.io/badge/About%20Us-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com/about)
@@ -11,8 +11,8 @@
 
 [![License](https://img.shields.io/github/license/pigeonposse/clippium?style=for-the-badge&color=green&logoColor=white)](/LICENSE)
 [![Version](https://img.shields.io/npm/v/clippium?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/clippium)
-[![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/clippium-toolkit?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/clippium-toolkit)
-[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/clippium-toolkit/0.0.2?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/clippium-toolkit)
+[![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/@clippium/schema?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/@clippium/schema)
+[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@clippium/schema/0.0.4?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/@clippium/schema)
 
 ToolKit for working with clippium CLIs
 
@@ -31,20 +31,21 @@ ToolKit for working with clippium CLIs
 ## 🔑 Installation
 
 ```bash 
-npm install clippium-toolkit
+npm install @clippium/schema
 # or
-pnpm install clippium-toolkit
+pnpm install @clippium/schema
 # or
-yarn add clippium-toolkit
+yarn add @clippium/schema
 # or
-bun add clippium-toolkit
+bun add @clippium/schema
 # or
-deno add clippium-toolkit
+deno add @clippium/schema
 ```
 
 ## ➕ More
 
 - 🌞 [Core](https://clippium.pigeonposse.com/guide/core)
+- 📝 [Schema](https://clippium.pigeonposse.com/guide/schema)
 - 🧰 [Toolkit](https://clippium.pigeonposse.com/guide/toolkit)
 - 🎨 [Color](https://clippium.pigeonposse.com/guide/color)
 - 🌐 [I18n](https://clippium.pigeonposse.com/guide/i18n)

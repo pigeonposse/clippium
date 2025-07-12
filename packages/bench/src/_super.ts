@@ -1,6 +1,6 @@
 import { Bench } from 'tinybench'
 
-export const runBench = async ( opts: {
+export const getBench = async ( opts: {
 	name : string
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	add  : { [flag: string]: () => Promise<any> | any }
@@ -32,15 +32,39 @@ export const runBench = async ( opts: {
 		( a, b ) => ( a.result?.latency.mean || 0 ) - ( b.result?.latency.mean || 0 ),
 	)
 
-	console.log( bench.name )
-	console.table( bench.table() )
+	const all    = bench.table()
+	const resume = results.map( task => ( {
+		'name'      : task.name,
+		'mean (ms)' : task.result?.latency.mean.toFixed( 6 ),
+		'ops/sec'   : ( 1 / ( task.result?.latency.mean || 1 ) ).toFixed( 2 ),
+	} ) )
 
-	console.table(
-		results.map( task => ( {
-			'name'      : task.name,
-			'mean (ms)' : task.result?.latency.mean.toFixed( 6 ),
-			'ops/sec'   : ( 1 / ( task.result?.latency.mean || 1 ) ).toFixed( 2 ),
-		} ) ),
-	)
+	return {
+		name : bench.name,
+		all,
+		resume,
+	}
+
+}
+
+export const runBench = async ( opts: {
+	name : string
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	add  : { [flag: string]: () => Promise<any> | any }
+} ) => {
+
+	const bench =  await getBench( opts )
+
+	console.log( bench.name )
+	console.table( bench.all )
+	console.table( bench.resume )
+
+}
+
+export const logBench = async ( bench: Awaited<ReturnType<typeof getBench>> ) => {
+
+	console.log( bench.name )
+	console.table( bench.all )
+	console.table( bench.resume )
 
 }

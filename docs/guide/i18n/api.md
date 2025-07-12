@@ -54,7 +54,7 @@ Initializes the i18n library with the provided options and returns an i18n objec
 #### Example
 
 ```ts
-import { i18n } from '@clippo/i18n'
+import { i18n } from '@clippium/i18n'
 
 const I18N = await i18n({
   locales: {

@@ -1,10 +1,11 @@
-import { run as runClis }   from './clis'
-import { run as runParser } from './parser'
+import { logBench }         from './_super'
+import { get as getClis }   from './clis'
+import { get as runParser } from './parser'
 
 const run = async () => {
 
-	await runParser()
-	await runClis()
+	await logBench( await runParser() )
+	await logBench( await getClis() )
 
 }
 

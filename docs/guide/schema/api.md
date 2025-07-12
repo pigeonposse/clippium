@@ -1,0 +1,3 @@
+# `@clippium/schema` - API documentation
+
+

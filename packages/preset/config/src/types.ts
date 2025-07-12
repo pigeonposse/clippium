@@ -7,7 +7,7 @@ import type {
 	Clippium,
 	ClippiumData,
 	InferFlag,
-	InferPosicional,
+	InferPositional,
 } from 'clippium'
 
 export type ClippiumParsedArgv<C extends ClippiumData> = Omit<ClippiumFnParameters<C>, 'utils'>
@@ -27,7 +27,7 @@ type _InferConfigFileData<T extends ClippiumData> = {
 		: never
 
 	positionals?: T extends { positionals: infer P }
-		? Prettify<{ [K in keyof P]?: P[K] extends NonNullable<ClippiumData['positionals']>[string] ? InferPosicional<P[K]> : never }>
+		? Prettify<{ [K in keyof P]?: P[K] extends NonNullable<ClippiumData['positionals']>[string] ? InferPositional<P[K]> : never }>
 		: never
 
 	flags?: T extends { flags: infer F }

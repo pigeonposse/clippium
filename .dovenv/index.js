@@ -11,7 +11,13 @@ const emojis = {
 	i18n    : '🌐',
 	updater : '📦',
 	default : '➡️',
+	schema  : '📝',
 }
+export const core = await getWorkspaceConfig( {
+	metaURL  : import.meta.url,
+	path     : '../',
+	corePath : './packages/core',
+} )
 export default pigeonposseMonorepoTheme( {
 	docs : async utils => {
 
@@ -31,6 +37,9 @@ export default pigeonposseMonorepoTheme( {
 				terciary  : '#9276b3',
 				fourth    : '#9c7cbc',
 			} },
+			css : `html.dark {
+				--vp-c-text-1: #efe3ff !important;
+			}`,
 			sidebar : {
 				'/guide/'       : sidebar,
 				'/todo/'        : sidebar,
@@ -41,14 +50,11 @@ export default pigeonposseMonorepoTheme( {
 				reference : false,
 			},
 			twoslash : false,
+			version  : core.corePkg?.version,
 		}
 
 	},
 	predocs : { emoji: emojis },
-	core    : await getWorkspaceConfig( {
-		metaURL  : import.meta.url,
-		path     : '../',
-		corePath : './packages/core',
-	} ),
+	core,
 } )
 

@@ -39,7 +39,7 @@ export class Converter<Plugins extends { [k: string]: AnyPlugin }> {
 
 		const plugin = this.#plugins[key]
 		if ( !plugin ) throw new Error( `Plugin "${key}" not found` )
-		if ( !plugin.convert.toData ) throw new Error( `Plugin "${key}" not found` )
+		if ( !plugin.convert?.toData ) throw new Error( `Plugin "${key}" not found` )
 
 		const res = await plugin.convert.toData.fn( {
 			input : this.#getInput(),
@@ -91,11 +91,11 @@ export class Converter<Plugins extends { [k: string]: AnyPlugin }> {
 
 	}
 
-	async #getInputData() {
+	async #getInputData( i: string ) {
 
 		try {
 
-			return await file2object<ClippiumData>( this.#getInput() )
+			return await file2object<ClippiumData>( i )
 
 		}
 		catch ( e ) {
@@ -110,10 +110,10 @@ export class Converter<Plugins extends { [k: string]: AnyPlugin }> {
 
 		const plugin = this.#plugins[key]
 		if ( !plugin ) throw new Error( `Plugin "${key}" not found` )
-		if ( !plugin.convert.fromData ) throw new Error( `Plugin "${key}" not found` )
-
-		const res = await plugin.convert.fromData.fn( {
-			input : await this.#getInputData(),
+		if ( !plugin.convert?.fromData ) throw new Error( `Plugin "${key}" not found` )
+		const input = this.#getInput()
+		const res   = await plugin.convert.fromData.fn( {
+			input : await this.#getInputData( input ),
 			...this.#fnData,
 		} )
 

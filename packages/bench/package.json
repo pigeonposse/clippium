@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/bench",
-	"version": "0.0.4",
+	"version": "0.1.0",
 	"private": true,
 	"description": "Benchmarks for clippium",
 	"keywords": [
@@ -33,7 +33,9 @@
 	},
 	"type": "module",
 	"scripts": {
-		"dev": "pnpx tsx src/index.ts"
+		"build": "pnpx tsx scripts/build.ts",
+		"dev": "pnpx tsx src/index.ts",
+		"md": "pnpx tsx scripts/index.ts"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*",
