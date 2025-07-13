@@ -1,4 +1,3 @@
-
 import {
 	defineCommand,
 	runMain,
@@ -9,7 +8,7 @@ import sade        from 'sade'
 import yargs       from 'yargs'
 
 import { getBench }          from './_super'
-import { parse as clippium } from '../../core/dist/index.mjs'
+import { parse as clippium } from '../../core/src/index'
 
 const args = [
 	'convert',
