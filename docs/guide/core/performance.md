@@ -20,7 +20,7 @@ That said, let's clarify these three points:
 
 | Name | Version |
 |--------|---------|
-| clippium | 0.0.4 |
+| clippium | 0.1.0 |
 | citty | 0.1.6 |
 | commander | 14.0.0 |
 | meow | 13.2.0 |
@@ -38,22 +38,22 @@ These benchmarks are for the **parse** function of clippium.
 
 | Name | Mean (ms) | Ops/sec |
 |------|-----------|---------|
-| clippium-parser | 0.000286 | 3498.16 |
-| mri | 0.000495 | 2019.96 |
-| minimist | 0.001407 | 710.98 |
-| nopt | 0.001973 | 506.88 |
-| yargs-parser | 0.015318 | 65.28 |
+| clippium-parser | 0.000289 | 3455.01 |
+| mri | 0.000490 | 2041.11 |
+| minimist | 0.001402 | 713.36 |
+| nopt | 0.001853 | 539.63 |
+| yargs-parser | 0.014106 | 70.89 |
 
 ## CLI bench
 
 | Name | Mean (ms) | Ops/sec |
 |------|-----------|---------|
-| clippium | 0.000948 | 1054.39 |
-| citty | 0.001009 | 990.91 |
-| commander | 0.005086 | 196.61 |
-| sade | 0.006705 | 149.14 |
-| meow | 1.597770 | 0.63 |
-| yargs | 2.050682 | 0.49 |
+| clippium | 0.000984 | 1016.73 |
+| citty | 0.001036 | 965.49 |
+| commander | 0.005897 | 169.57 |
+| sade | 0.007528 | 132.83 |
+| meow | 2.031524 | 0.49 |
+| yargs | 2.508152 | 0.40 |
 
 ## Execute
 

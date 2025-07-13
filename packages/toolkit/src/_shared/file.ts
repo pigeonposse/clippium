@@ -72,12 +72,13 @@ export const getContent = async ( i: Input ): Promise<{
 
 }
 
-export const getProcess = async () => {
+export const getProcess = async (): Promise<typeof import( 'node:process' )> => {
 
 	return await import( 'node:process' )
 
 }
-export const getCwd = async () => {
+
+export const getCwd = async (): Promise<string> => {
 
 	const { cwd } = await getProcess( )
 

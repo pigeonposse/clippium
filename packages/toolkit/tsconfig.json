@@ -1,6 +1,7 @@
 {
 	"extends": "./node_modules/@clippium/_config/tsconfig.json",
 	"include": [
-		"src/**/*"
+		"src/**/*",
+		"../preset/config/src/**/*"
 	]
 }

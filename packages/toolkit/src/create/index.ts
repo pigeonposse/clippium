@@ -21,7 +21,7 @@ type Commands = NonNullable<ClippiumData['commands']>
 
 const { color } = style
 
-export const createCommandOptions: Commands[number] = {
+export const createCommandOptions = {
 	desc  : `Create a new ${coreName} project`,
 	flags : {
 		name : {
@@ -54,7 +54,7 @@ export const createCommandOptions: Commands[number] = {
 			desc : 'create only the clippium file',
 		},
 	},
-}
+} satisfies Commands[number]
 
 export class Create {
 
