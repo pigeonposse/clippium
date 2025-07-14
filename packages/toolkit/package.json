@@ -59,7 +59,7 @@
 		"acorn-walk": "8.3.4",
 		"clippium": "workspace:*",
 		"comment-parser": "1.4.1",
-		"creatium": "^0.1.17",
+		"creatium": "0.1.17",
 		"generate-schema": "2.6.0",
 		"js-yaml": "4.1.0",
 		"smol-toml": "1.4.1",
