@@ -38,22 +38,23 @@ These benchmarks are for the **parse** function of clippium.
 
 | Name | Mean (ms) | Ops/sec |
 |------|-----------|---------|
-| clippium-parser | 0.000289 | 3455.01 |
-| mri | 0.000490 | 2041.11 |
-| minimist | 0.001402 | 713.36 |
-| nopt | 0.001853 | 539.63 |
-| yargs-parser | 0.014106 | 70.89 |
+| clippium-parser | 0.000293 | 3409.11 |
+| mri | 0.000522 | 1915.79 |
+| minimist | 0.001408 | 710.17 |
+| nopt | 0.001944 | 514.33 |
+| yargs-parser | 0.014828 | 67.44 |
 
 ## CLI bench
 
 | Name | Mean (ms) | Ops/sec |
 |------|-----------|---------|
-| clippium | 0.000984 | 1016.73 |
-| citty | 0.001036 | 965.49 |
-| commander | 0.005897 | 169.57 |
-| sade | 0.007528 | 132.83 |
-| meow | 2.031524 | 0.49 |
-| yargs | 2.508152 | 0.40 |
+| clippium | 0.000790 | 1265.10 |
+| citty | 0.001033 | 967.74 |
+| commander | 0.005699 | 175.47 |
+| clippium-with-validation | 0.005824 | 171.69 |
+| sade | 0.007605 | 131.49 |
+| yargs | 1.955719 | 0.51 |
+| meow | 1.957422 | 0.51 |
 
 ## Execute
 

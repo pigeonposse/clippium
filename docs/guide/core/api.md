@@ -83,7 +83,7 @@ Retrieve the version information from the Clippium data.
 ##### parse()
 
 ```ts
-parse(argv: Argv): ParserRes<C>
+parse(argv: Argv): Parsed<C>
 ```
 
 Parse the given Argv and return the parsed data.
@@ -96,7 +96,7 @@ Parse the given Argv and return the parsed data.
 
 ###### Returns
 
-`ParserRes`\<`C`\>
+[`Parsed`](#parsedd)\<`C`\>
 
 - Parsed data
 
@@ -119,6 +119,22 @@ Parse the given Argv and run the function with the parsed data.
 `Promise`\<`void`\>
 
 - Resolves when the function has finished
+
+##### validate()
+
+```ts
+validate(data: FnData<C>): ParsedWithValidation<C>
+```
+
+###### Parameters
+
+| Parameter | Type |
+| ------ | ------ |
+| `data` | `FnData`\<`C`\> |
+
+###### Returns
+
+`ParsedWithValidation`\<`C`\>
 
 #### Properties
 
@@ -181,23 +197,22 @@ const data = defineData({
 ### getHelp()
 
 ```ts
-function getHelp(opts: {
-  argv: Argv;
-  config: ClippiumConfig;
-  data: ClippiumData;
- }): string
+function getHelp<D>(opts: HelpOptions<D>): string
 ```
 
 Generate help string based on the given ClippiumData and Argv.
+
+#### Type Parameters
+
+| Type Parameter |
+| ------ |
+| `D` *extends* [`ClippiumData`](#clippiumdata) |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `opts` | `object` | Options |
-| `opts.argv` | `Argv` | Argv array |
-| `opts.config` | [`ClippiumConfig`](#clippiumconfig) | Options for the help formatter |
-| `opts.data` | [`ClippiumData`](#clippiumdata) | ClippiumData containing information about the commands and flags |
+| `opts` | `HelpOptions`\<`D`\> | Options |
 
 #### Returns
 
@@ -207,10 +222,10 @@ Generate help string based on the given ClippiumData and Argv.
 
 ***
 
-### hiddenBin()
+### hideBin()
 
 ```ts
-function hiddenBin(args: Argv): string[]
+function hideBin(args: Argv): string[]
 ```
 
 Return the given Argv array, but without the first two elements which are generally
@@ -232,7 +247,7 @@ the node and script names.
 
 ```ts
 import process from 'node:process'
-const args = hiddenBin( process.argv )
+const args = hideBin( process.argv )
 ```
 
 ***
@@ -240,10 +255,7 @@ const args = hiddenBin( process.argv )
 ### parse()
 
 ```ts
-function parse<D>(opts: {
-  argv: Argv;
-  data: D;
-}): ParserRes<D>
+function parse<D>(opts: ParseOptions<D>): Parsed<D>
 ```
 
 Parse the given Argv and return the parsed data.
@@ -258,15 +270,135 @@ Parse the given Argv and return the parsed data.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `opts` | `object` | Options |
-| `opts.argv` | `Argv` | Argv array |
-| `opts.data` | `D` | ClippiumData containing information about the commands and flags |
+| `opts` | `ParseOptions`\<`D`\> | Options |
 
 #### Returns
 
-`ParserRes`\<`D`\>
+[`Parsed`](#parsedd)\<`D`\>
 
 - Parsed data
+
+***
+
+### parseAndValidate()
+
+```ts
+function parseAndValidate<D>(opts: ParseAndValidate<D>): ParsedWithValidation<D>
+```
+
+Parse the given Argv and validate the parsed data against the given ClippiumData.
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| `D` *extends* [`ClippiumData`](#clippiumdata) | extends ClippiumData |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `opts` | `ParseAndValidate`\<`D`\> | Options |
+
+#### Returns
+
+`ParsedWithValidation`\<`D`\>
+
+- Result of the validation
+
+#### Example
+
+```ts
+import { parseAndValidate, defineData, withValidation } from 'clippium'
+import process from 'node:process'
+
+const data = defineData( withValidation({ ... }) )
+const argv = process.argv.slice( 2 )
+
+const validated = parseAndValidate( { data, argv } )
+```
+
+***
+
+### validate()
+
+```ts
+function validate<D>(opts: ValidateOptions<D>): ParsedWithValidation<D>
+```
+
+Validate the parsed data against the given ClippiumData.
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| `D` *extends* [`ClippiumData`](#clippiumdata) | extends ClippiumData |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `opts` | `ValidateOptions`\<`D`\> | Options |
+
+#### Returns
+
+`ParsedWithValidation`\<`D`\>
+
+- Result of the validation
+
+#### Example
+
+```ts
+import { parse, validate } from 'clippium'
+import process from 'node:process'
+
+const data = defineData( {...} )
+const argv = process.argv.slice( 2 )
+const parsed = parse( { data, argv } )
+const validated = validate( { data, parsed } )
+```
+
+***
+
+### withValidation()
+
+```ts
+function withValidation<C>(data: C): C
+```
+
+Return the same data, but with validation enabled.
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| `C` *extends* [`ClippiumData`](#clippiumdata) \| `WithValidation`\<[`ClippiumData`](#clippiumdata)\> | Must extend from ClippiumData |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `data` | `C` | Clippium data |
+
+#### Returns
+
+`C`
+
+- The same data, but with validation enabled
+
+#### Example
+
+```ts
+import { withValidation, validate, parse } from 'clippium'
+
+const cli = new Clippium( withValidation( data ) )
+
+cli.fn = async data => {
+    const {flags} = validate( data );
+    if(flags.help) return console.log( data.utils.getHelp() )
+}
+export default cli
+```
 
 ## Type Aliases
 
@@ -274,15 +406,24 @@ Parse the given Argv and return the parsed data.
 
 ```ts
 type ClippiumConfig: {
+  error: {
+     on: (data: {
+        error: Error;
+       }) => void;
+    };
   help: PartialDeep<HelpConfig>;
+  validate: ValidateSettings;
 };
 ```
 
 #### Type declaration
 
-| Name | Type |
-| ------ | ------ |
-| `help`? | `PartialDeep`\<`HelpConfig`\> |
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| `error`? | \{ `on`: (`data`: \{ `error`: `Error`; \}) => `void`; \} | Configuration for the error output |
+| `error.on`? | (`data`: \{ `error`: `Error`; \}) => `void` | - |
+| `help`? | `PartialDeep`\<`HelpConfig`\> | Configuration for the help output |
+| `validate`? | `ValidateSettings` | Configuration for the validation process |
 
 ***
 
@@ -348,14 +489,32 @@ type InferPositionals<T>: T["commands"] extends Record<string, ClippiumData> ? M
 
 ***
 
-### ParsedDataArgv\<T\>
+### Parsed\<D\>
 
 ```ts
-type ParsedDataArgv<T>: {
-  commands: InferCommands<T>;
-  flags: Prettify<InferFlags<T> & {}>;
-  positionals: Prettify<InferPositionals<T> & {}>;
+type Parsed<D>: Prettify<ParsedData<D>> & {
+  raw: ParsedArgv;
 };
+```
+
+#### Type declaration
+
+| Name | Type |
+| ------ | ------ |
+| `raw` | `ParsedArgv` |
+
+#### Type Parameters
+
+| Type Parameter |
+| ------ |
+| `D` *extends* [`ClippiumData`](#clippiumdata) |
+
+***
+
+### ParsedStrict\<T\>
+
+```ts
+type ParsedStrict<T>: StripIndexSignature<Parsed<T>>;
 ```
 
 #### Type Parameters
@@ -363,11 +522,3 @@ type ParsedDataArgv<T>: {
 | Type Parameter |
 | ------ |
 | `T` *extends* [`ClippiumData`](#clippiumdata) |
-
-#### Type declaration
-
-| Name | Type |
-| ------ | ------ |
-| `commands` | `InferCommands`\<`T`\> |
-| `flags` | `Prettify`\<`InferFlags`\<`T`\> & \{\}\> |
-| `positionals` | `Prettify`\<[`InferPositionals`](#inferpositionalst)\<`T`\> & \{\}\> |

@@ -5,6 +5,7 @@ import { Clippium }  from 'clippium'
 
 import { getNext }       from './_shared/array'
 import { findAndImport } from './_shared/file'
+import { Add }           from './add'
 import { Config }        from './config'
 import { Converter }     from './convert'
 import {
@@ -23,7 +24,6 @@ import {
 	tsPlugin,
 	TypeScript,
 } from './convert/ts'
-import { Create }     from './create'
 import {
 	convertCommand,
 	data,
@@ -35,6 +35,7 @@ import {
 	Markdown,
 	markdownDocsPlugin,
 } from './docs/plugin'
+import { Init }      from './init'
 import { AnyPlugin } from './plugin'
 
 /**
@@ -133,9 +134,15 @@ export const run = async ( args: string[] ) => {
 				await docs.run( value )
 
 			}
-			else if ( data.commands.create ) {
+			else if ( data.commands.init ) {
 
-				const create = new Create( data )
+				const create = new Init( data )
+				await create.generate()
+
+			}
+			else if ( data.commands.add ) {
+
+				const create = new Add( data )
 				await create.generate()
 
 			}

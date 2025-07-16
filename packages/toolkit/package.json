@@ -1,6 +1,6 @@
 {
 	"name": "clippium-toolkit",
-	"version": "0.1.0",
+	"version": "1.0.1",
 	"description": "ToolKit for working with clippium CLIs",
 	"keywords": [
 		"cli",
@@ -54,12 +54,12 @@
 		"@clippium/preset-colored": "workspace:*",
 		"@clippium/preset-default": "workspace:*",
 		"@clippium/schema": "workspace:*",
-		"@readme/openapi-parser": "4.1.0",
+		"@readme/openapi-parser": "4.1.1",
 		"acorn": "8.15.0",
 		"acorn-walk": "8.3.4",
 		"clippium": "workspace:*",
 		"comment-parser": "1.4.1",
-		"creatium": "0.1.17",
+		"creatium": "0.2.3",
 		"generate-schema": "2.6.0",
 		"js-yaml": "4.1.0",
 		"smol-toml": "1.4.1",

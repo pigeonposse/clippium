@@ -397,9 +397,9 @@ function createPlugin<To, From, Docs>(plugin: Plugin<To, From, Docs>): Plugin<To
 
 | Type Parameter |
 | ------ |
-| `To` *extends* `undefined` \| `Flags$1` |
-| `From` *extends* `undefined` \| `Flags$1` |
-| `Docs` *extends* `undefined` \| `Flags$1` |
+| `To` *extends* `undefined` \| `Flags$2` |
+| `From` *extends* `undefined` \| `Flags$2` |
+| `Docs` *extends* `undefined` \| `Flags$2` |
 
 #### Parameters
 
@@ -560,6 +560,33 @@ type Plugins: Record<string, AnyPlugin>;
 ```ts
 const cli: Clippium<{
   commands: {
+     add: {
+        desc: string;
+        examples: {
+           desc: 'Add a CLI to "./my-cli.js"';
+           value: '$0 -n my-cli -o ./my-cli.js';
+          }[];
+        flags: {
+           desc: {
+              desc: 'Set CLI description';
+              type: 'string';
+             };
+           name: {
+              alias: string[];
+              desc: 'Set CLI name';
+              type: 'string';
+             };
+           output: {
+              alias: string[];
+              desc: 'Set CLI output file';
+              type: 'string';
+             };
+           project-version: {
+              desc: 'Set CLI version';
+              type: 'string';
+             };
+          };
+       };
      convert: {
         desc: 'Transform input to and from "clippium data" based on multiple content types';
         examples: {
@@ -567,21 +594,48 @@ const cli: Clippium<{
            value: '$0 openapi to-data -i https://petstore.swagger.io/v2/swagger.json -o ./src/data.js';
           }[];
        };
-     create: {
-        commands: Record<string, Command>;
-        deprecated: string | boolean;
-        desc: string;
-        examples: {
-           desc: 'Show promp to create a new clippium CLI project';
-           value: '$0';
-          }[];
-        flags: Flags$1;
-        group: string;
-        hidden: boolean;
-        positionals: Positionals;
-       };
      docs: {
         desc: 'Generate documentation from clippium data';
+       };
+     init: {
+        desc: string;
+        examples: {
+           desc: 'Prompt to create a new clippium CLI project named "my-cli"';
+           value: '$0 --name my-cli';
+          }[];
+        flags: {
+           installer: {
+              choices: (
+                 | "none"
+                 | "deno"
+                 | "bun"
+                 | "npm"
+                 | "pnpm"
+                 | "yarn")[];
+              desc: 'Manager for installing dependencies';
+              type: 'choices';
+             };
+           name: {
+              alias: string[];
+              desc: 'Project name';
+              type: 'string';
+             };
+           openEditor: {
+              choices: ("none" | "code" | "subl" | "webstorm")[];
+              desc: 'Open editor';
+              type: 'choices';
+             };
+           output: {
+              alias: string[];
+              desc: 'Output directory';
+              type: 'string';
+             };
+           template: {
+              choices: ("js" | "ts")[];
+              desc: 'Input directory';
+              type: 'choices';
+             };
+          };
        };
     };
   flags: any;
@@ -592,23 +646,56 @@ const cli: Clippium<{
 
 #### Type declaration
 
-| Name | Type | Default value | Description |
-| ------ | ------ | ------ | ------ |
-| `commands` | \{ `convert`: \{ `desc`: `'Transform input to and from "clippium data" based on multiple content types'`; `examples`: \{ `desc`: `'Convert from OpenAPI to clippium data'`; `value`: `'$0 openapi to-data -i https://petstore.swagger.io/v2/swagger.json -o ./src/data.js'`; \}[]; \}; `create`: \{ `commands`: `Record`\<`string`, `Command`\>; `deprecated`: `string` \| `boolean`; `desc`: `string`; `examples`: \{ `desc`: `'Show promp to create a new clippium CLI project'`; `value`: `'$0'`; \}[]; `flags`: `Flags$1`; `group`: `string`; `hidden`: `boolean`; `positionals`: `Positionals`; \}; `docs`: \{ `desc`: `'Generate documentation from clippium data'`; \}; \} | - | - |
-| `commands.convert` | \{ `desc`: `'Transform input to and from "clippium data" based on multiple content types'`; `examples`: \{ `desc`: `'Convert from OpenAPI to clippium data'`; `value`: `'$0 openapi to-data -i https://petstore.swagger.io/v2/swagger.json -o ./src/data.js'`; \}[]; \} | - | - |
-| `commands.convert.desc` | `string` | 'Transform input to and from "clippium data" based on multiple content types' | - |
-| `commands.convert.examples` | \{ `desc`: `'Convert from OpenAPI to clippium data'`; `value`: `'$0 openapi to-data -i https://petstore.swagger.io/v2/swagger.json -o ./src/data.js'`; \}[] | - | - |
-| `commands.create` | \{ `commands`: `Record`\<`string`, `Command`\>; `deprecated`: `string` \| `boolean`; `desc`: `string`; `examples`: \{ `desc`: `'Show promp to create a new clippium CLI project'`; `value`: `'$0'`; \}[]; `flags`: `Flags$1`; `group`: `string`; `hidden`: `boolean`; `positionals`: `Positionals`; \} | - | - |
-| `commands.create.commands`? | `Record`\<`string`, `Command`\> | - | Set commands |
-| `commands.create.deprecated`? | `string` \| `boolean` | - | Set if the command/option is deprecated |
-| `commands.create.desc` | `string` | - | Description of the command/option |
-| `commands.create.examples` | \{ `desc`: `'Show promp to create a new clippium CLI project'`; `value`: `'$0'`; \}[] | - | - |
-| `commands.create.flags`? | `Flags$1` | - | flags of the command |
-| `commands.create.group`? | `string` | - | Group to which the command/option belongs |
-| `commands.create.hidden`? | `boolean` | - | Set if the command/option is hidden |
-| `commands.create.positionals`? | `Positionals` | - | positionals of the command |
-| `commands.docs` | \{ `desc`: `'Generate documentation from clippium data'`; \} | - | - |
-| `commands.docs.desc` | `string` | 'Generate documentation from clippium data' | - |
-| `flags` | `any` | - | - |
-| `name` | `string` | - | - |
-| `version` | `string` | - | - |
+| Name | Type | Default value |
+| ------ | ------ | ------ |
+| `commands` | \{ `add`: \{ `desc`: `string`; `examples`: \{ `desc`: `'Add a CLI to "./my-cli.js"'`; `value`: `'$0 -n my-cli -o ./my-cli.js'`; \}[]; `flags`: \{ `desc`: \{ `desc`: `'Set CLI description'`; `type`: `'string'`; \}; `name`: \{ `alias`: `string`[]; `desc`: `'Set CLI name'`; `type`: `'string'`; \}; `output`: \{ `alias`: `string`[]; `desc`: `'Set CLI output file'`; `type`: `'string'`; \}; `project-version`: \{ `desc`: `'Set CLI version'`; `type`: `'string'`; \}; \}; \}; `convert`: \{ `desc`: `'Transform input to and from "clippium data" based on multiple content types'`; `examples`: \{ `desc`: `'Convert from OpenAPI to clippium data'`; `value`: `'$0 openapi to-data -i https://petstore.swagger.io/v2/swagger.json -o ./src/data.js'`; \}[]; \}; `docs`: \{ `desc`: `'Generate documentation from clippium data'`; \}; `init`: \{ `desc`: `string`; `examples`: \{ `desc`: `'Prompt to create a new clippium CLI project named "my-cli"'`; `value`: `'$0 --name my-cli'`; \}[]; `flags`: \{ `installer`: \{ `choices`: ( \| `"none"` \| `"deno"` \| `"bun"` \| `"npm"` \| `"pnpm"` \| `"yarn"`)[]; `desc`: `'Manager for installing dependencies'`; `type`: `'choices'`; \}; `name`: \{ `alias`: `string`[]; `desc`: `'Project name'`; `type`: `'string'`; \}; `openEditor`: \{ `choices`: (`"none"` \| `"code"` \| `"subl"` \| `"webstorm"`)[]; `desc`: `'Open editor'`; `type`: `'choices'`; \}; `output`: \{ `alias`: `string`[]; `desc`: `'Output directory'`; `type`: `'string'`; \}; `template`: \{ `choices`: (`"js"` \| `"ts"`)[]; `desc`: `'Input directory'`; `type`: `'choices'`; \}; \}; \}; \} | - |
+| `commands.add` | \{ `desc`: `string`; `examples`: \{ `desc`: `'Add a CLI to "./my-cli.js"'`; `value`: `'$0 -n my-cli -o ./my-cli.js'`; \}[]; `flags`: \{ `desc`: \{ `desc`: `'Set CLI description'`; `type`: `'string'`; \}; `name`: \{ `alias`: `string`[]; `desc`: `'Set CLI name'`; `type`: `'string'`; \}; `output`: \{ `alias`: `string`[]; `desc`: `'Set CLI output file'`; `type`: `'string'`; \}; `project-version`: \{ `desc`: `'Set CLI version'`; `type`: `'string'`; \}; \}; \} | - |
+| `commands.add.desc` | `string` | - |
+| `commands.add.examples` | \{ `desc`: `'Add a CLI to "./my-cli.js"'`; `value`: `'$0 -n my-cli -o ./my-cli.js'`; \}[] | - |
+| `commands.add.flags` | \{ `desc`: \{ `desc`: `'Set CLI description'`; `type`: `'string'`; \}; `name`: \{ `alias`: `string`[]; `desc`: `'Set CLI name'`; `type`: `'string'`; \}; `output`: \{ `alias`: `string`[]; `desc`: `'Set CLI output file'`; `type`: `'string'`; \}; `project-version`: \{ `desc`: `'Set CLI version'`; `type`: `'string'`; \}; \} | - |
+| `commands.add.flags.desc` | \{ `desc`: `'Set CLI description'`; `type`: `'string'`; \} | - |
+| `commands.add.flags.desc.desc` | `string` | 'Set CLI description' |
+| `commands.add.flags.desc.type` | `"string"` | 'string' |
+| `commands.add.flags.name` | \{ `alias`: `string`[]; `desc`: `'Set CLI name'`; `type`: `'string'`; \} | - |
+| `commands.add.flags.name.alias` | `string`[] | - |
+| `commands.add.flags.name.desc` | `string` | 'Set CLI name' |
+| `commands.add.flags.name.type` | `"string"` | 'string' |
+| `commands.add.flags.output` | \{ `alias`: `string`[]; `desc`: `'Set CLI output file'`; `type`: `'string'`; \} | - |
+| `commands.add.flags.output.alias` | `string`[] | - |
+| `commands.add.flags.output.desc` | `string` | 'Set CLI output file' |
+| `commands.add.flags.output.type` | `"string"` | 'string' |
+| `commands.add.flags.project-version` | \{ `desc`: `'Set CLI version'`; `type`: `'string'`; \} | - |
+| `commands.add.flags.project-version.desc` | `string` | 'Set CLI version' |
+| `commands.add.flags.project-version.type` | `"string"` | 'string' |
+| `commands.convert` | \{ `desc`: `'Transform input to and from "clippium data" based on multiple content types'`; `examples`: \{ `desc`: `'Convert from OpenAPI to clippium data'`; `value`: `'$0 openapi to-data -i https://petstore.swagger.io/v2/swagger.json -o ./src/data.js'`; \}[]; \} | - |
+| `commands.convert.desc` | `string` | 'Transform input to and from "clippium data" based on multiple content types' |
+| `commands.convert.examples` | \{ `desc`: `'Convert from OpenAPI to clippium data'`; `value`: `'$0 openapi to-data -i https://petstore.swagger.io/v2/swagger.json -o ./src/data.js'`; \}[] | - |
+| `commands.docs` | \{ `desc`: `'Generate documentation from clippium data'`; \} | - |
+| `commands.docs.desc` | `string` | 'Generate documentation from clippium data' |
+| `commands.init` | \{ `desc`: `string`; `examples`: \{ `desc`: `'Prompt to create a new clippium CLI project named "my-cli"'`; `value`: `'$0 --name my-cli'`; \}[]; `flags`: \{ `installer`: \{ `choices`: ( \| `"none"` \| `"deno"` \| `"bun"` \| `"npm"` \| `"pnpm"` \| `"yarn"`)[]; `desc`: `'Manager for installing dependencies'`; `type`: `'choices'`; \}; `name`: \{ `alias`: `string`[]; `desc`: `'Project name'`; `type`: `'string'`; \}; `openEditor`: \{ `choices`: (`"none"` \| `"code"` \| `"subl"` \| `"webstorm"`)[]; `desc`: `'Open editor'`; `type`: `'choices'`; \}; `output`: \{ `alias`: `string`[]; `desc`: `'Output directory'`; `type`: `'string'`; \}; `template`: \{ `choices`: (`"js"` \| `"ts"`)[]; `desc`: `'Input directory'`; `type`: `'choices'`; \}; \}; \} | - |
+| `commands.init.desc` | `string` | - |
+| `commands.init.examples` | \{ `desc`: `'Prompt to create a new clippium CLI project named "my-cli"'`; `value`: `'$0 --name my-cli'`; \}[] | - |
+| `commands.init.flags` | \{ `installer`: \{ `choices`: ( \| `"none"` \| `"deno"` \| `"bun"` \| `"npm"` \| `"pnpm"` \| `"yarn"`)[]; `desc`: `'Manager for installing dependencies'`; `type`: `'choices'`; \}; `name`: \{ `alias`: `string`[]; `desc`: `'Project name'`; `type`: `'string'`; \}; `openEditor`: \{ `choices`: (`"none"` \| `"code"` \| `"subl"` \| `"webstorm"`)[]; `desc`: `'Open editor'`; `type`: `'choices'`; \}; `output`: \{ `alias`: `string`[]; `desc`: `'Output directory'`; `type`: `'string'`; \}; `template`: \{ `choices`: (`"js"` \| `"ts"`)[]; `desc`: `'Input directory'`; `type`: `'choices'`; \}; \} | - |
+| `commands.init.flags.installer` | \{ `choices`: ( \| `"none"` \| `"deno"` \| `"bun"` \| `"npm"` \| `"pnpm"` \| `"yarn"`)[]; `desc`: `'Manager for installing dependencies'`; `type`: `'choices'`; \} | - |
+| `commands.init.flags.installer.choices` | ( \| `"none"` \| `"deno"` \| `"bun"` \| `"npm"` \| `"pnpm"` \| `"yarn"`)[] | - |
+| `commands.init.flags.installer.desc` | `string` | 'Manager for installing dependencies' |
+| `commands.init.flags.installer.type` | `"choices"` | 'choices' |
+| `commands.init.flags.name` | \{ `alias`: `string`[]; `desc`: `'Project name'`; `type`: `'string'`; \} | - |
+| `commands.init.flags.name.alias` | `string`[] | - |
+| `commands.init.flags.name.desc` | `string` | 'Project name' |
+| `commands.init.flags.name.type` | `"string"` | 'string' |
+| `commands.init.flags.openEditor` | \{ `choices`: (`"none"` \| `"code"` \| `"subl"` \| `"webstorm"`)[]; `desc`: `'Open editor'`; `type`: `'choices'`; \} | - |
+| `commands.init.flags.openEditor.choices` | (`"none"` \| `"code"` \| `"subl"` \| `"webstorm"`)[] | - |
+| `commands.init.flags.openEditor.desc` | `string` | 'Open editor' |
+| `commands.init.flags.openEditor.type` | `"choices"` | 'choices' |
+| `commands.init.flags.output` | \{ `alias`: `string`[]; `desc`: `'Output directory'`; `type`: `'string'`; \} | - |
+| `commands.init.flags.output.alias` | `string`[] | - |
+| `commands.init.flags.output.desc` | `string` | 'Output directory' |
+| `commands.init.flags.output.type` | `"string"` | 'string' |
+| `commands.init.flags.template` | \{ `choices`: (`"js"` \| `"ts"`)[]; `desc`: `'Input directory'`; `type`: `'choices'`; \} | - |
+| `commands.init.flags.template.choices` | (`"js"` \| `"ts"`)[] | - |
+| `commands.init.flags.template.desc` | `string` | 'Input directory' |
+| `commands.init.flags.template.type` | `"choices"` | 'choices' |
+| `flags` | `any` | - |
+| `name` | `string` | - |
+| `version` | `string` | - |

@@ -1,4 +1,27 @@
-import { defineData } from '../src'
+import { formatter as formatterFn } from '../../preset/colored/src/index'
+import color                        from '../../utils/color/src/index'
+import { defineData }               from '../src'
+
+const desc = color.white.dim
+const link = desc.italic.underline
+const info = color.magenta
+
+export const errorStyle = color.redBright
+
+export const formatter = formatterFn( {
+	title         : color.cyan.inverse.bold,
+	bin           : color.cyan,
+	version       : color.cyan.dim.italic,
+	name          : color.bold,
+	positionals   : color.green.dim,
+	commands      : color.green,
+	flags         : color.yellow,
+	desc,
+	examples      : color.cyan,
+	sectionTitle  : color.white.bold.underline,
+	sectionDesc   : desc,
+	sectionsProps : desc.italic,
+} )
 
 export const nestCommands = defineData( { commands : { nest : {
 	desc     : 'Nest commands',
@@ -108,7 +131,15 @@ export const data = defineData( {
 			default : 'config.json',
 			group   : 'Global flags:',
 		},
+		noColor : {
+			desc  : 'Disable color output',
+			type  : 'boolean',
+			group : 'Global flags:',
+		},
 	},
+	more : [ [ 'Bugs', 'https://github.com/clippium/clippium/issues' ], [ 'Docs', 'https://clippium.pigeonposse.com' ] ]
+		.map( ( [ name, l ] ) => `${info( name )}${desc( '    ' )}${link( l )}` )
+		.join( '\n' ),
 	examples : [
 		{
 			value : '$0 greet John',
@@ -119,4 +150,20 @@ export const data = defineData( {
 			desc  : 'Builds the application from src to dist',
 		},
 	],
-} )
+} as const )
+
+export const configData = defineData( {
+	...data,
+	commands : {
+		...data.commands,
+		new : {
+			desc     : 'New command from config',
+			commands : nestCommands.commands,
+			flags    : { nestflag : {
+				type  : 'boolean',
+				desc  : 'Nest flag',
+				alias : [ 'n' ],
+			} },
+		},
+	},
+} as const )

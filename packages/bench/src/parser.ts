@@ -3,8 +3,8 @@ import mri      from 'mri'
 import nopt     from 'nopt'
 import yargs    from 'yargs-parser'
 
-import { getBench } from './_super'
-import { Parser }   from '../../core/src/parser/core'
+import { getBench }   from './_super'
+import { ParserArgv } from '../../core/src/parser/core'
 
 const args = [
 	'-b',
@@ -25,7 +25,7 @@ export const get = async () => getBench( {
 			multi : String,
 		},
 		{ b: 'bool' }, args ),
-		'clippium-parser' : () => ( new Parser( args ) ).run(),
+		'clippium-parser' : () => ( new ParserArgv( args ) ).run(),
 	},
 } )
 

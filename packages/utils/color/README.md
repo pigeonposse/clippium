@@ -12,7 +12,7 @@
 [![License](https://img.shields.io/github/license/pigeonposse/clippium?style=for-the-badge&color=green&logoColor=white)](/LICENSE)
 [![Version](https://img.shields.io/npm/v/clippium?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/clippium)
 [![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/@clippium/color?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/@clippium/color)
-[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@clippium/color/0.0.4?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/@clippium/color)
+[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@clippium/color/1.0.0?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/@clippium/color)
 
 Color support for cli utilities
 

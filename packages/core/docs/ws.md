@@ -2,7 +2,7 @@
 
 `clippium` is a tool that helps to create command line interfaces (CLI) with powerful and pristine operations.
 
-> ⚠️ Beta version
+> ℹ️ The first version is now available. Feel free to report any issues [here](https://github.com/pigeonposse/clippium/issues)
 
 ## Features
 
@@ -48,10 +48,10 @@ await cli.run( process.argv.slice( 2 ) )
 
 ```js
 import process from 'node:process'
-import { hiddenBin, defineData, parse } from 'clippium'
+import { hideBin, defineData, parse } from 'clippium'
 
 const data = defineData({ ... })
-const argv = hiddenBin( process.argv )
+const argv = hideBin( process.argv )
 
 const { 
 	flags, 

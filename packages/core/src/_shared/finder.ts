@@ -92,6 +92,16 @@ export class Finder<D extends ClippiumData> {
 
 	}
 
+	command( filter: { key?: string | string[] } ): CommandRes | undefined {
+
+		const key = filter.key
+		if ( key && Array.isArray( key ) )
+			return this.#findCommandByArgv( this.data, key )
+
+		return this.#command( this.data, { key } )
+
+	}
+
 	#findCommandByArgv(
 		data: ClippiumData,
 		argv: string[],
@@ -155,15 +165,13 @@ export class Finder<D extends ClippiumData> {
 
 	}
 
-	command( filter: { key?: string | string[] } ): CommandRes | undefined {
+	// getCommandChildrenKeys( filter: { keys: string[] } ): string[] | undefined {
 
-		const key = filter.key
-		if ( key && Array.isArray( key ) )
-			return this.#findCommandByArgv( this.data, key )
+	// 	const command = this.#findCommandByArgv( this.data, filter.keys, true )
+	// 	if ( !command ) return undefined
+	// 	return Object.keys( command.value.commands ?? {} )
 
-		return this.#command( this.data, { key } )
-
-	}
+	// }
 
 	#positional(
 		data: ClippiumData,

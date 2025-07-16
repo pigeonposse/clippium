@@ -7,9 +7,10 @@ import {
 	version,
 	coreName,
 } from './_shared/const'
-import { schemaType }           from './convert/data'
-import { createCommandOptions } from './create'
-import { Plugins }              from './plugin'
+import { commandOptions as addCommandOptions } from './add'
+import { schemaType }                          from './convert/data'
+import { initCommandOptions }                  from './init'
+import { Plugins }                             from './plugin'
 
 const group      = 'Global flags:'
 const cliDefault = presetDefault( { grouped: group } )
@@ -17,6 +18,9 @@ export const data = {
 	name,
 	version,
 	commands : {
+		init    : { ...initCommandOptions },
+		add     : { ...addCommandOptions },
+		docs    : { desc: 'Generate documentation from clippium data' },
 		convert : {
 			desc     : 'Transform input to and from "clippium data" based on multiple content types',
 			examples : [
@@ -34,16 +38,6 @@ export const data = {
 				},
 			],
 		},
-		create : {
-			...createCommandOptions,
-			examples : [
-				{
-					value : '$0',
-					desc  : 'Show promp to create a new clippium CLI project',
-				},
-			],
-		},
-		docs : { desc: 'Generate documentation from clippium data' },
 	},
 	flags : {
 		...cliDefault.data.flags,

@@ -1,5 +1,11 @@
 # @clippium/updater
 
+## 1.0.1
+
+### Patch Changes
+
+- add validation, fix issues
+
 ## 0.1.0
 
 ### Minor Changes

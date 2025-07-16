@@ -1,13 +1,14 @@
-import {
-	Clippium,
-	ClippiumData,
-	ParsedDataArgv,
-} from 'clippium'
+import { Clippium } from 'clippium'
 
 import {
 	Any,
 	Prettify,
 } from '../_shared/_super'
+
+import type {
+	ClippiumData,
+	Parsed,
+} from 'clippium'
 
 export type AnyPlugin = Plugin<Any, Any, Any>
 export type Plugins = Record<string, AnyPlugin>
@@ -18,7 +19,7 @@ export const createPlugin = <
 	Docs extends ClippiumData['flags'],
 >( plugin: Plugin<To, From, Docs> ): Plugin<To, From, Docs> => plugin
 
-type ParsedFlags<F extends ClippiumData['flags']> = Pick<ParsedDataArgv<{ flags: F }>, 'flags'>
+type ParsedFlags<F extends ClippiumData['flags']> = Pick<Parsed<{ flags: F }>, 'flags'>
 type PluginUtils<F extends ClippiumData['flags']> = Prettify<Omit<Parameters<Clippium<ClippiumData>['fn']>[0], 'flags' | 'commands' | 'positionals'> & ParsedFlags<F>>
 
 export type Plugin<

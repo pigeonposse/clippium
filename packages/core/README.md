@@ -12,7 +12,7 @@
 [![License](https://img.shields.io/github/license/pigeonposse/clippium?style=for-the-badge&color=green&logoColor=white)](/LICENSE)
 [![Version](https://img.shields.io/npm/v/clippium?style=for-the-badge&color=blue&label=Version)](https://www.npmjs.com/package/clippium)
 [![NPM package minimized gzipped size](https://img.shields.io/bundlejs/size/clippium?style=for-the-badge&color=orange&label=Minimized+size&logoColor=white)](https://www.npmjs.com/package/clippium)
-[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/clippium/0.0.4?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/clippium)
+[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/clippium/1.0.0?style=for-the-badge&color=orange&logoColor=white)](https://www.npmjs.com/package/clippium)
 
 Command Line Interface with Powerful and Pristine Operations
 
@@ -35,7 +35,7 @@ Command Line Interface with Powerful and Pristine Operations
 
 `clippium` is a tool that helps to create command line interfaces (CLI) with powerful and pristine operations.
 
-> ⚠️ Beta version
+> ℹ️ The first version is now available. Feel free to report any issues [here](https://github.com/pigeonposse/clippium/issues)
 
 ## Features
 
@@ -81,10 +81,10 @@ await cli.run( process.argv.slice( 2 ) )
 
 ```js
 import process from 'node:process'
-import { hiddenBin, defineData, parse } from 'clippium'
+import { hideBin, defineData, parse } from 'clippium'
 
 const data = defineData({ ... })
-const argv = hiddenBin( process.argv )
+const argv = hideBin( process.argv )
 
 const { 
 	flags, 

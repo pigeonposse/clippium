@@ -11,7 +11,7 @@ export type OptionType = 'string' | 'boolean' | 'choices' | 'object' | 'number' 
 export type PositionalType = Exclude<OptionType, 'array'>
 export type FlagType = OptionType
 
-export const OPTION: Record<OptionType, OptionType> = {
+const OPTION: Record<OptionType, OptionType> = {
 	string  : 'string',
 	boolean : 'boolean',
 	choices : 'choices',
@@ -26,10 +26,15 @@ const {
 } = OPTION
 
 const FLAG: Record<FlagType, FlagType> = OPTION
+const DEFAULT_FLAG                     = FLAG.boolean
+const DEFAULT_POSITIONAL               = POSITIONAL.string
 
 export {
+	OPTION,
 	POSITIONAL,
 	FLAG,
+	DEFAULT_FLAG,
+	DEFAULT_POSITIONAL,
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,15 +73,27 @@ type OptionMap = {
 
 type OptionValueMap = { [K in OptionType] : Required<OptionMap[K]>['default'] }
 
-type Flag = { [K in FlagType] : OptionMap[K] & { type: K } }[keyof OptionMap]
-type Flags = Record<string, Flag>
+export type Flag = { [K in FlagType] : OptionMap[K] & { type: K } }[keyof OptionMap]
+export type FlagWithValue<V extends Record<string, unknown>> = { [K in FlagType] : OptionMap[K] & { type: K } & V }[keyof OptionMap]
+export type Flags = Record<string, Flag>
 
 type PositionalMap = { [k in PositionalType]: Omit<OptionMap[k], 'alias'> }
-type Positional = { [K in keyof PositionalMap] : PositionalMap[K] & { type: K } }[keyof PositionalMap]
-type Positionals = Record<string, Positional>
+export type Positional = { [K in keyof PositionalMap] : PositionalMap[K] & { type: K } }[keyof PositionalMap]
+export type PositionalWithValue<V extends Record<string, unknown>> = { [K in PositionalType] : PositionalMap[K] & { type: K } & V }[keyof PositionalMap]
+export type Positionals = Record<string, Positional>
+
+type Commands = Record<string, Command>
 
 type CommandOptions = {
-	/** Examples of the command */
+	/** flags of the command */
+	flags?       : Flags
+	/** Set commands */
+	commands?    : Commands
+	/** positionals of the command */
+	positionals? : Positionals
+	/**
+	 * Examples of the command
+	 */
 	examples?    : ( {
 		/**
 		 * Value of the example
@@ -87,14 +104,28 @@ type CommandOptions = {
 		/** Description of the example */
 		desc  : string
 	} )[]
-	/** flags of the command */
-	flags?       : Flags
-	/** Set commands */
-	commands?    : Record<string, Command>
-	/** positionals of the command */
-	positionals? : Positionals
+	/**
+	 * Extra Information about the command. Used for documentation purposes
+	 *
+	 * @example "See `$0 man` for more information"
+	 * @example "Bugs: https://github.com/clippium/clippium/issues"
+	 */
+	more? : string
 }
 export type Command = CommandSuper & CommandOptions
+
+export type CommandWithValue<
+	V extends Record<string, unknown> = EmptyObject,
+	F extends Record<string, unknown> = EmptyObject,
+	P extends Record<string, unknown> = EmptyObject,
+> = CommandSuper
+	& Omit<CommandOptions, 'commands' | 'flags' | 'positionals'>
+	& V
+	& {
+		commands?    : Record<string, CommandWithValue<V, F, P>>
+		flags?       : Record<string, FlagWithValue<F>>
+		positionals? : Record<string, PositionalWithValue<P>>
+	}
 
 export type ClippiumData = {
 	/**
@@ -199,3 +230,33 @@ export type InferCommands<T extends ClippiumData> = Prettify<UnionToIntersection
 			: { [k: string]: boolean }
 		: { [k: string]: boolean }
 >>
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////// UTILS //////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+export type DataWithCommandMeta<
+	Data extends ClippiumData | Command,
+	M extends Record<string, unknown>,
+> = Omit<Data, 'flags' | 'positionals' | 'commands'> & CommandWithValue<M, EmptyObject, EmptyObject>
+
+export type DataWithPositionalMeta<
+	Data extends ClippiumData | Command,
+	M extends Record<string, unknown>,
+> = Omit<Data, 'flags' | 'positionals' | 'commands'> & CommandWithValue<EmptyObject, EmptyObject, M>
+
+export type DataWithFlagMeta<
+	Data extends ClippiumData | Command,
+	M extends Record<string, unknown>,
+> = Omit<Data, 'flags' | 'positionals' | 'commands'> & CommandWithValue<EmptyObject, M, EmptyObject>
+
+export type DataWithOptionMeta<
+	Data extends ClippiumData | Command,
+	M extends Record<string, unknown>,
+> = Omit<Data, 'flags' | 'positionals' | 'commands'> & CommandWithValue<EmptyObject, M, M>
+
+export type DataWithMeta<
+	Data extends ClippiumData | Command,
+	M extends Record<string, unknown>,
+> = Omit<Data, 'flags' | 'positionals' | 'commands'> & CommandWithValue<M, M, M>
+

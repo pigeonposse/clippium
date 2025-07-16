@@ -1,5 +1,5 @@
 // src/index.ts
-import { Parser } from './core'
+import { ParserArgv } from './core'
 
 console.log( '--- Ejemplos de uso del Parser ---' )
 
@@ -11,7 +11,7 @@ const args1   = [
 	'command1',
 	'file.txt',
 ]
-const parser1 = new Parser( args1 )
+const parser1 = new ParserArgv( args1 )
 const parsed1 = parser1.run()
 console.log( 'Input:', args1 )
 console.log( 'Parsed:', parsed1 )
@@ -33,7 +33,7 @@ const args2   = [
 	'8080',
 	'--debug',
 ]
-const parser2 = new Parser( args2 )
+const parser2 = new ParserArgv( args2 )
 const parsed2 = parser2.run()
 console.log( 'Input:', args2 )
 console.log( 'Parsed:', parsed2 )
@@ -50,7 +50,7 @@ Output:
 // Ejemplo 3: Argumentos combinados de guion simple
 console.log( '\n--- Ejemplo 3: Argumentos combinados ---' )
 const args3   = [ '-abc', 'pos_arg' ]
-const parser3 = new Parser( args3 )
+const parser3 = new ParserArgv( args3 )
 const parsed3 = parser3.run()
 console.log( 'Input:', args3 )
 console.log( 'Parsed:', parsed3 )
@@ -71,7 +71,7 @@ console.log( '\n--- Ejemplo 4: Usando process.argv.slice(2) ---' )
 const realArgv = process.argv.slice( 2 ) // Elimina 'node' y el nombre del script
 if ( realArgv.length > 0 ) {
 
-	const parserReal = new Parser( realArgv )
+	const parserReal = new ParserArgv( realArgv )
 	const parsedReal = parserReal.run()
 	console.log( 'Input (from process.argv):', realArgv )
 	console.log( 'Parsed (from process.argv):', parsedReal )

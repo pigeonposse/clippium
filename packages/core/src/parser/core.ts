@@ -11,7 +11,7 @@ export type ParsedArgv = {
 
 // NOTE: Maybe validate if flag is boolean or not, because "-c command" will be parsed as a flag=value and not as a flag and command.
 
-export class Parser {
+export class ParserArgv {
 
 	argv : string[]
 

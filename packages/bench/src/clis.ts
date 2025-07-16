@@ -7,8 +7,13 @@ import meow        from 'meow'
 import sade        from 'sade'
 import yargs       from 'yargs'
 
-import { getBench }          from './_super'
-import { parse as clippium } from '../../core/src/index'
+import { getBench } from './_super'
+import {
+	parse,
+	defineData,
+	validate,
+	withValidation,
+} from '../../core/src/index'
 
 const args = [
 	'convert',
@@ -18,44 +23,58 @@ const args = [
 	'--meep',
 	'--multi=baz',
 ]
-
+const data = defineData( {
+	commands : { convert : {
+		desc        : 'Convert command',
+		positionals : { input : {
+			type  : 'string',
+			desc  : 'Input file',
+			alias : [ 'i' ],
+		} },
+	} },
+	flags : {
+		bool : {
+			desc  : 'Boolean flag',
+			type  : 'boolean',
+			alias : [ 'b' ],
+		},
+		meep : {
+			desc : 'Meep flag',
+			type : 'boolean',
+		},
+		multi : {
+			desc : 'Multi flag',
+			type : 'string',
+		},
+	},
+} )
 export const get = async () => getBench( {
 	name : 'CLI',
 	add  : {
-		clippium : () => {
+		'clippium' : () => {
 
-			const data = clippium( {
+			const res = parse( {
 				argv : args,
-				data : {
-					commands : { convert : {
-						desc        : 'Convert command',
-						positionals : { input : {
-							type  : 'string',
-							desc  : 'Input file',
-							alias : [ 'i' ],
-						} },
-					} },
-					flags : {
-						bool : {
-							desc  : 'Boolean flag',
-							type  : 'boolean',
-							alias : [ 'b' ],
-						},
-						meep : {
-							desc : 'Meep flag',
-							type : 'boolean',
-						},
-						multi : {
-							desc : 'Multi flag',
-							type : 'string',
-						},
-					},
-				},
+				data : data,
 			} )
-			return data
+			return res
 
 		},
-		citty : () => {
+		'clippium-with-validation' : () => {
+
+			const dataWvalidation = withValidation( data )
+			const parsed          = parse( {
+				argv : args,
+				data : dataWvalidation,
+			} )
+			const validated       = validate( {
+				data : dataWvalidation,
+				parsed,
+			} )
+			return validated
+
+		},
+		'citty' : () => {
 
 			const main =  defineCommand( {
 				meta : {
@@ -87,11 +106,9 @@ export const get = async () => getBench( {
 			} )
 			runMain( main )
 
-			// runMain( main )
-
 		},
 
-		yargs : () =>
+		'yargs' : () =>
 			yargs( args )
 				.command( 'convert <input>', 'Convert command' )
 				.option( 'bool', {
@@ -102,7 +119,7 @@ export const get = async () => getBench( {
 				.option( 'multi', { type: 'string' } )
 				.parse(),
 
-		commander : () => {
+		'commander' : () => {
 
 			const program = new Command()
 
@@ -120,7 +137,7 @@ export const get = async () => getBench( {
 
 		},
 
-		sade : () => {
+		'sade' : () => {
 
 			const cli = sade( 'cli' )
 				.command( 'convert <input>' )
@@ -140,7 +157,7 @@ export const get = async () => getBench( {
 
 		},
 
-		meow : () => {
+		'meow' : () => {
 
 			const data = meow(
 				`

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { hiddenBin } from 'clippium'
-import process       from 'node:process'
+import process from 'node:process'
 
-import { run } from './index'
+import { hideBin } from '../src'
+import { run }     from './index'
 
-await run( hiddenBin( process.argv ) )
+await run( hideBin( process.argv ) )

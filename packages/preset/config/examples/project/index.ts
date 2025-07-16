@@ -1,6 +1,6 @@
 import {
 	Clippium,
-	hiddenBin,
+	hideBin,
 } from 'clippium'
 import { dirname }       from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -40,5 +40,5 @@ cli.fn = async data => {
 
 }
 
-cli.run( hiddenBin( process.argv ) )
+cli.run( hideBin( process.argv ) )
 

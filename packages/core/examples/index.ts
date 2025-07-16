@@ -1,28 +1,20 @@
 
-import { Clippium } from '../dist'
+import { Clippium } from '../src'
 import {
 	data,
-	nestCommands,
+	configData,
+	formatter,
+	errorStyle,
 } from './data'
-import { formatter } from '../../preset/colored/src/index'
-import color         from '../../utils/color/src/index'
 
-const cli = new Clippium(
-	data,
-	{ help : { formatter : formatter( {
-		title         : color.cyan.inverse.bold,
-		bin           : color.cyan,
-		version       : color.cyan.dim.italic,
-		name          : color.bold,
-		positionals   : color.green.dim,
-		commands      : color.green,
-		flags         : color.yellow,
-		desc          : color.white.dim,
-		examples      : color.cyan,
-		sectionTitle  : color.white.bold.underline,
-		sectionDesc   : color.white.dim,
-		sectionsProps : color.white.dim.italic,
-	} ) } },
+const cli = new Clippium<typeof configData>(
+	data as typeof configData,
+	{
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		help  : { formatter: d => formatter( d as any ) },
+		// validate : { strings: { commandNotExists: opts => 'The COMMAND "' + opts.value + '" does not exist.' } },
+		error : { on: ( { error } ) => console.error( errorStyle( error.message ) ) },
+	},
 )
 
 export const run = async ( args: string[] ) => {
@@ -32,40 +24,29 @@ export const run = async ( args: string[] ) => {
 		// Add dynamic flags from config file
 		const { flags } = cli.parse( args )
 
-		if ( flags.config ) cli.data = {
-			...cli.data,
-			commands : {
-				...cli.data.commands,
-				// @ts-ignore
-				new : {
-					desc     : 'New command from config',
-					commands : nestCommands.commands,
-					flags    : { nestflag : {
-						type  : 'boolean',
-						desc  : 'Nest flag',
-						alias : [ 'n' ],
-					} },
-				},
-			},
-		}
+		if ( flags.config ) cli.data = configData
 
-		cli.fn = async ( {
-			utils, ...args
-		} ): Promise<void> => {
+		cli.fn = async ( data ): Promise<void> => {
 
 			const {
-				commands, flags, positionals,
-			} = args
+				utils, ...args
+			} = data
 
+			const validated = cli.validate( data )
+			const {
+				commands, flags, positionals,
+			} = validated
 			console.log( '\n', { 'CLI ARGUMENTS' : {
 				argv       : utils.argv,
 				parsedArgv : utils.parsedArgv,
 				values     : args,
+				validated,
 			} } )
 
-			const help    = flags.help || flags.h
-			const version = flags.version || flags.v
+			const help    = flags.help
+			const version = flags.version
 
+			if ( flags.noColor && cli.config.help ) cli.config.help.formatter = undefined
 			if ( help ) return console.log( utils.getHelp() )
 			if ( version ) return console.log( utils.getVersion() )
 
@@ -84,7 +65,7 @@ export const run = async ( args: string[] ) => {
 
 				const source      = positionals.src || './src'
 				const destination = positionals.dest || './dist'
-				const minify      = flags.minify || flags.m
+				const minify      = flags.minify
 
 				console.log( `\nExecuting the 'build' command:` )
 				console.log( `Source: ${source}, Destination: ${destination}, Minify: ${minify ? 'YES' : 'NO'}` )

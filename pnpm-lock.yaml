@@ -165,8 +165,8 @@ importers:
         specifier: workspace:*
         version: link:../schema
       '@readme/openapi-parser':
-        specifier: 4.1.0
-        version: 4.1.0(openapi-types@12.1.3)
+        specifier: 4.1.1
+        version: 4.1.1(openapi-types@12.1.3)
       acorn:
         specifier: 8.15.0
         version: 8.15.0
@@ -180,8 +180,8 @@ importers:
         specifier: 1.4.1
         version: 1.4.1
       creatium:
-        specifier: ^0.1.17
-        version: 0.1.17
+        specifier: 0.2.3
+        version: 0.2.3
       generate-schema:
         specifier: 2.6.0
         version: 2.6.0
@@ -330,10 +330,6 @@ packages:
 
   '@apidevtools/json-schema-ref-parser@11.9.3':
     resolution: {integrity: sha512-60vepv88RwcJtSHrD6MjIL6Ta3SOYbgfnkHb+ppAVK+o9mXprRtulx7VlRl3lN3bbvysAfCS7WMVfhUYemB0IQ==}
-    engines: {node: '>= 16'}
-
-  '@apidevtools/json-schema-ref-parser@13.0.5':
-    resolution: {integrity: sha512-xfh4xVJD62gG6spIc7lwxoWT+l16nZu1ELyU8FkjaP/oD2yP09EvLAU6KhtudN9aML2Khhs9pY6Slr7KGTES3w==}
     engines: {node: '>= 16'}
 
   '@apidevtools/json-schema-ref-parser@14.1.0':
@@ -906,6 +902,11 @@ packages:
 
   '@clack/prompts@0.11.0':
     resolution: {integrity: sha512-pMN5FcrEw9hUkZA4f+zLlzivQSeQf5dRGJjSUbvVYDLvpKCdQx5OaknvKzgbtXOizhP+SJJJjqEbOe55uKKfAw==}
+
+  '@clippium/preset-colored@1.0.0':
+    resolution: {integrity: sha512-JXLPAGVA5qWw2qT5sXxXFolNbX5FnqwvXogdE+r5nBNUPMS6cGr6C4cpADccDF/tqFIRtHlB43MLiqiYEeO9CQ==}
+    peerDependencies:
+      clippium: 0.1.0
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -1727,8 +1728,8 @@ packages:
     peerDependencies:
       ajv: 4.11.8 - 8
 
-  '@readme/openapi-parser@4.1.0':
-    resolution: {integrity: sha512-zZaGaOJ+0bYPGkPK4ekspE1BoO1iifxe5d3rsAE6AqFCoyHCjt/xMDtmJpy4slFdd1YtEv/VHhBpB1FlNClCNw==}
+  '@readme/openapi-parser@4.1.1':
+    resolution: {integrity: sha512-JHxrJFXtwfRQVxxa1gDHW1l0aTRob8B+KXqoiapDkAJBX/cIRv5Uj9F8fHyu3Ztu3QHSs4QcbvRipDD5Evi7qQ==}
     engines: {node: '>=20'}
     peerDependencies:
       openapi-types: '>=7'
@@ -2865,6 +2866,9 @@ packages:
     resolution: {integrity: sha512-nPdaFdQ0h/GEigbPClz11D0v/ZJEwxmeVZGeMo3Z5StPtUTkA9o1lD6QwoirYiSDzbcwn2XcjwmCp68W1IS4TA==}
     engines: {node: '>=18'}
 
+  clippium@0.1.0:
+    resolution: {integrity: sha512-+Cyyvk5vseWAvdtXc6QnIGCx4DNMsLJp7Fv5RUA9G7rG8s2x6d27Z0lg6ek0rRT688PKjOIYzAKhu+4Phm9p8A==}
+
   cliui@7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
 
@@ -3021,8 +3025,8 @@ packages:
       typescript:
         optional: true
 
-  creatium@0.1.17:
-    resolution: {integrity: sha512-x6pq1UnWAjpwCqnCE/2YuhIOK0SRdHxCKMjkDSMeNfkj1Nf9LX9XNtsmfRst3Gr0+1DM3Hv09z/dtHbcbT4ijg==}
+  creatium@0.2.3:
+    resolution: {integrity: sha512-pbUZ/4fMx3Ta2tAk1VNnj3XqN/w3UCUrrhzcft/zv3UI1qrUNisMoECzts/j1mPtXnV98PVVsaGRdOz6VrngDw==}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -3918,9 +3922,6 @@ packages:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
     engines: {node: '>= 0.4'}
 
-  globalyzer@0.1.0:
-    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
-
   globby@11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
     engines: {node: '>=10'}
@@ -3931,9 +3932,6 @@ packages:
 
   globjoin@0.1.4:
     resolution: {integrity: sha512-xYfnw62CKG8nLkZBfWbhWwDw02CHty86jfPcc2cr3ZfeuK9ysoVPPEUxf21bAD/rWAgk52SuBrLJlefNy8mvFg==}
-
-  globrex@0.1.2:
-    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
 
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
@@ -6246,9 +6244,6 @@ packages:
   tiny-colors@2.2.2:
     resolution: {integrity: sha512-Elmv7JL+dX0c78caKEelH1nHHBskHzJkaqBRgVvQuxsvVA/Z9Fa2R3ZZtfmkkajcd18e96RLMwJvtFqC8jsZWA==}
 
-  tiny-glob@0.2.9:
-    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
-
   tiny-inflate@1.0.3:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
 
@@ -7069,11 +7064,6 @@ snapshots:
   '@apidevtools/json-schema-ref-parser@11.9.3':
     dependencies:
       '@jsdevtools/ono': 7.1.3
-      '@types/json-schema': 7.0.15
-      js-yaml: 4.1.0
-
-  '@apidevtools/json-schema-ref-parser@13.0.5':
-    dependencies:
       '@types/json-schema': 7.0.15
       js-yaml: 4.1.0
 
@@ -7898,6 +7888,10 @@ snapshots:
       '@clack/core': 0.5.0
       picocolors: 1.1.1
       sisteransi: 1.0.5
+
+  '@clippium/preset-colored@1.0.0(clippium@0.1.0)':
+    dependencies:
+      clippium: 0.1.0
 
   '@colors/colors@1.5.0':
     optional: true
@@ -8879,9 +8873,9 @@ snapshots:
       leven: 3.1.0
       picocolors: 1.1.1
 
-  '@readme/openapi-parser@4.1.0(openapi-types@12.1.3)':
+  '@readme/openapi-parser@4.1.1(openapi-types@12.1.3)':
     dependencies:
-      '@apidevtools/json-schema-ref-parser': 13.0.5
+      '@apidevtools/json-schema-ref-parser': 14.1.0
       '@readme/better-ajv-errors': 2.3.2(ajv@8.17.1)
       '@readme/openapi-schemas': 3.1.0
       '@types/json-schema': 7.0.15
@@ -10062,6 +10056,8 @@ snapshots:
       slice-ansi: 5.0.0
       string-width: 7.2.0
 
+  clippium@0.1.0: {}
+
   cliui@7.0.4:
     dependencies:
       string-width: 4.2.3
@@ -10222,19 +10218,11 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
-  creatium@0.1.17:
+  creatium@0.2.3:
     dependencies:
-      '@clack/core': 0.5.0
-      '@clack/prompts': 0.11.0
-      '@visulima/boxen': 1.0.30
-      cli-table3: 0.6.5
-      columnify: 1.6.0
-      deepmerge-ts: 7.1.5
-      gradient-string: 3.0.0
-      string-width: 7.2.0
-      tiny-glob: 0.2.9
+      '@clippium/preset-colored': 1.0.0(clippium@0.1.0)
+      clippium: 0.1.0
       tiny-updater: 3.5.3
-      yargs: 17.7.2
 
   cross-spawn@7.0.6:
     dependencies:
@@ -11327,8 +11315,6 @@ snapshots:
       define-properties: 1.2.1
       gopd: 1.2.0
 
-  globalyzer@0.1.0: {}
-
   globby@11.1.0:
     dependencies:
       array-union: 2.1.0
@@ -11348,8 +11334,6 @@ snapshots:
       unicorn-magic: 0.3.0
 
   globjoin@0.1.4: {}
-
-  globrex@0.1.2: {}
 
   gopd@1.2.0: {}
 
@@ -14016,11 +14000,6 @@ snapshots:
   through@2.3.8: {}
 
   tiny-colors@2.2.2: {}
-
-  tiny-glob@0.2.9:
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
 
   tiny-inflate@1.0.3: {}
 

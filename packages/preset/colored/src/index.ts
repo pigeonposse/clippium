@@ -241,6 +241,7 @@ export const formatter = ( opts?: Config ): Formatter => ( {
 	lines.push( utils.setCommands( data ) )
 	lines.push( utils.setFlags( data ) )
 	lines.push( utils.setExamples( data ) )
+	lines.push( utils.setMore( data ) )
 
 	return lines.filter( Boolean ).join( '\n' )
 

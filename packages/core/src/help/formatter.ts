@@ -17,13 +17,27 @@ const defaultStrings = {
 	choices          : '[choices: {values}]',
 	group            : '[group: {value}]',
 	usage            : 'Usage:',
+	more             : 'More information:',
 }
 
 type HelpFormatterStrings = typeof defaultStrings
 
 export type HelpFormatterConfig = {
+
 	separator? : string
+	/**
+	 * Indent for sections
+	 */
 	indent?    : string
+	/**
+	 * Strings to use
+	 *
+	 * @example
+	 * {
+	 *   flagsTitle       : 'Flags:',
+	 *   commandsTitle    : 'Commands:',
+	 * }
+	 */
 	strings?   : Partial<HelpFormatterStrings>
 }
 
@@ -57,6 +71,20 @@ export class HelpFormatter {
 
 	}
 
+	setMore = ( data: ClippiumData ) => {
+
+		const { more } = data
+		if ( !more ) return ''
+		return [
+			this.setTitle( this.settings.strings.more ),
+			more
+				.split( '\n' )
+				.map( line => `${this.settings.indent}${line}`.trimEnd() )
+				.join( '\n' ),
+		].join( '\n' )
+
+	}
+
 	setUsage = ( data: ClippiumData ) => {
 
 		const {
@@ -87,7 +115,7 @@ export class HelpFormatter {
 			.join( ' ' )
 			.replace( /\s+/g, ' ' )
 
-		return `\n${this.settings.strings.usage} ${usageLine}`
+		return `${this.settings.strings.usage} ${usageLine}`
 
 	}
 
@@ -264,13 +292,14 @@ export class HelpFormatter {
 		data.name             = data.name || '$0'
 
 		const info = this.setInfo( data )
-		if ( info.trim() !== '' ) lines.push( info )
+		if ( info.trim() !== '' ) lines.push( info + '\n' )
 
 		lines.push( this.setUsage( data ) )
 		lines.push( this.setPositionals( data ) )
 		lines.push( this.setCommands( data ) )
 		lines.push( this.setFlags( data ) )
 		lines.push( this.setExamples( data ) )
+		lines.push( this.setMore( data ) )
 
 		return lines.filter( Boolean ).join( '\n' )
 

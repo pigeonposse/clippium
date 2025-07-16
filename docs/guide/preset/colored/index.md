@@ -28,5 +28,6 @@ deno add @clippium/preset-colored
 
 ## ➕ More
 
+- 💡 [Examples](examples.md)
 - 📖 [API Docs](api.md)
 - 📦 [NPM](https://www.npmjs.com/package/@clippium/preset-colored)

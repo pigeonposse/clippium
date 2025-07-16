@@ -39,6 +39,11 @@ export type PartialDeep<T> = T extends Function
 
 export type ExtractInstanceType<T> = T extends new ( ...args: Any[] ) => infer R ? R : T extends { prototype: infer P } ? P : Any
 
+export type StripIndexSignature<T> = Prettify<{
+	[K in keyof T as string extends K ? never : K]:
+	T[K] extends object ? StripIndexSignature<T[K]> : T[K]
+}>
+
 //////////////////////////////////////////////////////////
 
 export type Argv = string[]

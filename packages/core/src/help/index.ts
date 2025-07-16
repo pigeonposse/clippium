@@ -1,7 +1,10 @@
 
-import { HelpFormatter } from './formatter'
-import { ClippiumData }  from '../_shared/data'
-import { Finder }        from '../_shared/finder'
+import {
+	HelpFormatter,
+	HelpFormatterConfig,
+} from './formatter'
+import { ClippiumData } from '../_shared/data'
+import { Finder }       from '../_shared/finder'
 import {
 	Argv,
 	ExtractInstanceType,
@@ -10,29 +13,32 @@ import {
 export type HelpConfig = { formatter?: ( d: {
 	data  : ClippiumData
 	utils : ExtractInstanceType<typeof HelpFormatter>
-} ) => string }
+} ) => string } & HelpFormatterConfig
 
 export class Help {
 
 	#config
 	settings
 	#find
+
 	constructor( data: ClippiumData, opts: { Finder: typeof Finder }, settings: HelpConfig = {} ) {
 
 		this.#config  = data
 		this.#find    = new opts.Finder( data )
-		this.settings = { formatter: settings.formatter }
+		this.settings = settings
 
 	}
 
 	#getFrom( config: ClippiumData ) {
 
-		const formatter = new HelpFormatter( )
-		if ( this.settings.formatter )
-			return this.settings.formatter( {
-				data  : config,
-				utils : formatter,
-			} )
+		const {
+			formatter: _formatter, ...settings
+		} = this.settings
+		const formatter = new HelpFormatter( settings )
+		if ( _formatter ) return _formatter( {
+			data  : config,
+			utils : formatter,
+		} )
 		return formatter.setAll( config )
 
 	}

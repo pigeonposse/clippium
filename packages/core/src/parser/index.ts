@@ -1,39 +1,43 @@
-import { Parser }    from './core'
-import {
+import { ParserArgv } from './core'
+
+import type { ParsedArgv } from './core'
+import type {
 	ClippiumData,
 	InferCommands,
 	InferFlags,
 	InferPositionals,
 } from '../_shared/data'
-import { Finder } from '../_shared/finder'
-import {
+import type { Finder } from '../_shared/finder'
+import type {
 	Any,
 	Prettify,
 } from '../_shared/types'
 
-import type { ParsedArgv } from './core'
-
-export type ParsedDataArgv<T extends ClippiumData> = {
+type ParsedData<T extends ClippiumData> = {
 	commands    : InferCommands<T>
 	flags       : Prettify<InferFlags<T> & { [k: string]: Any }>
 	positionals : Prettify<InferPositionals<T> & { [k: string]: Any }>
 }
 export { ParsedArgv }
-export type ParserRes<D extends ClippiumData> = Prettify<ParsedDataArgv<D>> & { raw: ParsedArgv }
 
-export class ParserData<D extends ClippiumData> {
+export type Parsed<D extends ClippiumData> = Prettify<ParsedData<D>> & { raw: ParsedArgv }
+
+export class Parser<D extends ClippiumData> {
 
 	#find
 	data : D
 
-	constructor( data: D, opts: { Finder: typeof Finder } ) {
+	constructor( opts: {
+		data   : D
+		Finder : typeof Finder
+	} ) {
 
-		this.data  = data
+		this.data  = opts.data
 		this.#find = new opts.Finder( this.data )
 
 	}
 
-	#setPosicionalsAndCommands( cmds: string[] ): Omit<ParsedDataArgv<D>, 'flags'> {
+	#setPosicionalsAndCommands( cmds: string[] ): Omit<ParsedData<D>, 'flags'> {
 
 		const commands: Record<string, boolean>   = {}
 		const positionals: Record<string, string> = {}
@@ -63,11 +67,11 @@ export class ParserData<D extends ClippiumData> {
 		return {
 			commands,
 			positionals,
-		} as Omit<ParsedDataArgv<D>, 'flags'>
+		} as Omit<ParsedData<D>, 'flags'>
 
 	}
 
-	#setFlags( input: ParsedDataArgv<D>['flags'] ): ParsedDataArgv<D>['flags'] {
+	#setFlags( input: ParsedData<D>['flags'] ): ParsedData<D>['flags'] {
 
 		const passed = input ?? {}
 
@@ -95,9 +99,9 @@ export class ParserData<D extends ClippiumData> {
 
 	}
 
-	run( argv: string[] | string ): ParserRes<D> {
+	run( argv: string[] | string ): Parsed<D> {
 
-		const parsed = ( new Parser( argv ) ).run()
+		const parsed = ( new ParserArgv( argv ) ).run()
 		const {
 			_, ...rest
 		} = parsed
@@ -111,3 +115,4 @@ export class ParserData<D extends ClippiumData> {
 	}
 
 }
+
