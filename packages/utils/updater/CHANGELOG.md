@@ -1,5 +1,11 @@
 # @clippium/updater
 
+## 1.0.2
+
+### Patch Changes
+
+- up "update" pkg
+
 ## 1.0.1
 
 ### Patch Changes

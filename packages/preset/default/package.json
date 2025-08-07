@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/preset-default",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Add default flags (such as help and version) to Clippium",
 	"keywords": [
 		"cli",

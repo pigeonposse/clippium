@@ -1,5 +1,18 @@
 # @clippium/updater
 
+## 1.0.2
+
+### Patch Changes
+
+- up "update" pkg
+
+- Updated dependencies []:
+  - clippium@1.0.2
+  - @clippium/preset-colored@1.0.2
+  - @clippium/preset-default@1.0.2
+  - @clippium/schema@1.0.2
+  - @clippium/color@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes

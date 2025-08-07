@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/schema",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "ToolKit for working with clippium CLIs",
 	"keywords": [
 		"cli",

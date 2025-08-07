@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/updater",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Utils for clippium",
 	"keywords": [
 		"cli",
@@ -41,10 +41,8 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "unbuild"
-	},
-	"dependencies": {
-		"tiny-updater": "3.5.3"
+		"build": "unbuild",
+		"test": "vitest run src --passWithNoTests"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*"
