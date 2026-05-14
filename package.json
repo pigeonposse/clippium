@@ -24,7 +24,7 @@
 	"type": "module",
 	"scripts": {
 		"+": "pnpm -F",
-		".": "dovenv",
+		"-": "dovenv",
 		"build": "pnpm --parallel build",
 		"build-doc": "dovenv predocs && dovenv docs build",
 		"lint:commit": "dovenv lint commitlint --silent",
@@ -33,7 +33,6 @@
 		"lint:staged": "dovenv lint staged --silent",
 		"prepare": "dovenv git husky --silent",
 		"test": "pnpm run --sequential \"/test:.*/\"",
-		"test:check": "pnpm --parallel check",
 		"test:check-ws": "dovenv check -k '!ws.pkg.files' --silent",
 		"test:pkg": "pnpm --parallel test",
 		"test:transform-ws": "dovenv transform --silent"
