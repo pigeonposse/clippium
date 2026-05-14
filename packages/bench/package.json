@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/bench",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"private": true,
 	"description": "Benchmarks for clippium",
 	"keywords": [
@@ -42,16 +42,16 @@
 		"@types/meow": "6.0.0",
 		"@types/minimist": "1.2.5",
 		"@types/nopt": "3.0.32",
-		"@types/yargs": "17.0.33",
+		"@types/yargs": "17.0.35",
 		"@types/yargs-parser": "21.0.3",
-		"citty": "0.1.6",
-		"commander": "14.0.0",
-		"meow": "13.2.0",
+		"citty": "0.2.2",
+		"commander": "14.0.3",
+		"meow": "14.1.0",
 		"minimist": "1.2.8",
 		"mri": "1.2.0",
-		"nopt": "8.1.0",
+		"nopt": "9.0.0",
 		"sade": "1.8.1",
-		"tinybench": "4.0.1",
+		"tinybench": "6.0.2",
 		"yargs": "18.0.0",
 		"yargs-parser": "22.0.0"
 	}

@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/preset-config",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Make Clippium take flags and commands from a configuration file",
 	"keywords": [
 		"cli",
@@ -54,8 +54,8 @@
 		"dev:schema": "pnpm --dir examples/project schema"
 	},
 	"dependencies": {
-		"js-yaml": "4.1.0",
-		"smol-toml": "1.4.1"
+		"@structium/toml": "~0.0.5",
+		"@structium/yaml": "~0.0.5"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*",

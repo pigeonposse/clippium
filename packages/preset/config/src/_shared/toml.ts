@@ -1,10 +1,10 @@
-import { parse } from 'smol-toml'
+import { deserialize as parse } from '@structium/toml'
 
 import type { CommonObj } from './_super'
 
 export const getObjectFromTOMLContent = async <Res extends CommonObj = CommonObj>( content: string ) => {
 
-	return parse( content ) as Res
+	return parse<Res>( content )
 
 }
 

@@ -1,11 +1,10 @@
-import yamlLib from 'js-yaml'
+import { deserialize } from '@structium/yaml'
 
 import type { CommonObj } from './_super'
 
 export const getObjectFromYAMLContent = async <Res extends CommonObj = CommonObj>( content: string ) => {
 
-	const r = yamlLib.load( content ) as Res
-	return r
+	return deserialize<Res>( content )
 
 }
 

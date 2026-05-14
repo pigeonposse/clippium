@@ -4,4 +4,5 @@
 
 ```bash
 npm run dev
+pnpm dev
 ```

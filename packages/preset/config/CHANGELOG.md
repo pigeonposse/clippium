@@ -1,5 +1,14 @@
 # @clippium/preset-colored
 
+## 1.0.3
+
+### Patch Changes
+
+- up deps
+
+- Updated dependencies []:
+  - clippium@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes
