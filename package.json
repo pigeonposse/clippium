@@ -51,7 +51,7 @@
 	},
 	"packageManager": "pnpm@11.1.1",
 	"engines": {
-		"node": ">=22.12.0",
+		"node": ">=22.13.0",
 		"pnpm": ">=11.1.0"
 	},
 	"workspace": [
