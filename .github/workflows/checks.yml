@@ -69,17 +69,17 @@ jobs:
 
       # Playwright binaries
       - name: Get installed Playwright version
-        id: playwright-version
-        run: echo "PLAYWRIGHT_VERSION=$( node -e "console.log(require('./package.json').devDependencies['@playwright/test'])" )" >> $GITHUB_ENV
+        id: playwright_data
+        run: echo "version=$( node -e "console.log(require('./package.json').devDependencies['@playwright/test'])" )" >> $GITHUB_OUTPUT
       - name: Cache playwright binaries
-        uses: actions/cache@v3
-        id: playwright-cache
+        uses: actions/cache@v5
+        id: playwright_cache
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+          key: ${{ runner.os }}-playwright-${{ steps.playwright_data.outputs.version }}
       - name: ⬇️🌐 Install Playwright Browsers
-        run: pnpx playwright install --with-deps
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpx playwright install chromium --with-deps
+        if: steps.playwright_cache.outputs.cache-hit != 'true'
 
       #########################################################################
       # BUILD
