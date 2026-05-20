@@ -9,7 +9,6 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 env:
-    GITHUB_TOKEN: ${{ github.token }}
     DOCS_ID: 'clippium'
     DOCS_DIR: 'build/docs'
     BUILD_CMD: 'pnpm build && pnpm build-doc'
@@ -28,7 +27,6 @@ jobs:
       # INIT
       #########################################################################
 
-
       - name: ⬇️🛎 Checkout
         uses: actions/checkout@v6
         with: 
@@ -36,7 +34,7 @@ jobs:
       - name: ⬇️🏃‍♂️ Set up
         uses: ./.github/actions/setup/
         with: 
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install extra dependencies
         run: pnpm i -g wrangler
@@ -53,7 +51,7 @@ jobs:
       ###################################################################
 
       - name: 🌥 Deploy in cloudflare pages
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
