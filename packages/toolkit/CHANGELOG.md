@@ -1,5 +1,18 @@
 # @clippium/updater
 
+## 1.0.4
+
+### Patch Changes
+
+- up dev deps
+
+- Updated dependencies []:
+  - clippium@1.0.4
+  - @clippium/preset-colored@1.0.4
+  - @clippium/preset-default@1.0.4
+  - @clippium/schema@1.0.4
+  - @clippium/color@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes

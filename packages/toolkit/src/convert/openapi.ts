@@ -115,12 +115,18 @@ export class OpenAPI implements CreateInterface {
 
 export const openapi = new OpenAPI()
 
-export const openapiPlugin = createPlugin( { convert : {
-	toData : { fn : async data => {
+export const openapiPlugin = createPlugin( {
+	convert : {
+		toData : {
+			fn : async data => {
 
-		return await openapi.convertToData( data.input )
+				return await openapi.convertToData( data.input )
 
-	} },
-	fromData : { fn : ( { input } ) =>
-		openapi.convertFromData( input ) },
-} } )
+			},
+		},
+		fromData : {
+			fn : ( { input } ) =>
+				openapi.convertFromData( input ),
+		},
+	},
+} )

@@ -1,4 +1,5 @@
-import { setConfig } from '@dovenv/theme-pigeonposse/eslint'
+import { setConfig }    from '@dovenv/theme-pigeonposse/eslint'
+import { defineConfig } from 'eslint/config'
 
 const config = setConfig(
 	{
@@ -28,4 +29,4 @@ const config = setConfig(
 	},
 )
 
-export default config
+export default defineConfig( config, { rules: { 'package-json/no-redundant-publishConfig': 'off' } } )

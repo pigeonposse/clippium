@@ -56,5 +56,34 @@ minimumReleaseAgeExclude:
   - fast-uri@3.1.1
   - fast-uri@3.1.2
   - '@babel/plugin-transform-modules-systemjs@7.29.4'
+  - '@dovenv/convert@1.6.2'
+  - '@dovenv/core@1.6.2'
+  - '@dovenv/docs@1.6.2'
+  - '@dovenv/eslint-config@1.6.2'
+  - '@dovenv/examples@1.6.2'
+  - '@dovenv/lint@1.6.2'
+  - '@dovenv/repo@1.6.2'
+  - '@dovenv/templates@1.6.2'
+  - '@dovenv/theme-banda@1.6.2'
+  - '@dovenv/theme-pigeonposse@1.6.2'
+  - '@dovenv/todo@1.6.2'
+  - '@dovenv/utils@1.6.2'
+  - '@dovenv/workspace@1.6.2'
+  - '@shikijs/core@4.1.0'
+  - '@shikijs/engine-javascript@4.1.0'
+  - '@shikijs/engine-oniguruma@4.1.0'
+  - '@shikijs/langs@4.1.0'
+  - '@shikijs/primitive@4.1.0'
+  - '@shikijs/themes@4.1.0'
+  - '@shikijs/twoslash@4.1.0'
+  - '@shikijs/types@4.1.0'
+  - '@shikijs/vitepress-twoslash@4.1.0'
+  - '@types/node@25.9.1'
+  - marked@18.0.4
+  - shiki@4.1.0
 onlyBuiltDependencies:
   - esbuild
+overrides:
+  markdown-it@>=13.0.0 <14.1.1: ^14.1.1
+  serialize-javascript@<7.0.5: ^7.0.5
+  serialize-javascript@<=7.0.2: ^7.0.3

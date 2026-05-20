@@ -1,6 +1,6 @@
 import { ClippiumData } from 'clippium'
 
-import { InferConfigFileData } from '../../src'
+import { InferConfigFileData } from '../../src/types'
 
 export const data = {
 	name     : 'clippium-config-example',
@@ -31,10 +31,12 @@ export const data = {
 		},
 		dev : {
 			desc        : 'Start development server',
-			positionals : { input : {
-				type : 'string',
-				desc : 'Input file',
-			} },
+			positionals : {
+				input : {
+					type : 'string',
+					desc : 'Input file',
+				},
+			},
 			flags : {
 				port : {
 					type    : 'number',
@@ -49,16 +51,22 @@ export const data = {
 		},
 		nest : {
 			desc     : 'Nest commands',
-			commands : { nest2 : {
-				desc     : 'Nest commands 2',
-				commands : { nest3 : {
-					desc  : 'Nest commands 3',
-					flags : { nestflag : {
-						desc : 'Nest flag',
-						type : 'boolean',
-					} },
-				} },
-			} },
+			commands : {
+				nest2 : {
+					desc     : 'Nest commands 2',
+					commands : {
+						nest3 : {
+							desc  : 'Nest commands 3',
+							flags : {
+								nestflag : {
+									desc : 'Nest flag',
+									type : 'boolean',
+								},
+							},
+						},
+					},
+				},
+			},
 		},
 	},
 	flags : {

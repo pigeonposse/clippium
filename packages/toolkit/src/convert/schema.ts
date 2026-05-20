@@ -6,14 +6,14 @@ import {
 	object2String,
 	type CreateInterface,
 } from './_super'
-import { createPlugin } from '../plugin'
 import {
 	data2schema,
 	schemaType,
 	SchemaType,
 } from './data'
-import { JSONSchema } from '../_shared/_super'
-import { Input }      from '../_shared/file'
+import { JSONSchema }   from '../_shared/_super'
+import { Input }        from '../_shared/file'
+import { createPlugin } from '../plugin'
 
 type Flags = NonNullable<ClippiumData['flags']>
 type Cmds = NonNullable<ClippiumData['commands']>
@@ -91,7 +91,7 @@ export class JSONSchemaGneneric implements CreateInterface {
 		}
 		catch ( e ) {
 
-			throw new Error( `Error parsing JSON Schema: ${e instanceof Error ? e.message : 'Unknown error'}\n\nNote: This feature is designed for use with JSON schema files, and the conversion is very generic and experimental.\nPlease reconsider creating a plugin for your specific use case.` )
+			throw new Error( `Error parsing JSON Schema: ${e instanceof Error ? e.message : 'Unknown error'}\n\nNote: This feature is designed for use with JSON schema files, and the conversion is very generic and experimental.\nPlease reconsider creating a plugin for your specific use case.`, { cause: e } )
 
 		}
 
@@ -112,17 +112,21 @@ export class JSONSchemaGneneric implements CreateInterface {
 
 const schema = new JSONSchemaGneneric()
 
-export const schemaPlugin = createPlugin( { convert : {
-	toData   : { fn: async ( { input } ) => schema.convertToData( input ) },
-	fromData : {
-		flags : { type : {
-			type    : 'choices',
-			desc    : 'Type of schema',
-			choices : Object.values( schemaType ),
-			default : schemaType.json,
-		} },
-		fn : async ( {
-			input, flags,
-		} ) => schema.convertFromData( input, flags ),
+export const schemaPlugin = createPlugin( {
+	convert : {
+		toData   : { fn: async ( { input } ) => schema.convertToData( input ) },
+		fromData : {
+			flags : {
+				type : {
+					type    : 'choices',
+					desc    : 'Type of schema',
+					choices : Object.values( schemaType ),
+					default : schemaType.json,
+				},
+			},
+			fn : async ( {
+				input, flags,
+			} ) => schema.convertFromData( input, flags ),
+		},
 	},
-} } )
+} )

@@ -1,5 +1,5 @@
-import yamlLib                        from 'js-yaml'
-import { stringify as stringifyTOML } from 'smol-toml'
+import { serialize as stringifyTOML } from '@structium/toml'
+import { serialize as serializeYAML } from '@structium/yaml'
 
 import { getObjectFromJSContent }   from './js'
 import { getObjectFromJSONContent } from './json'
@@ -16,7 +16,7 @@ export const toml = {
 }
 export const yaml = {
 	deserialize : getObjectFromYAMLContent,
-	serialize   : ( content: object ) => yamlLib.dump( content ),
+	serialize   : ( content: object ) => serializeYAML( content ),
 }
 
 export const js = { deserialize: getObjectFromJSContent }

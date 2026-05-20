@@ -1,6 +1,6 @@
 {
 	"name": "clippium-toolkit",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "ToolKit for working with clippium CLIs",
 	"keywords": [
 		"cli",
@@ -48,28 +48,26 @@
 		"dev": "pnpx tsx src/bin.ts"
 	},
 	"dependencies": {
-		"@apidevtools/json-schema-ref-parser": "14.1.0",
+		"@apidevtools/json-schema-ref-parser": "15.3.5",
 		"@cfworker/json-schema": "4.1.1",
 		"@clippium/color": "workspace:*",
 		"@clippium/preset-colored": "workspace:*",
 		"@clippium/preset-default": "workspace:*",
 		"@clippium/schema": "workspace:*",
-		"@readme/openapi-parser": "4.1.1",
-		"acorn": "8.15.0",
-		"acorn-walk": "8.3.4",
+		"@readme/openapi-parser": "6.1.1",
+		"@structium/toml": "0.0.7",
+		"@structium/yaml": "0.0.7",
+		"acorn": "8.16.0",
+		"acorn-walk": "8.3.5",
 		"clippium": "workspace:*",
-		"comment-parser": "1.4.1",
-		"creatium": "0.2.3",
+		"comment-parser": "1.4.6",
+		"creatium": "~0.2.6",
 		"generate-schema": "2.6.0",
-		"js-yaml": "4.1.1",
-		"smol-toml": "1.6.1",
-		"ts-morph": "26.0.0"
+		"ts-morph": "28.0.0"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*",
-		"@types/js-yaml": "4.0.9",
-		"@types/json-schema": "7.0.15",
-		"clippium": "workspace:*"
+		"@types/json-schema": "7.0.15"
 	},
 	"publishConfig": {
 		"access": "public",

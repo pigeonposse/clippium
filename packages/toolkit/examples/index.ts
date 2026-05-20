@@ -5,11 +5,13 @@ import data from '../test/example-data'
 const cli = new Clippium( {
 	name  : 'test',
 	...data,
-	flags : { help : {
-		type  : 'boolean',
-		desc  : 'Show help',
-		alias : [ 'h' ],
-	} },
+	flags : {
+		help : {
+			type  : 'boolean',
+			desc  : 'Show help',
+			alias : [ 'h' ],
+		},
+	},
 } )
 cli.fn    = async data => {
 
