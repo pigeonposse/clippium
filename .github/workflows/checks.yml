@@ -150,6 +150,7 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: release-docs.yml
+          token: "${{ secrets.GH_API_TOKEN }}"
         continue-on-error: true
 
       - name: 📚🐙😺➡️ Call to workflow for update API docs
