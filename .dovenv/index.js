@@ -31,12 +31,14 @@ export default pigeonposseMonorepoTheme( {
 				themeConfig     : { outline: { level: [ 2, 3 ] } },
 				metaChunk       : true,
 			},
-			styles : { color : {
-				primary   : '#221853',
-				secondary : '#725aa6',
-				terciary  : '#9276b3',
-				fourth    : '#9c7cbc',
-			} },
+			styles : {
+				color : {
+					primary   : '#221853',
+					secondary : '#725aa6',
+					terciary  : '#9276b3',
+					fourth    : '#9c7cbc',
+				},
+			},
 			css : `html.dark {
 				--vp-c-text-1: #efe3ff !important;
 			}`,
