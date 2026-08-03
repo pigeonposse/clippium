@@ -1,5 +1,11 @@
 # @clippium/color
 
+## 1.0.5
+
+### Patch Changes
+
+- Fix updater plugin
+
 ## 1.0.4
 
 ### Patch Changes

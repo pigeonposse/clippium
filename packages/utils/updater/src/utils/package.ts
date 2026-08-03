@@ -52,36 +52,69 @@ export const getPackageVersionsFromRegistry = async (
 
 }
 
+type ParsedVersion = {
+	major      : number
+	minor      : number
+	patch      : number
+	prerelease : string
+	build      : string
+}
+
 type VersionType = 'latest' | 'major' | 'minor' | 'patch' | 'prerelease' | 'build'
+
+const parseVersion = ( v: string ): ParsedVersion => {
+
+	const [ main, build ]      = v.split( '+' )
+	const [ core, prerelease ] = main.split( '-' )
+
+	const [
+		major,
+		minor,
+		patch,
+	] = core.split( '.' ).map( Number )
+
+	return {
+		major,
+		minor,
+		patch,
+		prerelease : prerelease ?? '',
+		build      : build ?? '',
+	}
+
+}
+
+/**
+ * Compare two semver strings numerically.
+ *
+ * @param   {string} a - First version to compare.
+ * @param   {string} b - Second version to compare.
+ * @returns {number}   `-1` if `a < b`, `0` if equal, `1` if `a > b`.
+ */
+export const compareVersions = ( a: string, b: string ): number => {
+
+	const x = parseVersion( a )
+	const y = parseVersion( b )
+
+	if ( x.major !== y.major ) return x.major > y.major ? 1 : -1
+	if ( x.minor !== y.minor ) return x.minor > y.minor ? 1 : -1
+	if ( x.patch !== y.patch ) return x.patch > y.patch ? 1 : -1
+	// prerelease < release
+	if ( ( x.prerelease !== '' ) !== ( y.prerelease !== '' ) )
+		return x.prerelease === '' ? 1 : -1
+	if ( x.prerelease !== y.prerelease ) return x.prerelease > y.prerelease ? 1 : -1
+	if ( x.build !== y.build ) return x.build > y.build ? 1 : -1
+
+	return 0
+
+}
 
 export const getVersionType = (
 	oldVersion: string,
 	newVersion: string,
 ): VersionType => {
 
-	const parse = ( v: string ) => {
-
-		const [ main, build ]      = v.split( '+' )
-		const [ core, prerelease ] = main.split( '-' )
-
-		const [
-			major,
-			minor,
-			patch,
-		] = core.split( '.' ).map( Number )
-
-		return {
-			major,
-			minor,
-			patch,
-			prerelease : prerelease ?? '',
-			build      : build ?? '',
-		}
-
-	}
-
-	const o = parse( oldVersion )
-	const n = parse( newVersion )
+	const o = parseVersion( oldVersion )
+	const n = parseVersion( newVersion )
 
 	if (
 		o.major === n.major

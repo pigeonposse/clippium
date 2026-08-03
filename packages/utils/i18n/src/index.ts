@@ -14,7 +14,9 @@ import type { I18nOpts } from './types'
  * Export types that can be used from outside.
  *
  */
-export { I18nOpts }
+export {
+	I18nOpts,
+}
 
 /**
  * Initializes the i18n library with the provided options and returns an i18n object with helper methods.

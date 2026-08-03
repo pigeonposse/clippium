@@ -1,3 +1,6 @@
-export { default } from 'chalk'
+export {
+	default,
+} from 'chalk'
+
 export * from 'chalk'
 

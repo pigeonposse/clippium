@@ -1,6 +1,6 @@
 {
 	"name": "@clippium/i18n",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "Internalization with zero configuration. Created for clippium and designed for CLI and backend tools",
 	"keywords": [
 		"cli",
@@ -49,7 +49,7 @@
 		"test": "vitest run src --passWithNoTests"
 	},
 	"dependencies": {
-		"i18next": "23.14.0"
+		"i18next": "26.3.6"
 	},
 	"devDependencies": {
 		"@clippium/_config": "workspace:*"

@@ -1,5 +1,18 @@
 # @clippium/updater
 
+## 1.0.5
+
+### Patch Changes
+
+- Fix updater plugin
+
+- Updated dependencies []:
+  - @clippium/color@1.0.5
+  - clippium@1.0.5
+  - @clippium/preset-colored@1.0.5
+  - @clippium/preset-default@1.0.5
+  - @clippium/schema@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes

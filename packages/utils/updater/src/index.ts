@@ -2,6 +2,7 @@
 import { Cache }   from './utils/cache'
 import { onExit }  from './utils/onexit'
 import {
+	compareVersions,
 	getPackageManager,
 	getPackageVersionsFromRegistry,
 	getVersionType,
@@ -95,7 +96,20 @@ export class Updater {
 			const versions = await this.#getCache( 'versions', () => getPackageVersionsFromRegistry( this.#opts.name ) )
 
 			if ( !versions?.length ) return undefined
-			return !this.#opts.latestVersion || this.#opts.latestVersion === 'latest' ? versions[versions.length - 1] : this.#opts.latestVersion
+			if ( !this.#opts.latestVersion || this.#opts.latestVersion === 'latest' ) {
+
+				let latest: string | undefined
+
+				for ( const v of versions ) {
+
+					if ( !latest || compareVersions( v, latest ) > 0 ) latest = v
+
+				}
+
+				return latest
+
+			}
+			return this.#opts.latestVersion
 
 		}
 		catch {
@@ -118,12 +132,12 @@ export class Updater {
 		} = this.#opts
 
 		// check cache
-		const latestVersion = await await this.#getCache( 'latestVersion', () => this.#getLatestVersion() )
+		const latestVersion = await this.#getCache( 'latestVersion', () => this.#getLatestVersion() )
 
 		if ( !latestVersion ) return undefined
 
-		// Is updated
-		if ( latestVersion === version ) {
+		// Is updated (or current is newer than latest)
+		if ( compareVersions( version, latestVersion ) >= 0 ) {
 
 			await this.#setCache( 'latestVersion', latestVersion )
 			return undefined

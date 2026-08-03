@@ -8,29 +8,40 @@ async function initializeI18n() {
 		getCurrentLang,
 		getLangs,
 		changeLang,
-	} = await i18n( { locales : {
-		en : { general : {
-			greeting : '🇬🇧 Hello',
-			farewell : '🇬🇧 Goodbye',
-			nested   : { more: 'Read more...' },
-		} },
-		es : { general : {
-			greeting : '🇪🇸 Hola',
-			farewell : '🇪🇸 Adiós',
-		} },
-		ja : { general : {
-			greeting : '🇯🇵 こんにちは',
-			farewell : '🇯🇵 さようなら',
-		} },
-		zh : { general : {
-			greeting : '🇨🇳 你好',
-			farewell : '🇨🇳 再见',
-		} },
-		fr : { general : {
-			greeting : '🇫🇷 Bonjour',
-			farewell : '🇫🇷 Au revoir',
-		} },
-	},
+	} = await i18n( {
+		locales : {
+			en : {
+				general : {
+					greeting : '🇬🇧 Hello',
+					farewell : '🇬🇧 Goodbye',
+					nested   : { more: 'Read more...' },
+				},
+			},
+			es : {
+				general : {
+					greeting : '🇪🇸 Hola',
+					farewell : '🇪🇸 Adiós',
+				},
+			},
+			ja : {
+				general : {
+					greeting : '🇯🇵 こんにちは',
+					farewell : '🇯🇵 さようなら',
+				},
+			},
+			zh : {
+				general : {
+					greeting : '🇨🇳 你好',
+					farewell : '🇨🇳 再见',
+				},
+			},
+			fr : {
+				general : {
+					greeting : '🇫🇷 Bonjour',
+					farewell : '🇫🇷 Au revoir',
+				},
+			},
+		},
 		// defaultLocale : 'en',
 	} )
 
