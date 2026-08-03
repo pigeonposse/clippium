@@ -20,16 +20,16 @@ That said, let's clarify these three points:
 
 | Name | Version |
 |--------|---------|
-| clippium | 1.0.3 |
+| clippium | 1.0.5 |
 | citty | 0.2.2 |
 | commander | 14.0.3 |
 | meow | 14.1.0 |
 | minimist | 1.2.8 |
 | mri | 1.2.0 |
-| nopt | 10.0.0 |
+| nopt | 10.0.1 |
 | sade | 1.8.1 |
-| tinybench | 6.0.2 |
-| yargs | 18.0.0 |
+| tinybench | 6.1.2 |
+| yargs | 18.1.0 |
 | yargs-parser | 22.0.0 |
 
 ## Parser bench
@@ -38,23 +38,23 @@ These benchmarks are for the **parse** function of clippium.
 
 | Name | Mean (ms) | Ops/sec |
 |------|-----------|---------|
-| clippium-parser | 0.000309 | 3231.84 |
-| mri | 0.000528 | 1895.18 |
-| minimist | 0.001360 | 735.10 |
-| nopt | 0.001893 | 528.22 |
-| yargs-parser | 0.014367 | 69.60 |
+| clippium-parser | 0.000321 | 3111.48 |
+| mri | 0.000534 | 1871.45 |
+| minimist | 0.001387 | 720.84 |
+| nopt | 0.001938 | 515.93 |
+| yargs-parser | 0.014125 | 70.80 |
 
 ## CLI bench
 
 | Name | Mean (ms) | Ops/sec |
 |------|-----------|---------|
-| clippium | 0.000787 | 1270.89 |
-| citty | 0.001001 | 998.71 |
-| commander | 0.005059 | 197.66 |
-| clippium-with-validation | 0.007296 | 137.06 |
-| sade | 0.008515 | 117.44 |
-| yargs | 2.287186 | 0.44 |
-| meow | 8.322624 | 0.12 |
+| clippium | 0.000778 | 1285.12 |
+| citty | 0.000924 | 1082.83 |
+| clippium-with-validation | 0.004790 | 208.77 |
+| commander | 0.005000 | 199.99 |
+| sade | 0.007293 | 137.12 |
+| yargs | 1.721066 | 0.58 |
+| meow | 6.665818 | 0.15 |
 
 ## Execute
 
