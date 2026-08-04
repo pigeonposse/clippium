@@ -56,7 +56,8 @@
 	"devEngines": {
 		"runtime": {
 			"name": "node",
-			"version": "24.19.0"
+			"version": "24.19.0",
+			"onFail": "download"
 		}
 	},
 	"workspace": [

@@ -16,7 +16,7 @@ import {
 vi.mock( './utils/cache' )
 vi.mock( './utils/package', async importOriginal => {
 
-	const mod = await importOriginal()
+	const mod = await importOriginal<object>()
 	return {
 		...mod,
 		getPackageManager              : vi.fn(),
