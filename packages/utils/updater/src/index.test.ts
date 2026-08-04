@@ -1,32 +1,32 @@
 import {
 	afterEach,
-	beforeEach,
 	describe,
 	it,
 	expect,
 	vi,
 } from 'vitest'
 
-import { Updater }         from './index'
-import { Cache }           from './utils/cache'
-import { compareVersions } from './utils/package'
+import { Updater }                 from './index'
+import {
+	compareVersions,
+	getPackageManager,
+	getPackageVersionsFromRegistry,
+} from './utils/package'
 
-// const mockTinyUpdater = vi.fn()
-// vi.mock( 'tiny-updater', () => ( { default: mockTinyUpdater } ) )
+vi.mock( './utils/cache' )
+vi.mock( './utils/package', async importOriginal => {
+
+	const mod = await importOriginal()
+	return {
+		...mod,
+		getPackageManager              : vi.fn(),
+		getPackageVersionsFromRegistry : vi.fn(),
+	}
+
+} )
 
 const packageName = 'binarium'
 const versionOld  = '2.1.1'
-
-const cacheOf = ( name: string ) => new Cache( `clippium-updater-${name}-latest` )
-
-const mockRegistry = ( versions: string[] ) => {
-
-	vi.stubGlobal( 'fetch', vi.fn().mockResolvedValue( {
-		ok   : true,
-		json : async () => ( { versions: Object.fromEntries( versions.map( v => [ v, {} ] ) ) } ),
-	} ) )
-
-}
 
 describe( 'compareVersions', () => {
 
@@ -50,6 +50,12 @@ describe( 'compareVersions', () => {
 
 describe( 'updater', () => {
 
+	afterEach( () => {
+
+		vi.clearAllMocks()
+
+	} )
+
 	it( 'should return an object with a notify function', () => {
 
 		const result = new Updater( {
@@ -62,27 +68,14 @@ describe( 'updater', () => {
 
 	describe( 'get', () => {
 
-		beforeEach( async () => {
-
-			await cacheOf( 'binarium-nonascending' ).clear()
-			await cacheOf( 'binarium-downgrade' ).clear()
-
-		} )
-
-		afterEach( () => {
-
-			vi.unstubAllGlobals()
-			vi.restoreAllMocks()
-
-		} )
-
 		it( 'should pick the highest version regardless of array order', async () => {
 
-			mockRegistry( [
+			vi.mocked( getPackageVersionsFromRegistry ).mockResolvedValue( [
 				'2.1.0',
 				'2.2.1',
 				'2.0.5',
 			] )
+			vi.mocked( getPackageManager ).mockResolvedValue( 'npm' )
 
 			const updater = new Updater( {
 				name    : 'binarium-nonascending',
@@ -96,7 +89,8 @@ describe( 'updater', () => {
 
 		it( 'should return undefined when current is newer than latest', async () => {
 
-			mockRegistry( [ '2.1.0' ] )
+			vi.mocked( getPackageVersionsFromRegistry ).mockResolvedValue( [ '2.1.0' ] )
+			vi.mocked( getPackageManager ).mockResolvedValue( 'npm' )
 
 			const updater = new Updater( {
 				name    : 'binarium-downgrade',
@@ -117,6 +111,7 @@ describe( 'updater', () => {
 	// 	const result = updater( {
 	// 		name    : packageName,
 	// 		version : versionOld,
+	// 		ttl     : 1000,
 	// 	} )
 
 	// 	result.notify()
